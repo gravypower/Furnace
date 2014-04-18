@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7F6BB4CE-B5E8-4E98-ACE6-FBDA2268ED26}</ProjectGuid>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDC48198-79A9-4266-8845-03663A1E3E76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Furnace.Tests</RootNamespace>
-    <AssemblyName>Furnace.Tests</AssemblyName>
+    <RootNamespace>Furnace.Tests.Models</RootNamespace>
+    <AssemblyName>Furnace.Tests.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,13 +23,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeAnalysis">
@@ -39,47 +45,31 @@
     <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
       <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeAnalysis.Workspaces">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Common">
-      <HintPath>..\packages\ServiceStack.Common.4.0.18\lib\net40\ServiceStack.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\packages\ServiceStack.Interfaces.4.0.18\lib\net40\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Redis">
-      <HintPath>..\packages\ServiceStack.Redis.4.0.18\lib\net40\ServiceStack.Redis.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.18\lib\net40\ServiceStack.Text.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable">
       <HintPath>..\packages\Microsoft.Bcl.Immutable.1.1.20-beta\lib\portable-net45+win8\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Reflection.Metadata">
       <HintPath>..\packages\Microsoft.Bcl.Metadata.1.0.9-alpha\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FurnaceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisTest.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="RedisTest2.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
