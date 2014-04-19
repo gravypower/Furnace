@@ -17,11 +17,19 @@ namespace Furnace.Tests
     public class FurnaceTests
     {
         private Assembly _assembly;
+        private Project _project;
+        private MSBuildWorkspace _workspace;
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _assembly = Assembly.LoadFile("c:\\Temp\\Furnace.Tests.Models.dll");
+            _workspace = MSBuildWorkspace.Create();
+            _project = _workspace.OpenProjectAsync(@"../../../Furnace.Tests.Models/Furnace.Tests.Models.csproj").Result;
+
+            if (_assembly == null)
+                _project.GetCompilationAsync().Result.Emit(TestContext.CurrentContext.WorkDirectory + "\\" + _project.AssemblyName + ".dll");
+
+            _assembly = Assembly.LoadFile(TestContext.CurrentContext.WorkDirectory + "\\Furnace.Tests.Models.dll");
         }
 
         [Test]
@@ -31,15 +39,9 @@ namespace Furnace.Tests
             {
                 redisClient.FlushAll();
 
-                var workspace = MSBuildWorkspace.Create();
-                var project  = workspace.OpenProjectAsync(@"../../../Furnace.Tests.Models/Furnace.Tests.Models.csproj").Result;               
-
-                if(_assembly == null)
-                    project.GetCompilationAsync().Result.Emit("c:\\Temp\\" + project.AssemblyName + ".dll");
-
-                foreach (var documentId in project.DocumentIds)
+                foreach (var documentId in _project.DocumentIds)
                 {
-                    var document = project.GetDocument(documentId);
+                    var document = _project.GetDocument(documentId);
                     var root = document.GetSyntaxRootAsync().Result;
                     var classes = root.DescendantNodes().OfType<ClassDeclarationSyntax>();
 
