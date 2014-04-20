@@ -38,7 +38,7 @@ namespace Furnace.Tests
             using (var redisClient = new RedisClient("localhost"))
             {
                 redisClient.FlushAll();
-
+                var typesHash = redisClient.Hashes["Types"];
                 foreach (var documentId in _project.DocumentIds)
                 {
                     var document = _project.GetDocument(documentId);
@@ -52,12 +52,15 @@ namespace Furnace.Tests
                     var structType = model.GetDeclaredSymbol(classes.Single());
 
                     var typeName = structType.ToDisplayString();
+                    
 
-                    var set = redisClient.Hashes["Types:" + typeName + ":Model"];
+                    //typesHash.Add();
+
+                    var typeHash = redisClient.Hashes["Types:" + typeName + ":Model"];
                     var d = new Dictionary<string, object>();
                     foreach (var property in root.DescendantNodes().OfType<PropertyDeclarationSyntax>())
                     {
-                        set.Add(property.Identifier.Text, property.Type.ToString());
+                        typeHash.Add(property.Identifier.Text, property.Type.ToString());
                         d[property.Identifier.Text] = property.Identifier.Text;
                     }
 
