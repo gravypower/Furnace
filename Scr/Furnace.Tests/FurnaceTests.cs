@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.CodeAnalysis;
@@ -38,7 +37,9 @@ namespace Furnace.Tests
             using (var redisClient = new RedisClient("localhost"))
             {
                 redisClient.FlushAll();
-                var typesHash = redisClient.Hashes["Types"];
+
+                var typeHash = redisClient.Hashes["Types"];
+
                 foreach (var documentId in _project.DocumentIds)
                 {
                     var document = _project.GetDocument(documentId);
@@ -52,30 +53,36 @@ namespace Furnace.Tests
                     var structType = model.GetDeclaredSymbol(classes.Single());
 
                     var typeName = structType.ToDisplayString();
-                    
 
-                    //typesHash.Add();
+                    typeHash.Add(Guid.NewGuid().ToString(), typeName);
 
-                    var typeHash = redisClient.Hashes["Types:" + typeName + ":Model"];
-                    var d = new Dictionary<string, object>();
+                    var set = redisClient.Hashes["Types:Model:" + typeName];
+                    var mockType = new Dictionary<string, object>();
                     foreach (var property in root.DescendantNodes().OfType<PropertyDeclarationSyntax>())
                     {
-                        typeHash.Add(property.Identifier.Text, property.Type.ToString());
-                        d[property.Identifier.Text] = property.Identifier.Text;
+                        Console.WriteLine(property.IsStructuredTrivia);
+                        set.Add(property.Identifier.Text, property.Type.ToString());
+                        mockType[property.Identifier.Text] = property.Identifier.Text;
                     }
 
-                    var redisHash = redisClient.Hashes["Types:" + typeName + ":Values"];
+                    var redisHash = redisClient.Hashes["Types:Values" + typeName];
                     
-                    redisHash.Add(Guid.NewGuid().ToString(), JsonSerializer.SerializeToString(d));
-
-                    foreach (var item in redisClient.GetHashKeys("Types:" + typeName + ":Values"))
-                    {
-                        Console.WriteLine(item);
-                        Console.WriteLine(typeName);
-                        Console.WriteLine(redisHash[item]); 
-                        Console.WriteLine(JsonSerializer.DeserializeFromString(redisHash[item], _assembly.GetType(typeName)));
-                    }
+                    redisHash.Add(Guid.NewGuid().ToString(), JsonSerializer.SerializeToString(mockType));
                 }
+
+                foreach (var hashKey in redisClient.GetHashKeys("Types"))
+                {
+                    var typeName = typeHash[hashKey];
+                    var redisHash = redisClient.Hashes["Types:Values" + typeName];
+                    
+                    foreach (var key in redisHash.Keys)
+                    {
+                        Console.WriteLine(key);
+                        Console.WriteLine(typeName);
+                        Console.WriteLine(redisHash[key]);
+                        Console.WriteLine(JsonSerializer.DeserializeFromString(redisHash[key], _assembly.GetType(typeName)));
+                    }   
+                }                
             }
         }
     }
