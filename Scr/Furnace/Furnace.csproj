@@ -74,7 +74,6 @@
     <Compile Include="ContentTypes\FurnaceContentType.cs" />
     <Compile Include="ContentTypes\FurnaceContentTypes.cs" />
     <Compile Include="ContentTypes\IFurnaceContentTypes.cs" />
-    <Compile Include="ContentTypes\TypeFinders\ITypeFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
