@@ -19,21 +19,23 @@ namespace Furnace.Tests
         private Project _project;
         private MSBuildWorkspace _workspace;
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetUp()
-        {
-            _workspace = MSBuildWorkspace.Create();
-            _project = _workspace.OpenProjectAsync(@"../../../Furnace.Tests.Models/Furnace.Tests.Models.csproj").Result;
+        //[TestFixtureSetUp]
+        //public void TestFixtureSetUp()
+        //{
+        //    _workspace = MSBuildWorkspace.Create();
+        //    _project = _workspace.OpenProjectAsync(@"../../../Furnace.Tests.Models/Furnace.Tests.Models.csproj").Result;
 
-            if (_assembly == null)
-                _project.GetCompilationAsync().Result.Emit(TestContext.CurrentContext.WorkDirectory + "\\" + _project.AssemblyName + ".dll");
+        //    if (_assembly == null)
+        //        _project.GetCompilationAsync().Result.Emit(TestContext.CurrentContext.WorkDirectory + "\\" + _project.AssemblyName + ".dll");
 
-            _assembly = Assembly.LoadFile(TestContext.CurrentContext.WorkDirectory + "\\Furnace.Tests.Models.dll");
-        }
+        //    _assembly = Assembly.LoadFile(TestContext.CurrentContext.WorkDirectory + "\\" + _project.AssemblyName + ".dll");
+        //}
 
-        [Test]
+
+        //[Test]
         public void SomeTest()
         {
+            MSBuildWorkspace.Create();
             using (var redisClient = new RedisClient("localhost"))
             {
                 redisClient.FlushAll();
@@ -60,7 +62,7 @@ namespace Furnace.Tests
                     var mockType = new Dictionary<string, object>();
                     foreach (var property in root.DescendantNodes().OfType<PropertyDeclarationSyntax>())
                     {
-                        Console.WriteLine(property.IsStructuredTrivia);
+                        Console.WriteLine(property.ExplicitInterfaceSpecifier);
                         set.Add(property.Identifier.Text, property.Type.ToString());
                         mockType[property.Identifier.Text] = property.Identifier.Text;
                     }
