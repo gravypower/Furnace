@@ -13,7 +13,7 @@ using ServiceStack.Text;
 namespace Furnace.Tests
 {
     [TestFixture]
-    public class FurnaceTests
+    public class FurnacePlay
     {
         private Assembly _assembly;
         private Project _project;
@@ -54,7 +54,7 @@ namespace Furnace.Tests
                     var model = document.GetSemanticModelAsync().Result;
                     var structType = model.GetDeclaredSymbol(classes.Single());
 
-                    var typeName = structType.ToDisplayString();
+                    var typeName = structType.ToDisplayString( );
 
                     typeHash.Add(Guid.NewGuid().ToString(), typeName);
 

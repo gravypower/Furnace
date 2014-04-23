@@ -83,15 +83,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentTypes\Tests.cs" />
-    <Compile Include="FurnaceTests.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\NoClasses.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\OneClass\GivenNoMembers.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\OneClass\GivenOneMember.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\OneClass\Tests.cs" />
+    <Compile Include="ContentTypes\ContentTypesTests.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\TwoClasses\GivenNoMembers.cs" />
+    <Compile Include="ContentTypes\GivenProjectWith\TwoClasses\Tests.cs" />
+    <Compile Include="FurnacePlay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Furnace\Furnace.csproj">
+    <ProjectReference Include="..\..\Furnace\Furnace.csproj">
       <Project>{9E48A6F6-C469-492D-A911-89E4319B9FD6}</Project>
       <Name>Furnace</Name>
     </ProjectReference>
