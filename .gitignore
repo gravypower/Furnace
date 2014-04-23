@@ -79,10 +79,9 @@ packages/
 modulesbin/
 App_Data/
 AppData/
-Umbraco/
-!Umbraco/Images/Umbraco
-Umbraco_Client/
-!App_Data/Umbraco.sdf*
 backup/
 web.config.backup
 StyleCop.Cache
+
+# Roslyn
+Furnace.sln.ide/
