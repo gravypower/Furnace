@@ -21,8 +21,8 @@ namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses
             var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result[0].Properties.Count, Is.EqualTo(1));
-            Assert.That(result[1].Properties.Count, Is.EqualTo(1));
+            Assert.That(result.First(x => x.Name == "Test1").Properties.Count, Is.EqualTo(1));
+            Assert.That(result.First(x => x.Name == "Test2").Properties.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -32,8 +32,8 @@ namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses
             var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result[1].Properties.Select(x => x), Contains.Item("StringProperty1"));
-            Assert.That(result[0].Properties.Select(x => x), Contains.Item("StringProperty2"));
+            Assert.That(result.First(x => x.Name == "Test1").Properties, Contains.Item("StringProperty1"));
+            Assert.That(result.First(x => x.Name == "Test2").Properties, Contains.Item("StringProperty2"));
         }
     }
 }
