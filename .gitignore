@@ -79,9 +79,7 @@ packages/
 modulesbin/
 App_Data/
 AppData/
-backup/
-web.config.backup
 StyleCop.Cache
 
 # Roslyn
-Furnace.sln.ide/
+Furnace.sln.ide/*

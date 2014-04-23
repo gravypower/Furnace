@@ -6,7 +6,7 @@ namespace Furnace.Tests.ContentTypes
     [TestFixture]
     public abstract class ContentTypesTests
     {
-        private const string BaseProjectPath = @"E:\Dev\Scr\Tests\TestModels\";
+        private const string BaseProjectPath = @"C:\GitHub\Furnace\Scr\Tests\TestModels\";
         protected IFurnaceContentTypes Sut;
 
         [SetUp]

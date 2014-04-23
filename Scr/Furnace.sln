@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace", "Furnace\Furnace.csproj", "{9E48A6F6-C469-492D-A911-89E4319B9FD6}"
 EndProject
@@ -31,6 +31,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember", "Tests\TestModels\OneClass.WithOneMember\OneClass.WithOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithNoMembers", "Tests\TestModels\TwoClasses.WithNoMembers\TwoClasses.WithNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-CB45-4A55-AC61-E99536AE3FE6}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithOneMember", "Tests\TestModels\TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj", "{C11DD429-1AA2-4F18-8D1E-479988FF807F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +120,16 @@ Global
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Release|x86.ActiveCfg = Release|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,11 +137,12 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{07B82DFF-FB94-4CAF-A089-119F833B4484} = {426DEA60-4AEC-4820-8D8D-657DD64DF9B9}
 		{7F6BB4CE-B5E8-4E98-ACE6-FBDA2268ED26} = {426DEA60-4AEC-4820-8D8D-657DD64DF9B9}
-		{7B658162-E02C-41FC-8295-6A1EFA6C7649} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
 		{8362D785-524E-43B2-8090-00262DD37392} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
+		{7B658162-E02C-41FC-8295-6A1EFA6C7649} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
 		{CA09A680-D4E0-4A97-94C4-49B51357094F} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
+		{4602133E-8118-4B84-B1A3-D666AA1D3067} = {8362D785-524E-43B2-8090-00262DD37392}
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {8362D785-524E-43B2-8090-00262DD37392}
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
 		{DDC48198-79A9-4266-8845-03663A1E3E76} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
-		{4602133E-8118-4B84-B1A3-D666AA1D3067} = {8362D785-524E-43B2-8090-00262DD37392}
 	EndGlobalSection
 EndGlobal
