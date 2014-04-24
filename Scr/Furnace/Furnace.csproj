@@ -71,8 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentTypes\FurnaceContentType.cs" />
+    <Compile Include="ContentTypes\Model\FurnaceContentType.cs" />
     <Compile Include="ContentTypes\IFurnaceContentTypes.cs" />
+    <Compile Include="ContentTypes\Model\FurnaceContentTypeProperty.cs" />
     <Compile Include="ContentTypes\RoslynContentTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

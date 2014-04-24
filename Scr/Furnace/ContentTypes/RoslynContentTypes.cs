@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Furnace.ContentTypes.Model;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.MSBuild;
@@ -31,19 +32,31 @@ namespace Furnace.ContentTypes
 
                 var model = document.GetSemanticModelAsync().Result;
                 var structType = model.GetDeclaredSymbol(classes.Single());
-                var typeName = structType.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
 
-                var t = new FurnaceContentType { Name = typeName };
+                var contentType = new FurnaceContentType
+                {
+                    Name = structType.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat),
+                    Namespace = structType.ContainingNamespace.ToDisplayString()
+                };
 
                 foreach (var property in root.DescendantNodes().OfType<PropertyDeclarationSyntax>())
                 {
-                    //Console.WriteLine(property.ExplicitInterfaceSpecifier);
-                    //set.Add(property.Identifier.Text, property.Type.ToString());
-                    //mockType[property.Identifier.Text] = property.Identifier.Text;
-                    t.Properties.Add(property.Identifier.Text);
+                    var furnaceContentTypeProperty = new FurnaceContentTypeProperty();
+
+                    furnaceContentTypeProperty.Name = property.Identifier.Text;
+                    furnaceContentTypeProperty.Type = property.Type.ToString();
+
+                    if (property.Initializer != null)
+                    {
+                        var defaultValue = property.Initializer.ToString();
+                        furnaceContentTypeProperty.DefaultValue = defaultValue.Substring(3, defaultValue.Length - 4);
+                    }
+
+
+                    contentType.Properties.Add(furnaceContentTypeProperty);
                 }
 
-                contentTypes.Add(t);
+                contentTypes.Add(contentType);
             }
 
             return contentTypes;

@@ -4,14 +4,19 @@ using NUnit.Framework;
 namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses
 {
     [TestFixture]
-    public class GivenOneMember : Tests
+    public class GivenOneMember : TwoClassesTests
     {
         protected override string ProjectPath
         {
             get
             {
-                return @"TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj";
+                return @"TwoClasses\TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj";
             }
+        }
+
+        protected override string ExpectedNamespace
+        {
+            get { return "WithOneMember"; }
         }
 
         [Test]
@@ -21,8 +26,8 @@ namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses
             var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.First(x => x.Name == "Test1").Properties.Count, Is.EqualTo(1));
-            Assert.That(result.First(x => x.Name == "Test2").Properties.Count, Is.EqualTo(1));
+            Assert.That(result.GetPropertyNames("Test1").Count, Is.EqualTo(1));
+            Assert.That(result.GetPropertyNames("Test2").Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -32,8 +37,31 @@ namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses
             var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.First(x => x.Name == "Test1").Properties, Contains.Item("StringProperty1"));
-            Assert.That(result.First(x => x.Name == "Test2").Properties, Contains.Item("StringProperty2"));
+            Assert.That(result.GetPropertyNames("Test1"), Contains.Item("StringProperty1"));
+            Assert.That(result.GetPropertyNames("Test2"), Contains.Item("StringProperty2"));
         }
+
+        [Test]
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasCorrectPropertyType()
+        {
+            //Act
+            var result = Sut.GetContentTypes().ToList();
+
+            //Assert
+            Assert.That(result.GetPropertyTypes("Test1", "StringProperty1"), Is.EqualTo("string"));
+            Assert.That(result.GetPropertyTypes("Test2", "StringProperty2"), Is.EqualTo("string"));
+        }
+
+        
+        //[Test]
+        //public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasCorrectPropertyDefaultValue()
+        //{
+        //    //Act
+        //    var result = Sut.GetContentTypes().ToList();
+
+        //    //Assert
+        //    Assert.That(result.GetPropertyDefaultValue("Test1", "StringProperty1"), Is.EqualTo("StringProperty1Default"));
+        //    Assert.That(result.GetPropertyDefaultValue("Test2", "StringProperty2"), Is.EqualTo("StringProperty2Default"));
+        //}
     }
 }

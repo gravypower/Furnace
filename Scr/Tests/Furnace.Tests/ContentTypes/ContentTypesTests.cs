@@ -6,7 +6,9 @@ namespace Furnace.Tests.ContentTypes
     [TestFixture]
     public abstract class ContentTypesTests
     {
-        private const string BaseProjectPath = @"C:\GitHub\Furnace\Scr\Tests\TestModels\";
+        private const string BaseProjectPath = @"D:\GitHub\Furnace\Scr\Tests\TestProjects\";
+
+        protected abstract string ProjectPath { get; }
         protected IFurnaceContentTypes Sut;
 
         [SetUp]
@@ -14,7 +16,5 @@ namespace Furnace.Tests.ContentTypes
         {
             Sut = new RoslynContentTypes(BaseProjectPath + ProjectPath);
         }
-
-        protected abstract string ProjectPath { get; }
     }
 }

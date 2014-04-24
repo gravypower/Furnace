@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace", "Furnace\Furnace.csproj", "{9E48A6F6-C469-492D-A911-89E4319B9FD6}"
 EndProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{25CEEB
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestModels", "TestModels", "{07B82DFF-FB94-4CAF-A089-119F833B4484}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestProjects", "TestProjects", "{07B82DFF-FB94-4CAF-A089-119F833B4484}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{426DEA60-4AEC-4820-8D8D-657DD64DF9B9}"
 EndProject
@@ -24,13 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TwoClasses", "TwoClasses", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneClass", "OneClass", "{7B658162-E02C-41FC-8295-6A1EFA6C7649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoClasses", "Tests\TestModels\NoClasses\NoClasses.csproj", "{CA09A680-D4E0-4A97-94C4-49B51357094F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithNoMembers", "Tests\TestModels\OneClass.WithNoMembers\OneClass.WithNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember", "Tests\TestModels\OneClass.WithOneMember\OneClass.WithOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithNoMembers", "Tests\TestModels\TwoClasses.WithNoMembers\TwoClasses.WithNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoClasses", "Tests\TestProjects\NoClasses\NoClasses.csproj", "{CA09A680-D4E0-4A97-94C4-49B51357094F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-CB45-4A55-AC61-E99536AE3FE6}"
 	ProjectSection(SolutionItems) = preProject
@@ -38,7 +32,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-C
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithOneMember", "Tests\TestModels\TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj", "{C11DD429-1AA2-4F18-8D1E-479988FF807F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WithOneMember", "WithOneMember", "{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithNoMembers", "Tests\TestProjects\OneClass\OneClass.WithNoMembers\OneClass.WithNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneComplexMember", "Tests\TestProjects\OneClass\OneClass.WithOneComplexMember\OneClass.WithOneComplexMember.csproj", "{046ABCE0-13EF-45F2-A997-9A9757DA2178}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember", "Tests\TestProjects\OneClass\WithOneMember\OneClass.WithOneMember\OneClass.WithOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember.AndDefaultValue", "Tests\TestProjects\OneClass\WithOneMember\OneClass.WithOneMember.AndDefaultValue\OneClass.WithOneMember.AndDefaultValue.csproj", "{07314E73-2C72-4B37-A31C-38FA9071B327}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithNoMembers", "Tests\TestProjects\TwoClasses\TwoClasses.WithNoMembers\TwoClasses.WithNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithOneMember", "Tests\TestProjects\TwoClasses\TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj", "{C11DD429-1AA2-4F18-8D1E-479988FF807F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +106,16 @@ Global
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}.Release|x86.ActiveCfg = Release|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178}.Release|x86.ActiveCfg = Release|Any CPU
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -110,6 +126,16 @@ Global
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Release|Mixed Platforms.Build.0 = Release|x86
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Release|x86.ActiveCfg = Release|x86
 		{DDC48198-79A9-4266-8845-03663A1E3E76}.Release|x86.Build.0 = Release|x86
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{07314E73-2C72-4B37-A31C-38FA9071B327}.Release|x86.ActiveCfg = Release|Any CPU
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4602133E-8118-4B84-B1A3-D666AA1D3067}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -142,7 +168,10 @@ Global
 		{CA09A680-D4E0-4A97-94C4-49B51357094F} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
 		{4602133E-8118-4B84-B1A3-D666AA1D3067} = {8362D785-524E-43B2-8090-00262DD37392}
 		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {8362D785-524E-43B2-8090-00262DD37392}
+		{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
-		{DDC48198-79A9-4266-8845-03663A1E3E76} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
+		{046ABCE0-13EF-45F2-A997-9A9757DA2178} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
+		{DDC48198-79A9-4266-8845-03663A1E3E76} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
+		{07314E73-2C72-4B37-A31C-38FA9071B327} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 	EndGlobalSection
 EndGlobal
