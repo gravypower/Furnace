@@ -76,17 +76,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentTypes\ContentTypeTestExtensions.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\NoClasses.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\OneClass\GivenNoMembers.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\OneClass\GivenOneComplexMember.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\OneClass\OneMember\AndDefaultValue.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\OneClass\OneMember\GivenOneMemberTests.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\OneClass\OneClassTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithNoClasses\NoClasses.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndNoMembers.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneComplexMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndWithDefaultValue.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndWithOneMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\WithOneClassTests.cs" />
     <Compile Include="ContentTypes\ContentTypesTests.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\GivenProjectWithTests.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\TwoClasses\GivenNoMembers.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\TwoClasses\GivenOneMember.cs" />
-    <Compile Include="ContentTypes\GivenProjectWith\TwoClasses\TwoClassesTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\GivenProjectTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithTwoClasses\GivenNoMembers.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndOneMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithTwoClasses\WithTwoClassesTests.cs" />
     <None Include="FurnacePlay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

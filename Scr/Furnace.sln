@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{426DEA60
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Tests", "Tests\Furnace.Tests\Furnace.Tests.csproj", "{7F6BB4CE-B5E8-4E98-ACE6-FBDA2268ED26}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TwoClasses", "TwoClasses", "{8362D785-524E-43B2-8090-00262DD37392}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WithTwoClasses", "WithTwoClasses", "{8362D785-524E-43B2-8090-00262DD37392}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneClass", "OneClass", "{7B658162-E02C-41FC-8295-6A1EFA6C7649}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WithOneClass", "WithOneClass", "{7B658162-E02C-41FC-8295-6A1EFA6C7649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoClasses", "Tests\TestProjects\NoClasses\NoClasses.csproj", "{CA09A680-D4E0-4A97-94C4-49B51357094F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithNoClasses", "Tests\TestProjects\WithNoClasses\WithNoClasses.csproj", "{CA09A680-D4E0-4A97-94C4-49B51357094F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-CB45-4A55-AC61-E99536AE3FE6}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,19 +32,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-C
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WithOneMember", "WithOneMember", "{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AndOneMember", "AndOneMember", "{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithNoMembers", "Tests\TestProjects\OneClass\OneClass.WithNoMembers\OneClass.WithNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndNoMembers", "Tests\TestProjects\WithOneClass\WithOneClass.AndNoMembers\OneClass.AndNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneComplexMember", "Tests\TestProjects\OneClass\OneClass.WithOneComplexMember\OneClass.WithOneComplexMember.csproj", "{046ABCE0-13EF-45F2-A997-9A9757DA2178}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneComplexMember", "Tests\TestProjects\WithOneClass\WithOneClass.AndOneComplexMember\OneClass.AndOneComplexMember.csproj", "{046ABCE0-13EF-45F2-A997-9A9757DA2178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember", "Tests\TestProjects\OneClass\WithOneMember\OneClass.WithOneMember\OneClass.WithOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneMember", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember\OneClass.AndOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.WithOneMember.AndDefaultValue", "Tests\TestProjects\OneClass\WithOneMember\OneClass.WithOneMember.AndDefaultValue\OneClass.WithOneMember.AndDefaultValue.csproj", "{07314E73-2C72-4B37-A31C-38FA9071B327}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneMember.AndDefaultValue", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember.AndDefaultValue\OneClass.AndOneMember.AndDefaultValue.csproj", "{07314E73-2C72-4B37-A31C-38FA9071B327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithNoMembers", "Tests\TestProjects\TwoClasses\TwoClasses.WithNoMembers\TwoClasses.WithNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithTwoClasses.AndNoMembers", "Tests\TestProjects\WithTwoClasses\WithTwoClasses.AndNoMembers\WithTwoClasses.AndNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoClasses.WithOneMember", "Tests\TestProjects\TwoClasses\TwoClasses.WithOneMember\TwoClasses.WithOneMember.csproj", "{C11DD429-1AA2-4F18-8D1E-479988FF807F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithTwoClasses.AndOneMember", "Tests\TestProjects\WithTwoClasses\WithTwoClasses.AndOneMember\WithTwoClasses.AndOneMember.csproj", "{C11DD429-1AA2-4F18-8D1E-479988FF807F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AndOneMember", "AndOneMember", "{1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,11 +169,12 @@ Global
 		{7B658162-E02C-41FC-8295-6A1EFA6C7649} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
 		{CA09A680-D4E0-4A97-94C4-49B51357094F} = {07B82DFF-FB94-4CAF-A089-119F833B4484}
 		{4602133E-8118-4B84-B1A3-D666AA1D3067} = {8362D785-524E-43B2-8090-00262DD37392}
-		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {8362D785-524E-43B2-8090-00262DD37392}
+		{1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8} = {8362D785-524E-43B2-8090-00262DD37392}
 		{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
 		{7B44B1A0-C3B9-4B6D-95A9-782564B30B40} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
 		{046ABCE0-13EF-45F2-A997-9A9757DA2178} = {7B658162-E02C-41FC-8295-6A1EFA6C7649}
 		{DDC48198-79A9-4266-8845-03663A1E3E76} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 		{07314E73-2C72-4B37-A31C-38FA9071B327} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
+		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}
 	EndGlobalSection
 EndGlobal
