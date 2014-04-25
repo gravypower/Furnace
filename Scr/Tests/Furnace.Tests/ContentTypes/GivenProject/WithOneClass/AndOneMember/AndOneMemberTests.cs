@@ -46,7 +46,7 @@
             var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.GetPropertyTypes("Test", ExpectedPropertyName), Is.EqualTo(ExpectedPropertyType));
+            Assert.That(result.GetPropertyType("Test", ExpectedPropertyName), Is.EqualTo(ExpectedPropertyType));
         }
     }
 }

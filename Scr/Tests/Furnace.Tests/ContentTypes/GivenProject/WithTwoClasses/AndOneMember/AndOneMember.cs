@@ -49,8 +49,8 @@
             var result = this.Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.GetPropertyTypes("Test1", "StringProperty1"), Is.EqualTo("string"));
-            Assert.That(result.GetPropertyTypes("Test2", "StringProperty2"), Is.EqualTo("string"));
+            Assert.That(result.GetPropertyType("Test1", "StringProperty1"), Is.EqualTo("string"));
+            Assert.That(result.GetPropertyType("Test2", "StringProperty2"), Is.EqualTo("string"));
         }
 
         

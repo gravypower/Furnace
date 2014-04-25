@@ -11,7 +11,7 @@ namespace Furnace.Tests.ContentTypes
             return types.First(x => x.Name == typeName).Properties.Select(x=>x.Name).ToList();
         }
 
-        public static string GetPropertyTypes(this IList<FurnaceContentType> types, string typeName, string propertyName)
+        public static string GetPropertyType(this IList<FurnaceContentType> types, string typeName, string propertyName)
         {
             return types.First(x => x.Name == typeName).Properties.First(x => x.Name == propertyName).Type;
         }
