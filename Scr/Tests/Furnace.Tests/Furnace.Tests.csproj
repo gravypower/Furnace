@@ -79,10 +79,10 @@
     <Compile Include="ContentTypes\GivenProject\WithNoClasses\NoClasses.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndNoMembers.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneComplexMember.cs" />
-    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneIntegerMember\AndOneIntegerMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\BooleanMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\IntegerMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneMemberTests.cs" />
-    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneStringMember\AndDefaultValue.cs" />
-    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneStringMember\AndWithOneStringMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\StringMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\WithOneClassTests.cs" />
     <Compile Include="ContentTypes\ContentTypesTests.cs" />
     <Compile Include="ContentTypes\GivenProject\GivenProjectTests.cs" />

@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneStringMe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneIntegerMember", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneIntegerMember\WithOneClass.AndOneIntegerMember.csproj", "{D3AC48D3-5382-49F5-91D3-3FA35FA8FB19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneBooleanMember", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneBooleanMember\WithOneClass.AndOneBooleanMember.csproj", "{C3C6396E-646D-4F2C-BE59-F7F53385351C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,16 @@ Global
 		{D3AC48D3-5382-49F5-91D3-3FA35FA8FB19}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3AC48D3-5382-49F5-91D3-3FA35FA8FB19}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D3AC48D3-5382-49F5-91D3-3FA35FA8FB19}.Release|x86.ActiveCfg = Release|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +212,7 @@ Global
 		{DDC48198-79A9-4266-8845-03663A1E3E76} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 		{07314E73-2C72-4B37-A31C-38FA9071B327} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 		{D3AC48D3-5382-49F5-91D3-3FA35FA8FB19} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
+		{C3C6396E-646D-4F2C-BE59-F7F53385351C} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 		{7D0C7AD7-7167-46EF-AEF2-98C5CAD34F41} = {1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}
 		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}
 	EndGlobalSection
