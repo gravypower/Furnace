@@ -2,8 +2,6 @@
 {
     using System.Linq;
 
-    using Furnace.Tests.ContentTypes.GivenProject;
-
     using NUnit.Framework;
 
     [TestFixture]
@@ -13,7 +11,7 @@
 
         protected override string ProjectPath
         {
-            get { return @"OneClass\" + this.OneClassProjectPath; }
+            get { return @"WithOneClass\" + this.OneClassProjectPath; }
         }
 
         [Test]
@@ -55,7 +53,7 @@
 
             //Assert
             var typeNamespace = result.Select(x => x.Namespace);
-            Assert.That(typeNamespace, Contains.Item("OneClass." + this.ExpectedNamespace));
+            Assert.That(typeNamespace, Contains.Item("WithOneClass." + this.ExpectedNamespace));
         }
     }
 }

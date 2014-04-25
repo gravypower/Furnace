@@ -7,8 +7,8 @@
     <ProjectGuid>{07314E73-2C72-4B37-A31C-38FA9071B327}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OneClass.AndOneMember.AndDefaultValue</RootNamespace>
-    <AssemblyName>OneClass.AndOneMember.AndDefaultValue</AssemblyName>
+    <RootNamespace>WithOneClass.AndOneMember.AndDefaultValue</RootNamespace>
+    <AssemblyName>WithOneClass.AndOneMember.AndDefaultValue</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

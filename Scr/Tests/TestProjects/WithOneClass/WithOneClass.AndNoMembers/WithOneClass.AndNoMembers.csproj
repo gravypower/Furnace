@@ -7,8 +7,8 @@
     <ProjectGuid>{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OneClass.AndNoMembers</RootNamespace>
-    <AssemblyName>OneClass.AndNoMembers</AssemblyName>
+    <RootNamespace>WithOneClass.AndNoMembers</RootNamespace>
+    <AssemblyName>WithOneClass.AndNoMembers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

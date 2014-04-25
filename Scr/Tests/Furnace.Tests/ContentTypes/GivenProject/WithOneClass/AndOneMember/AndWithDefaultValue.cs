@@ -13,7 +13,7 @@
         {
             get
             {
-                return @"WithOneMember\OneClass.WithOneMember.AndWithDefaultValue\OneClass.WithOneMember.AndWithDefaultValue.csproj";
+                return @"AndOneMember\WithOneClass.AndOneMember.AndDefaultValue\WithOneClass.AndOneMember.AndDefaultValue.csproj";
             }
         }
 
@@ -21,7 +21,7 @@
         {
             get
             {
-                return "WithOneMember.AndWithDefaultValue";
+                return "AndOneMember.AndDefaultValue";
             }
         }
 

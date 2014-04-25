@@ -9,13 +9,13 @@
         {
             get
             {
-                return @"TwoClasses\TwoClasses.WithNoMembers\TwoClasses.WithNoMembers.csproj";
+                return @"WithTwoClasses\WithTwoClasses.AndNoMembers\WithTwoClasses.AndNoMembers.csproj";
             }
         }
 
         protected override string ExpectedNamespace
         {
-            get { return "WithNoMembers"; }
+            get { return "AndNoMembers"; }
         }
     }
 }

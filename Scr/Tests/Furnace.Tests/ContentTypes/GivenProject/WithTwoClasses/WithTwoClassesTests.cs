@@ -49,8 +49,8 @@
 
             //Assert
             var typeNamespace = result.Select(x => x.Namespace);
-            Assert.That(typeNamespace, Contains.Item("TwoClasses." + this.ExpectedNamespace));
-            Assert.That(typeNamespace, Contains.Item("TwoClasses." + this.ExpectedNamespace));
+            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + this.ExpectedNamespace));
+            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + this.ExpectedNamespace));
         }
     }
 }

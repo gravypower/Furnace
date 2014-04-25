@@ -34,13 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{DD18BFE9-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AndOneMember", "AndOneMember", "{62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndNoMembers", "Tests\TestProjects\WithOneClass\WithOneClass.AndNoMembers\OneClass.AndNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndNoMembers", "Tests\TestProjects\WithOneClass\WithOneClass.AndNoMembers\WithOneClass.AndNoMembers.csproj", "{7B44B1A0-C3B9-4B6D-95A9-782564B30B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneComplexMember", "Tests\TestProjects\WithOneClass\WithOneClass.AndOneComplexMember\OneClass.AndOneComplexMember.csproj", "{046ABCE0-13EF-45F2-A997-9A9757DA2178}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneComplexMember", "Tests\TestProjects\WithOneClass\WithOneClass.AndOneComplexMember\WithOneClass.AndOneComplexMember.csproj", "{046ABCE0-13EF-45F2-A997-9A9757DA2178}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneMember", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember\OneClass.AndOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneMember", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember\WithOneClass.AndOneMember.csproj", "{DDC48198-79A9-4266-8845-03663A1E3E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneClass.AndOneMember.AndDefaultValue", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember.AndDefaultValue\OneClass.AndOneMember.AndDefaultValue.csproj", "{07314E73-2C72-4B37-A31C-38FA9071B327}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneMember.AndDefaultValue", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneMember.AndDefaultValue\WithOneClass.AndOneMember.AndDefaultValue.csproj", "{07314E73-2C72-4B37-A31C-38FA9071B327}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithTwoClasses.AndNoMembers", "Tests\TestProjects\WithTwoClasses\WithTwoClasses.AndNoMembers\WithTwoClasses.AndNoMembers.csproj", "{4602133E-8118-4B84-B1A3-D666AA1D3067}"
 EndProject

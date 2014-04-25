@@ -13,13 +13,13 @@
         {
             get
             {
-                return @"TwoClasses\TwoClasses.WithOneMember\OneMember\TwoClasses.WithOneMember.csproj";
+                return @"WithTwoClasses\WithTwoClasses.AndOneMember\WithTwoClasses.AndOneMember.csproj";
             }
         }
 
         protected override string ExpectedNamespace
         {
-            get { return "WithOneMember"; }
+            get { return "AndOneMember"; }
         }
 
         [Test]

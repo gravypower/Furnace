@@ -1,4 +1,4 @@
-﻿namespace OneClass.WithNoMembers
+﻿namespace WithOneClass.AndNoMembers
 {
     public class Test
     {

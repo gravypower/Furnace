@@ -1,7 +1,5 @@
 ﻿namespace Furnace.Tests.ContentTypes.GivenProject.WithOneClass
 {
-    using Furnace.Tests.ContentTypes.GivenProjectWith.OneClass;
-
     using NUnit.Framework;
 
     [TestFixture]
@@ -11,13 +9,13 @@
         {
             get
             {
-                return @"OneClass.WithNoMembers\OneClass.WithNoMembers.csproj";
+                return @"WithOneClass.AndNoMembers\WithOneClass.AndNoMembers.csproj";
             }
         }
 
         protected override string ExpectedNamespace
         {
-            get { return "WithNoMembers"; }
+            get { return "AndNoMembers"; }
         }
     }
 }

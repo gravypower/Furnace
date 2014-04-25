@@ -7,8 +7,8 @@
     <ProjectGuid>{046ABCE0-13EF-45F2-A997-9A9757DA2178}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OneClass.AndOneComplexMember</RootNamespace>
-    <AssemblyName>OneClass.AndOneComplexMember</AssemblyName>
+    <RootNamespace>WithOneClass.AndOneComplexMember</RootNamespace>
+    <AssemblyName>WithOneClass.AndOneComplexMember</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

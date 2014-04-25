@@ -9,7 +9,7 @@
     {
         protected override string ProjectPath
         {
-            get { return @"NoClasses\NoClasses.csproj"; }
+            get { return @"WithNoClasses\WithNoClasses.csproj"; }
         }
 
         [Test]

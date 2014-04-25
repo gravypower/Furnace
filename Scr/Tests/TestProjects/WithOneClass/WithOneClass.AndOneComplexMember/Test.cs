@@ -1,4 +1,4 @@
-﻿namespace OneClass.WithOneComplexMember
+﻿namespace WithOneClass.AndOneComplexMember
 {
     public class Test
     {
