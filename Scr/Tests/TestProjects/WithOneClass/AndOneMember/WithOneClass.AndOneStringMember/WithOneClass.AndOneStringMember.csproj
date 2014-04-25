@@ -8,8 +8,8 @@
     <ProjectGuid>{DDC48198-79A9-4266-8845-03663A1E3E76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WithOneClass.AndOneMember</RootNamespace>
-    <AssemblyName>WithOneClass.AndOneMember</AssemblyName>
+    <RootNamespace>WithOneClass.AndOneStringMember</RootNamespace>
+    <AssemblyName>WithOneClass.AndOneStringMember</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

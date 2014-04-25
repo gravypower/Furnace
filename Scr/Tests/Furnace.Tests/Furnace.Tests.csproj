@@ -79,11 +79,14 @@
     <Compile Include="ContentTypes\GivenProject\WithNoClasses\NoClasses.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndNoMembers.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneComplexMember.cs" />
-    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndWithDefaultValue.cs" />
-    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndWithOneMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneIntegerMember\AndOneIntegerMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneMemberTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneStringMember\AndDefaultValue.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneStringMember\AndWithOneStringMemberTests.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\WithOneClassTests.cs" />
     <Compile Include="ContentTypes\ContentTypesTests.cs" />
     <Compile Include="ContentTypes\GivenProject\GivenProjectTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndDefaultValue.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\GivenNoMembers.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndOneMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\WithTwoClassesTests.cs" />

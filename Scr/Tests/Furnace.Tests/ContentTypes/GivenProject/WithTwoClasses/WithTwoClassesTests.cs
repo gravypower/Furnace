@@ -18,7 +18,7 @@
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturnedHasCorrectName()
+        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturned_HasCorrectName()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();
@@ -31,7 +31,7 @@
 
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturnedHasCorrectNumberOfNamespace()
+        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturned_HasCorrectNumberOfNamespace()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();
@@ -42,7 +42,7 @@
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturnedHasCorrectNamespace()
+        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturned_HasCorrectNamespace()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();

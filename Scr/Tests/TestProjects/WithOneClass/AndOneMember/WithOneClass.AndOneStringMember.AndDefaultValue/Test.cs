@@ -1,4 +1,4 @@
-﻿namespace WithOneClass.AndOneMember.AndDefaultValue
+﻿namespace WithOneClass.AndOneStringMember.AndDefaultValue
 {
     public class Test
     {

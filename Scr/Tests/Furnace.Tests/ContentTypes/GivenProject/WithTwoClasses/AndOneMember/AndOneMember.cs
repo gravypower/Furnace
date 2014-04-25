@@ -1,8 +1,6 @@
-﻿namespace Furnace.Tests.ContentTypes.GivenProjectWith.TwoClasses.OneMember
+﻿namespace Furnace.Tests.ContentTypes.GivenProject.WithTwoClasses.AndOneMember
 {
     using System.Linq;
-
-    using Furnace.Tests.ContentTypes.GivenProject.WithTwoClasses;
 
     using NUnit.Framework;
 
@@ -13,7 +11,7 @@
         {
             get
             {
-                return @"WithTwoClasses\WithTwoClasses.AndOneMember\WithTwoClasses.AndOneMember.csproj";
+                return @"WithTwoClasses\AndOneMember\WithTwoClasses.AndOneMember\WithTwoClasses.AndOneMember.csproj";
             }
         }
 
@@ -23,7 +21,7 @@
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasOneProperty()
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasOneProperty()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();
@@ -34,7 +32,7 @@
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasCorrectPropertyNames()
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyNames()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();
@@ -45,7 +43,7 @@
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasCorrectPropertyType()
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyType()
         {
             //Act
             var result = this.Sut.GetContentTypes().ToList();
