@@ -1,9 +1,7 @@
 ﻿namespace Furnace.Roslyn.Tests
 {
-    using System;
     using System.Linq;
 
-    using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -29,7 +27,6 @@
 
             foreach (var property in properties)
             {
-                Console.WriteLine(property.Initializer);
                 Assert.That(GetDefaultValue(property), Is.EqualTo("StringPropertyDefault"));
             }
 
@@ -59,20 +56,12 @@
         private static string GetDefaultValue(PropertyDeclarationSyntax property)
         {
             var childSyntaxList = property.Initializer.Value;
-            var test = property.DescendantNodesAndSelf();
-            Console.WriteLine(property.Initializer.Value is LiteralExpressionSyntax);
 
             if (property.Initializer.Value is LiteralExpressionSyntax)
             {
                 var literalExpression = property.Initializer.Value as LiteralExpressionSyntax;
-                Console.WriteLine(literalExpression.ToFullString());
+                return literalExpression.Token.ValueText;
             }
-            else
-                Console.WriteLine(
-                    childSyntaxList.DescendantNodesAndSelf()
-                        .OfType<ObjectCreationExpressionSyntax>()
-                        .First()
-                        .ToFullString());
             return childSyntaxList.DescendantNodesAndSelf().OfType<ObjectCreationExpressionSyntax>().First().ToFullString();
         }
     }
