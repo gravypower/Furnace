@@ -16,7 +16,7 @@ namespace Furnace.Tests.ContentTypes
             return types.First(x => x.Name == typeName).Properties.First(x => x.Name == propertyName).Type;
         }
 
-        public static string GetPropertyDefaultValue(this IList<FurnaceContentType> types, string typeName, string propertyName)
+        public static object GetPropertyDefaultValue(this IList<FurnaceContentType> types, string typeName, string propertyName)
         {
             return types.First(x => x.Name == typeName).Properties.First(x => x.Name == propertyName).DefaultValue;
         }

@@ -1,9 +1,11 @@
-﻿namespace Furnace.ContentTypes.Model
+﻿using System;
+
+namespace Furnace.ContentTypes.Model
 {
     public class FurnaceContentTypeProperty
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public string DefaultValue { get; set; }
+        public object DefaultValue { get; set; }
     }
 }

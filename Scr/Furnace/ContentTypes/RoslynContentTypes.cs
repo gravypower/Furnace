@@ -48,8 +48,9 @@ namespace Furnace.ContentTypes
 
                     if (property.Initializer != null)
                     {
-                        var defaultValue = property.Initializer.ToString();
-                        furnaceContentTypeProperty.DefaultValue = defaultValue.Substring(3, defaultValue.Length - 4);
+                        var defaultValue = property.Initializer.Value.GetLastToken().Value;
+                        furnaceContentTypeProperty.DefaultValue = defaultValue;
+                        //furnaceContentTypeProperty.DefaultValue = defaultValue.Substring(3, defaultValue.Length - 4);
                     }
 
 
