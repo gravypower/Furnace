@@ -3,11 +3,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using ContentTypes;
     using ContentTypes.Model;
 
+    using Extensions;
+
     using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.MSBuild;
 
     public class RoslynContentTypes : IFurnaceContentTypes
@@ -24,10 +24,13 @@
         {
             foreach (var document in project.Documents)
             {
-                var documentRoot = document.GetSyntaxRootAsync().Result;
-                var classes = documentRoot.DescendantNodes()
-                    .OfType<ClassDeclarationSyntax>()
-                    .ToArray();
+                var documentRoot = document
+                    .GetSyntaxRootAsync()
+                    .Result;
+
+                var classes = documentRoot
+                    .GetClassDeclarationSyntax()
+                    .ToList();
 
                 if (!classes.Any())
                     continue;
@@ -37,11 +40,11 @@
 
                 var contentType = new FurnaceContentType
                 {
-                    Name = symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat),
-                    Namespace = symbol.ContainingNamespace.ToDisplayString()
+                    Name = symbol.ToMinimallyQualified(),
+                    Namespace = symbol.GetNamespace()
                 };
 
-                foreach (var property in documentRoot.DescendantNodes().OfType<PropertyDeclarationSyntax>())
+                foreach (var property in documentRoot.GetPropertyDeclarationSyntax())
                 {
                     contentType.Properties.Add(property.GetFurnaceContentTypeProperty());
                 }

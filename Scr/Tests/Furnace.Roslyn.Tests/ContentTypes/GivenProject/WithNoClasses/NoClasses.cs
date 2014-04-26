@@ -16,7 +16,7 @@
         public void WhenGetContentTypesIsCalled_ThenOneItemReturned()
         {
             //Act
-            var result = this.Sut.GetContentTypes();
+            var result = Sut.GetContentTypes();
 
             //Assert
             Assert.That(result.Count(), Is.EqualTo(0));

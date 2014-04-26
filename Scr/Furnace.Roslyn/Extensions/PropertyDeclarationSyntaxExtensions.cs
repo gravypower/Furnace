@@ -1,8 +1,8 @@
-﻿namespace Furnace.Roslyn
+﻿namespace Furnace.Roslyn.Extensions
 {
     using System.Linq;
 
-    using ContentTypes.Model;
+    using Furnace.ContentTypes.Model;
 
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
