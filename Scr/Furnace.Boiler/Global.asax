@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Furnace.Boiler.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Furnace.Boiler.Play.Global" Language="C#" %>

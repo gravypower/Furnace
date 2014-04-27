@@ -2,7 +2,7 @@
 using System.Web;
 using ServiceStack.MiniProfiler;
 
-namespace Furnace.Boiler
+namespace Furnace.Boiler.Play
 {
     public class Global : HttpApplication
     {

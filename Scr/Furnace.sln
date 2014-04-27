@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace", "Furnace\Furnace.csproj", "{9E48A6F6-C469-492D-A911-89E4319B9FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Boiler", "Furnace.Boiler\Furnace.Boiler.csproj", "{ED654B65-D2FB-43C5-8110-4D596DF762E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Boiler.Play", "Furnace.Boiler\Furnace.Boiler.Play.csproj", "{ED654B65-D2FB-43C5-8110-4D596DF762E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{25CEEB47-27E2-440E-BAAC-621E17C1266C}"
 	ProjectSection(SolutionItems) = preProject
@@ -67,6 +67,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Models", "Furnace.Models\Furnace.Models.csproj", "{B32DAFD5-EB3D-4F65-8486-2099EB7D869B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithTwoClasses.AndInOneFile", "Tests\TestProjects\WithTwoClasses\WithTwoClasses.AndInOneFile\WithTwoClasses.AndInOneFile.csproj", "{B1D2EB34-E956-4050-AE1E-9C35E7D37137}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Play", "Play", "{6174A9CD-B25C-4417-8257-A974BE6C16E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -304,5 +306,6 @@ Global
 		{63F79AB3-3869-4F7C-B322-7C764E0E65D1} = {62AB8DAA-6A22-4E2E-9DC7-BFC09E7C9041}
 		{7D0C7AD7-7167-46EF-AEF2-98C5CAD34F41} = {1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}
 		{C11DD429-1AA2-4F18-8D1E-479988FF807F} = {1DBDF87A-B55A-4DB7-99C9-EEC323F7ACD8}
+		{ED654B65-D2FB-43C5-8110-4D596DF762E7} = {6174A9CD-B25C-4417-8257-A974BE6C16E4}
 	EndGlobalSection
 EndGlobal

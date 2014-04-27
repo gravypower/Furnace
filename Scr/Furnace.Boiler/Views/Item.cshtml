@@ -1,0 +1,57 @@
+﻿@inherits ViewPage<Furnace.Boiler.Play.Models.Messages.ItemResponse>
+
+@{
+    Layout = "Empty";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Furnace.Boiler.Play</title>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/jquip.events.css.ajax.min.js"></script>
+    <script type="text/javascript">
+        function ItemControl($scope) {
+        var response = @Model.AsRawJson();
+
+        $scope.contentType = response.ContentType;
+        $scope.properties = response.ContentType.Properties;
+
+        $scope.numberOfProperties = function () {
+            return $scope.numberOfContentTypes.length;
+        }
+
+        //default values
+        $scope.Name = "";
+        $scope.Type = "";
+        $scope.DefaultValue = "";
+    }
+    </script>
+</head>
+<body>
+    <div ng-app ng-controller="ItemControl">
+        <div id="app">
+            <h3>We have {{numberOfProperties()}} Properties</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Default Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="property in properties">
+                        <td>{{property.Name}}</td>
+                        <td>{{property.Type}}</td>
+                        <td>{{property.DefaultValue}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
