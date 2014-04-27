@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Funq;
+using Furnace.Boiler.Play.Models.Messages;
 using ServiceStack;
 using ServiceStack.Logging;
 using ServiceStack.Razor;
@@ -20,6 +21,8 @@ namespace Furnace.Boiler.Play
             Plugins.Add(new RazorFormat());
 
             CustomErrorHttpHandlers[HttpStatusCode.NotFound] = new RazorHandler("/notfound");
+
+            Routes.Add<ItemRequest>("/item/");
         }
     }
 }

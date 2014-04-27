@@ -91,7 +91,6 @@
     <Content Include="default.cshtml" />
     <Content Include="Views\Item.cshtml" />
     <Content Include="NotFound.cshtml" />
-    <Content Include="Views\Shared\Empty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -104,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHost.cs" />
-    <Compile Include="BoilerService.cs" />
+    <Compile Include="ItemService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
