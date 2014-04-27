@@ -36,20 +36,23 @@
                     continue;
 
                 var model = document.GetSemanticModelAsync().Result;
-                var symbol = model.GetDeclaredSymbol(classes.Single());
-
-                var contentType = new FurnaceContentType
+                foreach (var classDeclarationSyntax in classes)
                 {
-                    Name = symbol.ToMinimallyQualified(),
-                    Namespace = symbol.GetNamespace()
-                };
+                    var symbol = model.GetDeclaredSymbol(classDeclarationSyntax);
 
-                foreach (var property in documentRoot.GetPropertyDeclarationSyntax())
-                {
-                    contentType.Properties.Add(property.GetFurnaceContentTypeProperty());
+                    var contentType = new FurnaceContentType
+                                          {
+                                              Name = symbol.ToMinimallyQualified(),
+                                              Namespace = symbol.GetNamespace()
+                                          };
+
+                    foreach (var property in documentRoot.GetPropertyDeclarationSyntax())
+                    {
+                        contentType.Properties.Add(property.GetFurnaceContentTypeProperty());
+                    }
+
+                    yield return contentType;
                 }
-
-                yield return contentType;
             }
         }
     }

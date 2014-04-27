@@ -80,6 +80,7 @@
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\IntegerMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\StringMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\WithOneClassTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndInOneFile.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndDefaultValue.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndOneMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\GivenNoMembers.cs" />
