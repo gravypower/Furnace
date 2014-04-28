@@ -13,25 +13,23 @@
     <script src="/js/angular.min.js"></script>
     <script src="/js/jquip.events.css.ajax.min.js"></script>
     <script type="text/javascript">
-        function ItemControl($scope) {
-        var response = @Model.AsRawJson();
+        function ItemCtrl($scope) {
+            var response = @Model.AsRawJson();
 
-        $scope.contentType = response.ContentType;
-        $scope.properties = response.ContentType.Properties;
+            $scope.contentType = response.ContentType;
+            $scope.properties = response.ContentType.Properties;
 
-        $scope.numberOfProperties = function () {
-            return $scope.numberOfContentTypes.length;
+            $scope.numberOfProperties = function () {
+                return $scope.properties.length;
+            }; //default values
+            $scope.Name = "";
+            $scope.Type = "";
+            $scope.DefaultValue = "";
         }
-
-        //default values
-        $scope.Name = "";
-        $scope.Type = "";
-        $scope.DefaultValue = "";
-    }
     </script>
 </head>
 <body>
-    <div ng-app ng-controller="ItemControl">
+    <div ng-app ng-controller="ItemCtrl">
         <div id="app">
             <h3>We have {{numberOfProperties()}} Properties</h3>
 

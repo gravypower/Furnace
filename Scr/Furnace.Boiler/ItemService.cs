@@ -23,6 +23,18 @@ namespace Furnace.Boiler.Play
                            Name = "PropertyName",
                            Type = "PropertyType",
                            DefaultValue = "PropertyDefaultValue"
+                       },
+                       new FurnaceContentTypeProperty
+                       {
+                           Name = "PropertyName",
+                           Type = "PropertyType",
+                           DefaultValue = "PropertyDefaultValue"
+                       },
+                       new FurnaceContentTypeProperty
+                       {
+                           Name = "PropertyName",
+                           Type = "PropertyType",
+                           DefaultValue = "PropertyDefaultValue"
                        }
                    }
                }
