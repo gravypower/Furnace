@@ -8,9 +8,9 @@
     [TestFixture]
     public abstract class ContentTypesTests
     {
-        //private const string BaseProjectPath = @"C:\GitHub\Furnace\Scr\Tests\TestProjects\";
-        private const string BaseProjectPath = @"D:\GitHub\Furnace\Scr\Tests\TestProjects\";
-        //private const string BaseProjectPath = @"E:\Dev\Scr\Tests\TestProjects\";
+        private const string BaseProjectPath = @"C:\GitHub\Furnace\Src\Tests\TestProjects\";
+        //private const string BaseProjectPath = @"D:\GitHub\Furnace\Scr\Tests\TestProjects\";
+        //private const string BaseProjectPath = @"E:\Dev\Src\Tests\TestProjects\";
 
         protected abstract string ProjectPath { get; }
         protected IFurnaceContentTypes Sut;
