@@ -15,10 +15,10 @@ namespace Furnace.Play
             var contentType = new FurnaceContentType();
             contentType.Properties.Add(propity);
 
-            dynamic item = new Item(contentType);
+            var item = new Item(contentType);
             const string propityValue = "SomeValue";
             item.AddPropity(propityName, propityValue);
-            Assert.That(item.SomeName, Is.EqualTo(propityValue));
+            Assert.That(((dynamic)item).SomeName, Is.EqualTo(propityValue));
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace Furnace.Play
         {
             const string propityName = "SomeName";
             var contentType = new FurnaceContentType();
-            dynamic item = new Item(contentType);
+            var item = new Item(contentType);
             const string propityValue = "SomeValue";
             
             Assert.That(item.AddPropity(propityName, propityValue), Is.False);
