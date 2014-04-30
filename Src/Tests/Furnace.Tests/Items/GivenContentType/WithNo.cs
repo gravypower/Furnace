@@ -14,10 +14,10 @@ namespace Furnace.Tests.Items.GivenContentType
         public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
             var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.CreateItem(ContentType));
-            AssertInvalidContentTypeException(ex);
+            AssertInvalidReasons(ex);
         }
 
-        protected abstract void AssertInvalidContentTypeException(FurnaceItems.InvalidContentTypeException ex);
+        protected abstract void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex);
 
         [TestFixture]
         public class Name : WithNo
@@ -28,7 +28,7 @@ namespace Furnace.Tests.Items.GivenContentType
                 ContentType = new ContentType { Namespace = ContentTypeNamespace };
             }
 
-            protected override void AssertInvalidContentTypeException(FurnaceItems.InvalidContentTypeException ex)
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
             }
@@ -43,7 +43,7 @@ namespace Furnace.Tests.Items.GivenContentType
                 ContentType = new ContentType {Name = ContentTypeName};
             }
 
-            protected override void AssertInvalidContentTypeException(FurnaceItems.InvalidContentTypeException ex)
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
             }
@@ -58,7 +58,7 @@ namespace Furnace.Tests.Items.GivenContentType
                 ContentType = new ContentType();
             }
 
-            protected override void AssertInvalidContentTypeException(FurnaceItems.InvalidContentTypeException ex)
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
