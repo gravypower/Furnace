@@ -1,12 +1,12 @@
-﻿using Furnace.ContentTypes.Model;
+﻿using Furnace.Models.ContentTypes;
 
 namespace Furnace.Play
 {
     public class Propity
     {
-        private FurnaceContentTypeProperty _property;
+        private Property _property;
 
-        public Propity(FurnaceContentTypeProperty property)
+        public Propity(Property property)
         {
             _property = property;
         }

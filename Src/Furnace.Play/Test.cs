@@ -1,4 +1,5 @@
-﻿using Furnace.ContentTypes.Model;
+﻿using System.Dynamic;
+using Furnace.Models.ContentTypes;
 using NUnit.Framework;
 
 namespace Furnace.Play
@@ -10,9 +11,9 @@ namespace Furnace.Play
         public void AddAnItem()
         {
             const string propityName = "SomeName";
-            var propity = new FurnaceContentTypeProperty {Name = propityName};
+            var propity = new Property {Name = propityName};
 
-            var contentType = new FurnaceContentType();
+            var contentType = new ContentType();
             contentType.Properties.Add(propity);
 
             var item = new Item(contentType);
@@ -25,10 +26,10 @@ namespace Furnace.Play
         public void CantAddAnItem()
         {
             const string propityName = "SomeName";
-            var contentType = new FurnaceContentType();
+            var contentType = new ContentType();
             var item = new Item(contentType);
             const string propityValue = "SomeValue";
-            
+
             Assert.That(item.AddPropity(propityName, propityValue), Is.False);
         }
     }

@@ -1,17 +1,16 @@
-﻿namespace Furnace.Roslyn.Extensions
+﻿using Furnace.Models.ContentTypes;
+
+namespace Furnace.Roslyn.Extensions
 {
     using System.Linq;
-
-    using Furnace.ContentTypes.Model;
-
     using Microsoft.CodeAnalysis.CSharp.Syntax;
 
     internal static class PropertyDeclarationSyntaxExtensions
     {
-        public static FurnaceContentTypeProperty GetFurnaceContentTypeProperty(
+        public static Property GetFurnaceContentTypeProperty(
             this PropertyDeclarationSyntax propertySyntax)
         {
-            return new FurnaceContentTypeProperty
+            return new Property
             {
                 Name = propertySyntax.Identifier.Text,
                 Type = propertySyntax.Type.ToString(),

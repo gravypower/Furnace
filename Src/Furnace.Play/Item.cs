@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
-using Furnace.ContentTypes.Model;
+using Furnace.Models.ContentTypes;
 
 namespace Furnace.Play
 {
     public class Item : DynamicObject
     {
-        private readonly FurnaceContentType _contentType;
+        private readonly ContentType _contentType;
         private readonly Dictionary<string, Propity> _propities = new Dictionary<string, Propity>();
 
-        public Item(FurnaceContentType contentType)
+        public Item(ContentType contentType)
         {
             _contentType = contentType;
         }

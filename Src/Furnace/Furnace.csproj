@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IFurnaceContentTypes.cs" />
+    <Compile Include="Items\FurnaceItems.cs" />
+    <Compile Include="ContentTypes\IFurnaceContentTypes.cs" />
+    <Compile Include="Items\IFurnaceItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

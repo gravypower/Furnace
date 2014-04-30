@@ -1,7 +1,7 @@
 ﻿namespace Furnace.Roslyn.Tests.ContentTypes
 {
     using Furnace.ContentTypes;
-    using Furnace.Roslyn;
+    using Roslyn;
 
     using NUnit.Framework;
 
@@ -18,7 +18,7 @@
         [SetUp]
         public void SetUp()
         {
-            this.Sut = new RoslynContentTypes(BaseProjectPath + this.ProjectPath);
+            Sut = new RoslynContentTypes(BaseProjectPath + this.ProjectPath);
         }
     }
 }

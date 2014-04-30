@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="ContentTypes\ContentTypesTests.cs" />
     <Compile Include="ContentTypes\ContentTypeTestExtensions.cs" />
+    <Compile Include="ContentTypes\GivenNoProject.cs" />
     <Compile Include="ContentTypes\GivenProject\GivenProjectTests.cs" />
     <Compile Include="ContentTypes\GivenProject\WithNoClasses\NoClasses.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndNoMembers.cs" />
