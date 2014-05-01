@@ -18,11 +18,11 @@ namespace Furnace.Tests.Items
         //public void WhenCreateItemIsCalled_ThenTheItemsReturned_HasCorrectName()
         //{
         //    //const string contentTypeName = "SomeContentTypeName";
-        //    //var contentType = new FurnaceContentType {Name = contentTypeName};
+        //    //var contentType = new FurnaceContentType {ExceptionName = contentTypeName};
 
         //    //const string propertyName = "SomePropertyName";
         //    //var property = new FurnaceContentTypeProperty();
-        //    //property.Name = propertyName;
+        //    //property.ExceptionName = propertyName;
         //}
     }
 }

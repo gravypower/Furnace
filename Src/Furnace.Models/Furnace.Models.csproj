@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ContentTypes\ContentType.cs" />
     <Compile Include="ContentTypes\Property.cs" />
+    <Compile Include="Exceptions\FurnaceException.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

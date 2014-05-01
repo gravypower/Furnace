@@ -35,6 +35,21 @@ namespace Furnace.Tests.Items.GivenContentType
         }
 
         [TestFixture]
+        public class Properties : WithNo
+        {
+            [SetUp]
+            public void PropertiesSetUp()
+            {
+                ContentType = new ContentType { Name = ContentTypeName , Namespace = ContentTypeNamespace};
+            }
+
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
+            {
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoProperties));
+            }
+        }
+
+        [TestFixture]
         public class Namespace : WithNo
         {
             [SetUp]
@@ -50,10 +65,10 @@ namespace Furnace.Tests.Items.GivenContentType
         }
 
         [TestFixture]
-        public class NameOrNamesapce : WithNo
+        public class NameOrNamespaceOrProperties : WithNo
         {
             [SetUp]
-            public void NameOrNamesapceSetUp()
+            public void NameOrNamespaceOrPropertiesSetUp()
             {
                 ContentType = new ContentType();
             }
@@ -61,6 +76,7 @@ namespace Furnace.Tests.Items.GivenContentType
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
             }
         }
