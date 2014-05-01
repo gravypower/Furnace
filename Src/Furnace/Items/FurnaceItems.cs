@@ -6,6 +6,7 @@ using Furnace.Models.Items;
 using ServiceStack;
 using Property = Furnace.Models.ContentTypes.Property;
 
+
 namespace Furnace.Items
 {
     public class FurnaceItems : IFurnaceItems
@@ -13,7 +14,7 @@ namespace Furnace.Items
         public Item CreateItem(ContentType contentType)
         {
             new Guard().GuardContenType(contentType);
-            return new Item();
+            return new Item(contentType);
         }        
 
         private class Guard

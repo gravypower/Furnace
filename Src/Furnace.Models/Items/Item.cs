@@ -1,12 +1,22 @@
-﻿namespace Furnace.Models.Items
+﻿using System.Linq;
+using Furnace.Models.ContentTypes;
+
+namespace Furnace.Models.Items
 {
     public class Item
     {
+        private readonly ContentType _contentType;
+
+        public Item(ContentType contentType)
+        {
+            _contentType = contentType;
+        }
+
         public object this[string propityName]
         {
             get
             {
-                return null;
+                return _contentType.Properties.Single(x=>x.Name == propityName).DefaultValue;
             }
         }
 
