@@ -1,4 +1,5 @@
-﻿using Furnace.Models.ContentTypes;
+﻿using System;
+using Furnace.Models.ContentTypes;
 using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
@@ -13,6 +14,17 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         public void WithNameAndNamespaceTestsSetUp()
         {
             ContentType = new ContentType { Name = ContentTypeName, Namespace = ContentTypeNamespace };
+        }
+
+        protected void AddPropityToContentType(string propertyName = null, string type = null)
+        {
+            var property = new Property
+            {
+                Name = propertyName,
+                Type = type
+            };
+
+            ContentType.Properties.Add(property);
         }
     }
 }

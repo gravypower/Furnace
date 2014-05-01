@@ -14,8 +14,7 @@ namespace Furnace.Tests.Exceptions
         {
             try
             {
-                if(Sut != null)
-                    throw Sut;
+                throw Sut;
             }
             catch (FurnaceException ex)
             {
