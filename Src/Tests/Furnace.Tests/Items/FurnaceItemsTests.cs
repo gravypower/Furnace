@@ -1,4 +1,5 @@
 ﻿using Furnace.Items;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Furnace.Tests.Items
@@ -7,22 +8,13 @@ namespace Furnace.Tests.Items
     public abstract class FurnaceItemsTests
     {
         protected IFurnaceItems Sut;
+        protected IFurnaceItemRepository<string> ItemRepository;
 
         [SetUp]
         protected void SetUp()
         {
-            Sut = new FurnaceItems();
+            ItemRepository = Substitute.For<IFurnaceItemRepository<string>>();
+            Sut = new JsonBackedFurnaceItems(ItemRepository);
         }
-
-        //[Test]
-        //public void WhenCreateItemIsCalled_ThenTheItemsReturned_HasCorrectName()
-        //{
-        //    //const string contentTypeName = "SomeContentTypeName";
-        //    //var contentType = new FurnaceContentType {ExceptionName = contentTypeName};
-
-        //    //const string propertyName = "SomePropertyName";
-        //    //var property = new FurnaceContentTypeProperty();
-        //    //property.ExceptionName = propertyName;
-        //}
     }
 }

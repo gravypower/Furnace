@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Exceptions;
@@ -6,16 +7,27 @@ using Furnace.Models.Items;
 using ServiceStack;
 using Property = Furnace.Models.ContentTypes.Property;
 
-
 namespace Furnace.Items
 {
-    public class FurnaceItems : IFurnaceItems
+    public abstract class FurnaceItems<TItemBackedType> : FurnaceItems, IFurnaceItems
+    {
+        protected IFurnaceItemRepository<TItemBackedType> ItemRepository;
+
+        protected FurnaceItems(IFurnaceItemRepository<TItemBackedType> itemRepository)
+        {
+            ItemRepository = itemRepository;
+        }
+    }
+
+    public abstract class FurnaceItems
     {
         public Item CreateItem(ContentType contentType)
         {
             new Guard().GuardContenType(contentType);
             return new Item(contentType);
-        }        
+        }
+
+        public abstract Item GetItem(Guid guid, ContentType contentType);
 
         private class Guard
         {
@@ -47,10 +59,10 @@ namespace Furnace.Items
             {
                 foreach (var property in properties)
                 {
-                    if(property.Type == null)
+                    if (property.Type == null)
                         _reasons.Add(InvalidContentTypeException.PropertyHasNoType.FormatWith(property.Name));
 
-                    if(property.Name.IsNullOrEmpty())
+                    if (property.Name.IsNullOrEmpty())
                         _reasons.Add(InvalidContentTypeException.PropertyHasNoName.FormatWith(property.Type));
                 }
             }

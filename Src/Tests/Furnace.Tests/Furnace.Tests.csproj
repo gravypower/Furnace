@@ -80,8 +80,10 @@
     <Compile Include="Items\FurnaceItemsTests.cs" />
     <Compile Include="Items\GivenContentType\GivenContentTypeTests.cs" />
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\AndOnePropertyTest.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\Integer.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\String.cs" />
+    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfBoolean.cs" />
+    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfDateTime.cs" />
+    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfInteger.cs" />
+    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfString.cs" />
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndTwoProperties.cs" />
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\WithNameAndNamespaceTests.cs" />
     <Compile Include="Items\GivenContentType\WithNo.cs" />

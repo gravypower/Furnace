@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Furnace.Models.ContentTypes;
 
 namespace Furnace.Models.Items
@@ -6,6 +7,8 @@ namespace Furnace.Models.Items
     public class Item
     {
         private readonly ContentType _contentType;
+
+        public Guid Id { get; set; }
 
         public Item(ContentType contentType)
         {
@@ -19,6 +22,5 @@ namespace Furnace.Models.Items
                 return _contentType.Properties.Single(x=>x.Name == propityName).DefaultValue;
             }
         }
-
     }
 }

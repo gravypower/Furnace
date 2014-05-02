@@ -1,5 +1,4 @@
-﻿using System;
-using Furnace.Models.ContentTypes;
+﻿using Furnace.Models.ContentTypes;
 using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace

@@ -31,18 +31,15 @@ namespace Furnace.Roslyn.Extensions
                 return literalExpression.Token.ValueText;
             }
 
-            if (propertySyntax.Initializer.Value is ObjectCreationExpressionSyntax)
-            {
-                var childSyntaxList = propertySyntax.Initializer.Value;
+            //if (propertySyntax.Initializer.Value is ObjectCreationExpressionSyntax)
 
-                return
-                    childSyntaxList.DescendantNodesAndSelf()
-                        .OfType<ObjectCreationExpressionSyntax>()
-                        .First()
-                        .ToFullString();
-            }
+            var childSyntaxList = propertySyntax.Initializer.Value;
 
-            return null;
+            return
+                childSyntaxList.DescendantNodesAndSelf()
+                    .OfType<ObjectCreationExpressionSyntax>()
+                    .First()
+                    .ToFullString();
         }
     }
 }

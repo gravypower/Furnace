@@ -8,7 +8,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
     public class AndTwoProperties : WithNameAndNamespaceTests
     {
         [Test]
-        public void WithNoType_ThenInvalidPropertyException_IsThrown()
+        public void WhenCreateItemIsCalled_WithNoType_ThenInvalidPropertyException_IsThrown()
         {
             //Assign
             const string propertyNameOne = "SomeNameOne";
@@ -31,7 +31,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         }
 
         [Test]
-        public void WithNoName_ThenInvalidPropertyException_IsThrown()
+        public void WhenCreateItemIsCalled_WithNoName_ThenInvalidPropertyException_IsThrown()
         {
             //Assign
             const string propertyTypeOne = "string";

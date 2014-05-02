@@ -15,7 +15,7 @@
         {
             get
             {
-                return @"AndOneMember\" + this.AndOneMemberProjectPath;
+                return @"AndOneMember\" + AndOneMemberProjectPath;
             }
         }
 
@@ -23,7 +23,7 @@
         public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturnedHasOneProperty()
         {
             //Act
-            var result = this.Sut.GetContentTypes().ToList();
+            var result = Sut.GetContentTypes().ToList();
 
             //Assert
             Assert.That(result.GetPropertyNames("Test").Count, Is.EqualTo(1));
@@ -33,20 +33,20 @@
         public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyName()
         {
             //Act
-            var result = this.Sut.GetContentTypes().ToList();
+            var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.GetPropertyNames("Test"), Contains.Item(this.ExpectedPropertyName));
+            Assert.That(result.GetPropertyNames("Test"), Contains.Item(ExpectedPropertyName));
         }
 
         [Test]
         public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyType()
         {
             //Act
-            var result = this.Sut.GetContentTypes().ToList();
+            var result = Sut.GetContentTypes().ToList();
 
             //Assert
-            Assert.That(result.GetPropertyType("Test", this.ExpectedPropertyName), Is.EqualTo(this.ExpectedPropertyType));
+            Assert.That(result.GetPropertyType("Test", ExpectedPropertyName), Is.EqualTo(ExpectedPropertyType));
         }
     }
 }
