@@ -17,6 +17,14 @@ namespace Furnace.Tests.Items.GivenContentType
             AssertInvalidReasons(ex);
         }
 
+        [Test]
+        public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
+        {
+            var key = "SomeKey";
+            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(key, ContentType));
+            AssertInvalidReasons(ex);
+        }
+
         protected abstract void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex);
 
         [TestFixture]

@@ -7,14 +7,12 @@ namespace Furnace.Tests.Items
     [TestFixture]
     public abstract class FurnaceItemsTests
     {
-        protected IFurnaceItems Sut;
-        protected IFurnaceItemRepository<string> ItemRepository;
+        protected IFurnaceItems<string> Sut;
 
         [SetUp]
         protected void SetUp()
         {
-            ItemRepository = Substitute.For<IFurnaceItemRepository<string>>();
-            Sut = new JsonBackedFurnaceItems(ItemRepository);
+            Sut = Substitute.For<FurnaceItems<string>>();
         }
     }
 }

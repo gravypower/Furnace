@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Furnace.Items;
-using NSubstitute;
+
 using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProperty
@@ -74,52 +74,16 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         [Test]
         public void NoItemWithId_WhenGetItemIsCalled_ThenNullReturned()
         {
-
-
             //Assign
-            var guid = new Guid("0bc8a24e-467d-40b9-aed7-81cdcaffbdbe");
+            var id = "SomeKey";
             AddPropityToContentType(PropertyName, PropertyType);
             var item = Sut.CreateItem(ContentType);
-            item.Id = guid;
+            item.Id = id;
 
             //Act
-            var result = Sut.GetItem(guid, ContentType);
+            var result = Sut.GetItem(id, ContentType);
 
             Assert.That(result, Is.Null);
-        }
-
-        [Test]
-        public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectId()
-        {
-            //Assign
-            var guid = new Guid("0bc8a24e-467d-40b9-aed7-81cdcaffbdbe");
-            AddPropityToContentType(PropertyName, PropertyType);
-            var item = Sut.CreateItem(ContentType);
-            item.Id = guid;
-
-            ItemRepository.GetById(guid).Returns(string.Empty);
-
-            //Act
-            var result = Sut.GetItem(guid, ContentType);
-
-            Assert.That(result.Id, Is.EqualTo(guid));
-        }
-
-        [Test]
-        public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectJSON()
-        {
-            //Assign
-            var guid = new Guid("0bc8a24e-467d-40b9-aed7-81cdcaffbdbe");
-            AddPropityToContentType(PropertyName, PropertyType);
-            var item = Sut.CreateItem(ContentType);
-            item.Id = guid;
-
-            ItemRepository.GetById(guid).Returns(string.Empty);
-
-            //Act
-            var result = Sut.GetItem(guid, ContentType);
-
-            Assert.That(result.Id, Is.EqualTo(guid));
         }
         #endregion
     }

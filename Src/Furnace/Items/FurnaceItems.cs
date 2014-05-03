@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Exceptions;
@@ -9,61 +8,59 @@ using Property = Furnace.Models.ContentTypes.Property;
 
 namespace Furnace.Items
 {
-    public abstract class FurnaceItems<TItemBackedType> : FurnaceItems, IFurnaceItems
-    {
-        protected IFurnaceItemRepository<TItemBackedType> ItemRepository;
-
-        protected FurnaceItems(IFurnaceItemRepository<TItemBackedType> itemRepository)
-        {
-            ItemRepository = itemRepository;
-        }
-    }
-
-    public abstract class FurnaceItems
+    public abstract class FurnaceItems<TKeyType> : FurnaceItems, IFurnaceItems<TKeyType>
     {
         public Item CreateItem(ContentType contentType)
         {
-            new Guard().GuardContenType(contentType);
+            var guard = new Guard();
+            guard.GuardContenType(contentType);
+
             return new Item(contentType);
         }
 
-        public abstract Item GetItem(Guid guid, ContentType contentType);
-
-        private class Guard
+        public Item GetItem(TKeyType key, ContentType contentType)
         {
-            private readonly List<string> _reasons;
+            var guard = new Guard();
+            guard.GuardContenType(contentType);
+            return AbstractGetItem(key, contentType);
+        }
+
+        public abstract Item AbstractGetItem(TKeyType key, ContentType contentType);
+    }
+
+    public class FurnaceItems
+    {
+        protected class Guard
+        {
+            private readonly List<string> reasons;
 
             public Guard()
             {
-                _reasons = new List<string>();
+                reasons = new List<string>();
             }
 
             public void GuardContenType(ContentType contentType)
             {
-                if (contentType.Namespace.IsNullOrEmpty())
-                    _reasons.Add(InvalidContentTypeException.NoNamespace);
+                if(contentType == null)
+                    throw new InvalidContentTypeException(new [] { InvalidContentTypeException.NullContentType });
 
-                if (contentType.Name.IsNullOrEmpty())
-                    _reasons.Add(InvalidContentTypeException.NoName);
+                if (contentType.Namespace.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.NoNamespace);
 
-                if (!contentType.Properties.Any())
-                    _reasons.Add(InvalidContentTypeException.NoProperties);
-                else
-                    GuardProperties(contentType.Properties);
+                if (contentType.Name.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.NoName);
 
-                if (_reasons.Any())
-                    throw new InvalidContentTypeException(_reasons);
+                if (!contentType.Properties.Any()) reasons.Add(InvalidContentTypeException.NoProperties);
+                else GuardProperties(contentType.Properties);
+
+                if (reasons.Any()) throw new InvalidContentTypeException(reasons);
             }
 
             private void GuardProperties(IEnumerable<Property> properties)
             {
                 foreach (var property in properties)
                 {
-                    if (property.Type == null)
-                        _reasons.Add(InvalidContentTypeException.PropertyHasNoType.FormatWith(property.Name));
+                    if (property.Type == null) reasons.Add(InvalidContentTypeException.PropertyHasNoType.FormatWith(property.Name));
 
-                    if (property.Name.IsNullOrEmpty())
-                        _reasons.Add(InvalidContentTypeException.PropertyHasNoName.FormatWith(property.Type));
+                    if (property.Name.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.PropertyHasNoName.FormatWith(property.Type));
                 }
             }
         }
@@ -72,11 +69,16 @@ namespace Furnace.Items
         {
             public const string InvalidContentTypeExceptionName = "FurnaceItems.InvalidContentTypeException";
 
+            public const string NullContentType = "ContentType can not be null";
+
             public const string NoName = "ContentType had no name";
+
             public const string NoNamespace = "ContentType had no namespace";
+
             public const string NoProperties = "ContentType has no properties";
 
             public const string PropertyHasNoType = "Propity {0} has no type";
+
             public const string PropertyHasNoName = "Propity of type {0} has no name";
 
             public IEnumerable<string> InvalidReasons;
@@ -88,7 +90,10 @@ namespace Furnace.Items
 
             public override string ExceptionName
             {
-                get { return InvalidContentTypeExceptionName; }
+                get
+                {
+                    return InvalidContentTypeExceptionName;
+                }
             }
 
             protected override string BuildLogMessage()

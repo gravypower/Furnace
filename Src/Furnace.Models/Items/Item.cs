@@ -1,16 +1,23 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Furnace.Models.ContentTypes;
 
 namespace Furnace.Models.Items
 {
-    public class Item
+    public class Item : Item<string>
+    {
+        public Item(ContentType contentType)
+            : base(contentType)
+        {
+        }
+    }
+
+    public abstract class Item<TKeyType>
     {
         private readonly ContentType _contentType;
 
-        public Guid Id { get; set; }
+        public TKeyType Id { get; set; }
 
-        public Item(ContentType contentType)
+        protected Item(ContentType contentType)
         {
             _contentType = contentType;
         }
