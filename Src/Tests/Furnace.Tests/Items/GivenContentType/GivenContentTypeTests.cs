@@ -1,35 +1,21 @@
 ﻿using Furnace.Models.ContentTypes;
-using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType
 {
-    using Furnace.Items;
-
     public abstract class GivenContentTypeTests : FurnaceItemsTests
     {
         protected ContentType ContentType;
 
-        public class WithNull : GivenContentTypeTests
+        protected void AddPropityToContentType(string propertyName = null, string type = null, object defaltValue = null)
         {
-            [SetUp]
-            public void WithNullSetUp()
+            var property = new Property
             {
-                ContentType = null;
-            }
+                Name = propertyName,
+                Type = type,
+                DefaultValue = defaltValue
+            };
 
-            [Test]
-            public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
-            {
-                var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.CreateItem(ContentType));
-            }
-
-            [Test]
-            public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
-            {
-                const string key = "SomeKey";
-                var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(key, ContentType));
-            }
+            ContentType.Properties.Add(property);
         }
-
     }
 }

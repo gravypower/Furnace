@@ -3,6 +3,10 @@ using NUnit.Framework;
 
 namespace Furnace.Play
 {
+    using System;
+
+    using ServiceStack.Text;
+
     [TestFixture]
     public class Test
     {
@@ -18,6 +22,12 @@ namespace Furnace.Play
             var item = new Item(contentType);
             const string propityValue = "SomeValue";
             item.AddPropity(propityName, propityValue);
+
+            var json = TypeSerializer.SerializeToString(item);
+
+            Console.WriteLine(json);
+
+
             Assert.That(((dynamic)item).SomeName, Is.EqualTo(propityValue));
         }
 
@@ -28,6 +38,11 @@ namespace Furnace.Play
             var contentType = new ContentType();
             var item = new Item(contentType);
             const string propityValue = "SomeValue";
+
+
+            var json = TypeSerializer.SerializeToString(item);
+
+            Console.WriteLine(json);
 
             Assert.That(item.AddPropity(propityName, propityValue), Is.False);
         }

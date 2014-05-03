@@ -1,45 +1,47 @@
 ﻿namespace Furnace.Items.Redis.Tests
 {
+    using Furnace.Tests.Items.GivenContentType;
+    using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace;
+
+    using Models.ContentTypes;
+    using Models.Items;
+
     using NSubstitute;
 
     using NUnit.Framework;
 
+    using ServiceStack;
     using ServiceStack.Redis;
 
     [TestFixture]
-    public class RedisBackedFurnaceItemsTests
+    public class RedisBackedFurnaceItemsTests : WithNameAndNamespaceTests
     {
         protected IRedisClient Client;
-
-        protected RedisBackedFurnaceItems Sut;
 
         [SetUp]
         public void RedisBackedFurnaceItemsTestsSetUp()
         {
             Client = Substitute.For<IRedisClient>();
-            Sut = new RedisBackedFurnaceItems(this.Client);
+            Sut = new RedisBackedFurnaceItems(Client);
         }
 
-        //[Test]
-        //public void SomeTest()
-        //{
-        //    //Assign
-        //    const string FullyQualifiedContentName = "Some.Test.Name";
-        //    var id = "SomeId";
-        //    var itemId = RedisBackedFurnaceItems.ItemsSetId.FormatWith(FullyQualifiedContentName, id);
+        [Test]
+        public void GivenNoItemWithID_WhenGetItemIsCalled_ThenNullReturned()
+        {
+            //Assign
+            const string FullyQualifiedContentName = "Some.Test.Name";
+            const string ID = "SomeId";
+            var itemId = RedisBackedFurnaceItems.ItemsSetId.FormatWith(FullyQualifiedContentName, ID);
 
-        //    AddPropityToContentType(PropertyName, PropertyType);
-        //    var item = Sut.CreateItem(ContentType);
+            AddPropityToContentType("SomeName", "SomeType");
 
-        //    Client.GetById<Item>(itemId).Returns(item);
+            //Act
+            var result = Sut.GetItem(itemId, ContentType);
 
-        //    //Act
-        //    var result = Sut.GetItem(id, ContentType);
+            //Assert
+            Assert.That(result, Is.Null);
 
-        //    //Assert
-        //    Assert.That(result, Is.EqualTo(item));
-
-        //}
+        }
 
         //[Test]
         //public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectId()

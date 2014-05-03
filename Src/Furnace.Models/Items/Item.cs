@@ -13,20 +13,20 @@ namespace Furnace.Models.Items
 
     public abstract class Item<TKeyType>
     {
-        private readonly ContentType _contentType;
+        public ContentType ContentType { get; set; }
 
         public TKeyType Id { get; set; }
 
         protected Item(ContentType contentType)
         {
-            _contentType = contentType;
+            ContentType = contentType;
         }
 
         public object this[string propityName]
         {
             get
             {
-                return _contentType.Properties.Single(x=>x.Name == propityName).DefaultValue;
+                return ContentType.Properties.Single(x=>x.Name == propityName).DefaultValue;
             }
         }
     }

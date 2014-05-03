@@ -14,17 +14,5 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         {
             ContentType = new ContentType { Name = ContentTypeName, Namespace = ContentTypeNamespace };
         }
-
-        protected void AddPropityToContentType(string propertyName = null, string type = null, object defaltValue = null)
-        {
-            var property = new Property
-            {
-                Name = propertyName,
-                Type = type,
-                DefaultValue = defaltValue
-            };
-
-            ContentType.Properties.Add(property);
-        }
     }
 }

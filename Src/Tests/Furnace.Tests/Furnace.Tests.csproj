@@ -87,6 +87,7 @@
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndTwoProperties.cs" />
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\WithNameAndNamespaceTests.cs" />
     <Compile Include="Items\GivenContentType\WithNo.cs" />
+    <Compile Include="Items\GivenContentType\Null.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,15 @@ using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType
 {
+    using System.Linq;
+
     [TestFixture]
     public abstract class WithNo : GivenContentTypeTests
     {
         protected const string ContentTypeName = "SomeName";
         protected const string ContentTypeNamespace = "SomeNamespace";
+
+        protected Property[] ContentTypeProperties = {new Property {Name = "SomeName", Type = "SomeType"} };
 
         [Test]
         public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
@@ -33,11 +37,12 @@ namespace Furnace.Tests.Items.GivenContentType
             [SetUp]
             public void WithNoNameSetUp()
             {
-                ContentType = new ContentType { Namespace = ContentTypeNamespace };
+                ContentType = new ContentType { Namespace = ContentTypeNamespace, Properties = ContentTypeProperties };
             }
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(1));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
             }
         }
@@ -53,6 +58,7 @@ namespace Furnace.Tests.Items.GivenContentType
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(1));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoProperties));
             }
         }
@@ -63,11 +69,46 @@ namespace Furnace.Tests.Items.GivenContentType
             [SetUp]
             public void WithNoNameSetUp()
             {
-                ContentType = new ContentType {Name = ContentTypeName};
+                ContentType = new ContentType {Name = ContentTypeName, Properties = ContentTypeProperties };
             }
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(1));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
+            }
+        }
+
+        [TestFixture]
+        public class NameOrProperties : WithNo
+        {
+            [SetUp]
+            public void NameOrPropertiesSetUp()
+            {
+                ContentType = new ContentType { Namespace = ContentTypeNamespace };
+            }
+
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
+            {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(2));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoProperties));
+            }
+        }
+
+        [TestFixture]
+        public class NameOrNamespace : WithNo
+        {
+            [SetUp]
+            public void NameOrNamespaceSetUp()
+            {
+                ContentType = new ContentType { Properties = ContentTypeProperties };
+            }
+
+            protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
+            {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(2));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
             }
         }
@@ -83,9 +124,10 @@ namespace Furnace.Tests.Items.GivenContentType
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
             {
+                Assert.That(ex.InvalidReasons.Count(), Is.EqualTo(3));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoName));
                 Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
-                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoNamespace));
+                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NoProperties));
             }
         }
     }
