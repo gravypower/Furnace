@@ -8,7 +8,7 @@ namespace Furnace.Tests.Exceptions.Items
     {
         public class InvalidContentTypeException : FurnaceItems
         {
-            const string BaseMessage = "FurnaceItems.InvalidContentTypeException thrown, InvalidReasons: ";
+            const string BaseMessage = "FurnaceItems.InvalidContentTypeException thrown. InvalidReasons: ";
 
             protected IEnumerable<string> Reasons;
 

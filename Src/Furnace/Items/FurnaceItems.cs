@@ -42,7 +42,7 @@ namespace Furnace.Items
             public void GuardContenType(ContentType contentType)
             {
                 if(contentType == null)
-                    throw new InvalidContentTypeException(new [] { InvalidContentTypeException.NullContentType });
+                    throw new NullContentTypeException();
 
                 if (contentType.Namespace.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.NoNamespace);
 
@@ -65,11 +65,22 @@ namespace Furnace.Items
             }
         }
 
+        public class NullContentTypeException : FurnaceException
+        {
+            public const string NullContentTypeExceptionName = "FurnaceItems.InvalidContentTypeException";
+
+            public override string ExceptionName
+            {
+                get
+                {
+                    return NullContentTypeExceptionName;
+                }
+            }
+        }
+
         public class InvalidContentTypeException : FurnaceException
         {
             public const string InvalidContentTypeExceptionName = "FurnaceItems.InvalidContentTypeException";
-
-            public const string NullContentType = "ContentType can not be null";
 
             public const string NoName = "ContentType had no name";
 
@@ -98,7 +109,7 @@ namespace Furnace.Items
 
             protected override string BuildLogMessage()
             {
-                return "FurnaceItems.InvalidContentTypeException thrown, InvalidReasons: " + InvalidReasons.Join(", ");
+                return "InvalidReasons: " + InvalidReasons.Join(", ");
             }
         }
     }

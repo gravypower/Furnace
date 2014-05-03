@@ -20,16 +20,14 @@ namespace Furnace.Tests.Items.GivenContentType
             [Test]
             public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
             {
-                var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.CreateItem(ContentType));
-                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NullContentType));
+                var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.CreateItem(ContentType));
             }
 
             [Test]
             public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
             {
-                var key = "SomeKey";
-                var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(key, ContentType));
-                Assert.That(ex.InvalidReasons, Contains.Item(FurnaceItems.InvalidContentTypeException.NullContentType));
+                const string key = "SomeKey";
+                var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(key, ContentType));
             }
         }
 
