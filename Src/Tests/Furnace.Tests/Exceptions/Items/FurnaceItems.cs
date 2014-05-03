@@ -6,6 +6,31 @@ namespace Furnace.Tests.Exceptions.Items
     [TestFixture]
     public abstract class FurnaceItems : FurnaceExceptionTests
     {
+        public class NullContentTypeException : FurnaceItems
+        {
+            const string Message = "FurnaceItems.NullContentTypeException thrown.";
+
+            public override string ExcationName
+            {
+                get
+                {
+                    return "FurnaceItems.NullContentTypeException";
+                }
+            }
+
+            [SetUp]
+            public void InvalidContentTypeExceptionSetUp()
+            {
+                Sut = new Furnace.Items.FurnaceItems.NullContentTypeException();
+            }
+
+            [Test]
+            public void WhenFurnaceExceptionIsTrown_WithOneReason_ThenLogMessage_IsCorrect()
+            {
+                Assert.That(Sut.Message, Is.EqualTo(Message));
+            }
+        }
+
         public class InvalidContentTypeException : FurnaceItems
         {
             const string BaseMessage = "FurnaceItems.InvalidContentTypeException thrown. InvalidReasons: ";

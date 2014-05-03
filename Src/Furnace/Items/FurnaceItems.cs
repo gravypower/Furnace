@@ -67,7 +67,7 @@ namespace Furnace.Items
 
         public class NullContentTypeException : FurnaceException
         {
-            public const string NullContentTypeExceptionName = "FurnaceItems.InvalidContentTypeException";
+            public const string NullContentTypeExceptionName = "FurnaceItems.NullContentTypeException";
 
             public override string ExceptionName
             {

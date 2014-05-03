@@ -10,13 +10,14 @@ namespace Furnace.Models.Exceptions
         {
             get
             {
-                return ExceptionName + " thrown. " + BuildLogMessage();
+                var logMessage = BuildLogMessage();
+                return ExceptionName + " thrown." + (logMessage != null ? " " + logMessage : string.Empty);
             }
         }
 
         protected virtual string BuildLogMessage()
         {
-            return string.Empty;
+            return null;
         }
     }
 }
