@@ -44,9 +44,13 @@ namespace Furnace.Play
 
             var item = new Models.Items.Item(contentType) { Id = "SomeID" };
 
-            var json = JsonSerializer.SerializeToString(item);
+            var json = JsonSerializer.SerializeToString(item.Propities);
 
             Console.WriteLine(json);
+
+            var t = JsonSerializer.DeserializeFromString<SomeType>(json);
+
+            Assert.That(t.StringProp, Is.EqualTo("Hello"));
         }
     }
 }
