@@ -4,8 +4,9 @@ using ServiceStack.Text;
 namespace Furnace.Play
 {
     using System;
+    using System.Dynamic;
 
-    using Models.ContentTypes;
+    using Furnace.Models.ContentTypes;
 
     public class SomeType
     {
@@ -23,7 +24,7 @@ namespace Furnace.Play
         [Test]
         public void CanSerializeToJSONFromSomeType1_ThenCanDeserializeToSomeType()
         {
-            var someType1 = new SomeType1 { StringProp = "StringProp", StringProp1 = "StringProp1"};
+            var someType1 = new SomeType1 { StringProp = "StringProp", StringProp1 = "StringProp1" };
 
             var json = TypeSerializer.SerializeToString(someType1);
 
@@ -36,21 +37,28 @@ namespace Furnace.Play
         public void CanSerializeToJSONFromItem_ThenCanDeserializeToSomeType()
         {
             var contentType = new ContentType
-                                  {
-                                      Name = "SomeName",
-                                      Properties = new[] { new Property {Name = "StringProp", Type = "string", DefaultValue = "Hello"} },
-                                      Namespace = "SomeNamesapce"
-                                  };
+            {
+                Name = "SomeName",
+                Properties = new[] { new Property { Name = "StringProp", Type = "string", DefaultValue = "Hello" } },
+                Namespace = "SomeNamesapce"
+            };
 
-            var item = new Models.Items.Item(contentType) { Id = "SomeID" };
+            var item = new Item(contentType);
 
-            var json = JsonSerializer.SerializeToString(item.Propities);
+            item.AddPropity("StringProp", "StringPropTest");
+
+
+            var json = JsonSerializer.SerializeToString(item);
 
             Console.WriteLine(json);
 
             var t = JsonSerializer.DeserializeFromString<SomeType>(json);
 
-            Assert.That(t.StringProp, Is.EqualTo("Hello"));
+            //Assert.That(t.StringProp, Is.EqualTo("StringPropTest"));
+            
+
+            var tt = JsonSerializer.DeserializeFromString<ExpandoObject>(json);
+            var ttt = new Item(tt);
         }
     }
 }
