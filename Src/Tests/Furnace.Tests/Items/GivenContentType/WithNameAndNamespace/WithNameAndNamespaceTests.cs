@@ -6,7 +6,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
     [TestFixture]
     public abstract class WithNameAndNamespaceTests : GivenContentTypeTests
     {
-        protected const string ContentTypeName = "SomeName";
+        protected const string ContentTypeName = "SomeType";
         protected const string ContentTypeNamespace = "SomeNamespace";
 
         [SetUp]

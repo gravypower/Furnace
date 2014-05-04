@@ -3,8 +3,15 @@ using Furnace.Models.ContentTypes;
 
 namespace Furnace.Models.Items
 {
-    public class Item : Item<string>
+    using System.Collections.Generic;
+
+    public class Item : Item<long>
     {
+        public Item(ContentType contentType, IDictionary<string, object> propities)
+           : base(contentType, propities)
+        {
+        }
+
         public Item(ContentType contentType)
             : base(contentType)
         {
@@ -17,27 +24,27 @@ namespace Furnace.Models.Items
 
         public TKeyType Id { get; set; }
 
-        //public TKeyType Id {
-        //get { return (TKeyType)Propities["Furance_ID"]; }
-        //set { Propities["Furance_ID"] = value; } }
+        public IDictionary<string, object> Propities { get; set; }
 
-       // public IDictionary<string, object> Propities { get; set; }
+        protected Item(ContentType contentType, IDictionary<string, object> propities)
+        {
+            Propities = propities;
+            ContentType = contentType;
+        }
 
         protected Item(ContentType contentType)
         {
             ContentType = contentType;
-            //Propities = new Dictionary<string, object> {{"Furance_ID", "SOMEID"}};
-            //foreach (var property in ContentType.Properties)
-            //{
-            //    Propities.Add(property.Name, property.DefaultValue);
-            //}
-            
+            Propities = new Dictionary<string, object>();
         }
 
         public object this[string propityName]
         {
             get
             {
+                if (Propities.ContainsKey(propityName))
+                    return Propities[propityName];
+
                 return ContentType.Properties.Single(x=>x.Name == propityName).DefaultValue;
             }
         }

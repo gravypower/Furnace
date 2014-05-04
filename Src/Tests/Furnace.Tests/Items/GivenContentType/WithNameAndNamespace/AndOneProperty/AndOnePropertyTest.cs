@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Furnace.Items;
 
 using NUnit.Framework;
@@ -75,13 +74,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         public void NoItemWithId_WhenGetItemIsCalled_ThenNullReturned()
         {
             //Assign
-            var id = "SomeKey";
+            const long Id = 1L;
             AddPropityToContentType(PropertyName, PropertyType);
-            var item = Sut.CreateItem(ContentType);
-            item.Id = id;
 
             //Act
-            var result = Sut.GetItem(id, ContentType);
+            var result = Sut.GetItem(Id, ContentType);
 
             Assert.That(result, Is.Null);
         }

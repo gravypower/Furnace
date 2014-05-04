@@ -6,6 +6,10 @@ namespace Furnace.Tests.Items.GivenContentType
 {
     using System.Linq;
 
+    using Furnace.Models.Items;
+
+    using Property = Furnace.Models.ContentTypes.Property;
+
     [TestFixture]
     public abstract class WithNo : GivenContentTypeTests
     {
@@ -24,8 +28,17 @@ namespace Furnace.Tests.Items.GivenContentType
         [Test]
         public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
-            var key = "SomeKey";
-            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(key, ContentType));
+            const long Id = 1L;
+            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(Id, ContentType));
+            AssertInvalidReasons(ex);
+        }
+
+        [Test]
+        public void WhenSetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
+        {
+            const long Id = 1L;
+            var item = new Item(ContentType);
+            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.SetItem(Id, item));
             AssertInvalidReasons(ex);
         }
 

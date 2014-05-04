@@ -21,8 +21,8 @@
         [Test]
         public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
-            const string key = "SomeKey";
-            var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(key, ContentType));
+            const long Id = 1L;
+            var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(Id, ContentType));
         }
     }
 }

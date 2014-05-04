@@ -1,16 +1,11 @@
 ﻿namespace Furnace.Items.Redis.Tests
 {
-    using Furnace.Tests.Items.GivenContentType;
     using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace;
-
-    using Models.ContentTypes;
-    using Models.Items;
 
     using NSubstitute;
 
     using NUnit.Framework;
 
-    using ServiceStack;
     using ServiceStack.Redis;
 
     [TestFixture]
@@ -29,52 +24,58 @@
         public void GivenNoItemWithID_WhenGetItemIsCalled_ThenNullReturned()
         {
             //Assign
-            const string FullyQualifiedContentName = "Some.Test.Name";
-            const string ID = "SomeId";
-            var itemId = RedisBackedFurnaceItems.ItemsSetId.FormatWith(FullyQualifiedContentName, ID);
+            const long Id = 1L;
 
             AddPropityToContentType("SomeName", "SomeType");
 
             //Act
-            var result = Sut.GetItem(itemId, ContentType);
+            var result = Sut.GetItem(Id, ContentType);
 
             //Assert
             Assert.That(result, Is.Null);
 
         }
 
-        //[Test]
-        //public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectId()
-        //{
-        //    //Assign
-        //    var id = 1L;
-        //    AddPropityToContentType(PropertyName, PropertyType);
-        //    var item = Sut.CreateItem(ContentType);
-        //    item.Id = guid;
+        [Test]
+        public void WhenGetItemIsCalled_ThenTheReturnedItem_IsCorrect()
+        {
+            //Assign
+            const long Id = 1L;
+            AddPropityToContentType("Test", "string");
+            var item = Sut.CreateItem(ContentType);
+            item.Id = Id;
 
-        //    ItemRepository.GetById(guid).Returns(string.Empty);
+            const string PropityValue = "NotDefaultValue";
+            const string ReturnJon = "{\"Test\":\""+ PropityValue + "\"}";
 
-        //    //Act
-        //    var result = Sut.GetItem(guid, ContentType);
+            var key = RedisBackedFurnaceItems.CreateItemKey(Id, ContentType);
 
-        //    Assert.That(result.Id, Is.EqualTo(guid));
-        //}
+            Client.GetValue(key).Returns(ReturnJon);
 
-        //[Test]
-        //public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectJSON()
-        //{
-        //    //Assign
-        //    var guid = new Guid("0bc8a24e-467d-40b9-aed7-81cdcaffbdbe");
-        //    AddPropityToContentType(PropertyName, PropertyType);
-        //    var item = Sut.CreateItem(ContentType);
-        //    item.Id = guid;
+            //Act
+            var result = Sut.GetItem(Id, ContentType);
 
-        //    ItemRepository.GetById(guid).Returns(string.Empty);
+            //Assert
+            Assert.That(result.Id, Is.EqualTo(Id));
+            Assert.That(result["Test"], Is.EqualTo(PropityValue));
+            Assert.That(result.ContentType.Name == ContentTypeName);
+        }
 
-        //    //Act
-        //    var result = Sut.GetItem(guid, ContentType);
+        [Test]
+        public void WhenStoreItemIsCalled_ThenJSON_IsCorrect()
+        {
+            //Assign
+            const long Id = 1L;
+            AddPropityToContentType("Test", "string");
+            var item = Sut.CreateItem(ContentType);
+            item.Id = Id;
 
-        //    Assert.That(result.Id, Is.EqualTo(guid));
-        //}
+            //Act
+            Sut.SetItem(Id, item);
+
+            //Assert
+            var key = RedisBackedFurnaceItems.CreateItemKey(Id, ContentType);
+            Client.Received().Set(key, item.Propities);
+        }
     }
 }

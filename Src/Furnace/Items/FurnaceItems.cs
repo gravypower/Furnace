@@ -25,7 +25,15 @@ namespace Furnace.Items
             return AbstractGetItem(key, contentType);
         }
 
+        public void SetItem(TKeyType id, Item item)
+        {
+            var guard = new Guard();
+            guard.GuardContenType(item.ContentType);
+            AbstractSetItem(id, item);
+        }
+
         public abstract Item AbstractGetItem(TKeyType key, ContentType contentType);
+        public abstract void AbstractSetItem(TKeyType id, Item item);
     }
 
     public class FurnaceItems

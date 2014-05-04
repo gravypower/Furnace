@@ -10,26 +10,26 @@ namespace Furnace.Play
     [TestFixture]
     public class Test
     {
-        [Test]
-        public void AddAnItem()
-        {
-            const string propityName = "SomeName";
-            var propity = new Property {Name = propityName};
+        //[Test]
+        //public void AddAnItem()
+        //{
+        //    const string propityName = "SomeName";
+        //    var propity = new Property {Name = propityName};
 
-            var contentType = new ContentType();
-            contentType.Properties.Add(propity);
+        //    var contentType = new ContentType();
+        //    contentType.Properties.Add(propity);
 
-            var item = new Item(contentType);
-            const string propityValue = "SomeValue";
-            item.AddPropity(propityName, propityValue);
+        //    var item = new Item(contentType);
+        //    const string propityValue = "SomeValue";
+        //    item.AddPropity(propityName, propityValue);
 
-            var json = TypeSerializer.SerializeToString(item);
+        //    var json = TypeSerializer.SerializeToString(item);
 
-            Console.WriteLine(json);
+        //    Console.WriteLine(json);
 
 
-            Assert.That(((dynamic)item).SomeName, Is.EqualTo(propityValue));
-        }
+        //    Assert.That(((dynamic)item).SomeName, Is.EqualTo(propityValue));
+        //}
 
         [Test]
         public void CantAddAnItem()
