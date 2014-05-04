@@ -47,7 +47,7 @@
         //public void WhenGetItemIsCalled_ThenTheReturnedItem_HasCorrectId()
         //{
         //    //Assign
-        //    var guid = new Guid("0bc8a24e-467d-40b9-aed7-81cdcaffbdbe");
+        //    var id = 1L;
         //    AddPropityToContentType(PropertyName, PropertyType);
         //    var item = Sut.CreateItem(ContentType);
         //    item.Id = guid;

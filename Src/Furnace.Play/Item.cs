@@ -5,9 +5,7 @@ using Furnace.Models.ContentTypes;
 
 namespace Furnace.Play
 {
-    using System.Collections;
-
-    public class Item : DynamicObject, IDictionary<string, object>
+    public class Item : DynamicObject
     {
         private readonly ContentType _contentType;
         private readonly IDictionary<string, object> _propities = new Dictionary<string, object>();
@@ -40,20 +38,6 @@ namespace Furnace.Play
 
             return true;
         }
-   
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
-        {
-            if (!_propities.ContainsKey(binder.Name))
-                return base.TryGetMember(binder, out result);
-
-            result = _propities[binder.Name];
-            return true;
-        }
-
-        public override IEnumerable<string> GetDynamicMemberNames()
-        {
-            return _propities.Keys;
-        }
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
@@ -61,75 +45,5 @@ namespace Furnace.Play
 
             return _propities.GetEnumerator();
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        public void Add(KeyValuePair<string, object> item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Clear()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool Contains(KeyValuePair<string, object> item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool Remove(KeyValuePair<string, object> item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int Count { get; private set; }
-
-        public bool IsReadOnly { get; private set; }
-
-        public bool ContainsKey(string key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Add(string key, object value)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool Remove(string key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool TryGetValue(string key, out object value)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public object this[string key]
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public ICollection<string> Keys { get; private set; }
-
-        public ICollection<object> Values { get; private set; }
     }
 }
