@@ -5,6 +5,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
     [TestFixture]
     public class OfString : AndOnePropertyTest
     {
+        public OfString(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         protected override string PropertyName
         {
             get { return "SomeName"; }

@@ -13,6 +13,11 @@
     {
         protected IRedisClient Client;
 
+        public RedisBackedFurnaceItemsTests(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         [SetUp]
         public void RedisBackedFurnaceItemsTestsSetUp()
         {
@@ -62,7 +67,7 @@
         }
 
         [Test]
-        public void WhenStoreItemIsCalled_ThenJSON_IsCorrect()
+        public void WhenStoreItemIsCalled_ThenClientReceives_CorrectObject()
         {
             //Assign
             const long Id = 1L;

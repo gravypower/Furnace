@@ -18,6 +18,11 @@ namespace Furnace.Tests.Items.GivenContentType
 
         protected Property[] ContentTypeProperties = {new Property {Name = "SomeName", Type = "SomeType"} };
 
+        protected WithNo(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         [Test]
         public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
@@ -47,6 +52,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class Name : WithNo
         {
+            public Name(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void WithNoNameSetUp()
             {
@@ -63,6 +73,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class Properties : WithNo
         {
+            public Properties(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void PropertiesSetUp()
             {
@@ -79,6 +94,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class Namespace : WithNo
         {
+            public Namespace(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void WithNoNameSetUp()
             {
@@ -95,6 +115,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class NameOrProperties : WithNo
         {
+            public NameOrProperties(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void NameOrPropertiesSetUp()
             {
@@ -112,6 +137,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class NameOrNamespace : WithNo
         {
+            public NameOrNamespace(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void NameOrNamespaceSetUp()
             {
@@ -129,6 +159,11 @@ namespace Furnace.Tests.Items.GivenContentType
         [TestFixture]
         public class NameOrNamespaceOrProperties : WithNo
         {
+            public NameOrNamespaceOrProperties(string furnaceItemsType)
+                : base(furnaceItemsType)
+            {
+            }
+
             [SetUp]
             public void NameOrNamespaceOrPropertiesSetUp()
             {

@@ -5,6 +5,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
     [TestFixture]
     public class OfBoolean : AndOnePropertyTest
     {
+        public OfBoolean(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         protected override string PropertyName
         {
             get { return "SomeName"; }

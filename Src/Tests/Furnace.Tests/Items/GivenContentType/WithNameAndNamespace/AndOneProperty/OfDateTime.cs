@@ -6,6 +6,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
     [TestFixture]
     public class OfDateTime : AndOnePropertyTest
     {
+        public OfDateTime(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         protected override string PropertyName
         {
             get { return "SomeName"; }

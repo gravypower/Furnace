@@ -8,6 +8,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
     [TestFixture]
     public abstract class AndOnePropertyTest : WithNameAndNamespaceTests
     {
+        protected AndOnePropertyTest(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         protected abstract string PropertyName { get; }
         protected abstract string PropertyType { get; }
         protected abstract object DefaultValue { get; }

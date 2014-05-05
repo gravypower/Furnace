@@ -6,6 +6,11 @@ namespace Furnace.Tests.Items.GivenContentType
     {
         protected ContentType ContentType;
 
+        protected GivenContentTypeTests(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         protected void AddPropityToContentType(string propertyName = null, string type = null, object defaltValue = null)
         {
             var property = new Property

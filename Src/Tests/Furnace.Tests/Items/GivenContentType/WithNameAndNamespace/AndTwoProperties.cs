@@ -7,6 +7,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
     [TestFixture]
     public class AndTwoProperties : WithNameAndNamespaceTests
     {
+        public AndTwoProperties(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         [Test]
         public void WhenCreateItemIsCalled_WithNoType_ThenInvalidPropertyException_IsThrown()
         {

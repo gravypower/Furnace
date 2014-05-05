@@ -6,6 +6,11 @@
 
     public class Null : GivenContentTypeTests
     {
+        public Null(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         [SetUp]
         public void WithNullSetUp()
         {

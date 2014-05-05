@@ -59,6 +59,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\..\packages\ServiceStack.Interfaces.4.0.18\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable">
       <HintPath>..\..\packages\Microsoft.Bcl.Immutable.1.1.20-beta\lib\portable-net45+win8\System.Collections.Immutable.dll</HintPath>
@@ -94,6 +97,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Furnace.Items.Redis\Furnace.Items.Redis.csproj">
+      <Project>{99589D78-9F58-47FC-85E4-5F8477E99E30}</Project>
+      <Name>Furnace.Items.Redis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Furnace.Models\Furnace.Models.csproj">
       <Project>{b32dafd5-eb3d-4f65-8486-2099eb7d869b}</Project>
       <Name>Furnace.Models</Name>

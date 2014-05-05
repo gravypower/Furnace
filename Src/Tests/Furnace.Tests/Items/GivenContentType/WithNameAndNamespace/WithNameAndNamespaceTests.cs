@@ -9,6 +9,11 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         protected const string ContentTypeName = "SomeType";
         protected const string ContentTypeNamespace = "SomeNamespace";
 
+        protected WithNameAndNamespaceTests(string furnaceItemsType)
+            : base(furnaceItemsType)
+        {
+        }
+
         [SetUp]
         public void WithNameAndNamespaceTestsSetUp()
         {
