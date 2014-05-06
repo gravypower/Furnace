@@ -72,14 +72,18 @@
     <Compile Include="ContentTypes\ContentTypeTestExtensions.cs" />
     <Compile Include="ContentTypes\GivenNoProject.cs" />
     <Compile Include="ContentTypes\GivenProject\GivenProjectTests.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithInheritance\AndTwoClasses.cs" />
     <Compile Include="ContentTypes\GivenProject\WithNoClasses\NoClasses.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndNoMembers.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneComplexMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneInternalMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\AndOneMemberTests.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\BooleanMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\DateTimeMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\IntegerMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneMember\StringMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOnePrivateMember.cs" />
+    <Compile Include="ContentTypes\GivenProject\WithOneClass\AndOneProtectedMember.cs" />
     <Compile Include="ContentTypes\GivenProject\WithOneClass\WithOneClassTests.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndInOneFile.cs" />
     <Compile Include="ContentTypes\GivenProject\WithTwoClasses\AndOneMember\AndDefaultValue.cs" />
@@ -106,6 +110,7 @@
       <Name>Furnace</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
