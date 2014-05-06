@@ -29,40 +29,39 @@
         public void GivenNoItemWithID_WhenGetItemIsCalled_ThenNullReturned()
         {
             //Assign
-            const long Id = 1L;
+            const long id = 1L;
 
             AddPropityToContentType("SomeName", "SomeType");
 
             //Act
-            var result = Sut.GetItem(Id, ContentType);
+            var result = Sut.GetItem(id, ContentType);
 
             //Assert
             Assert.That(result, Is.Null);
-
         }
 
         [Test]
         public void WhenGetItemIsCalled_ThenTheReturnedItem_IsCorrect()
         {
             //Assign
-            const long Id = 1L;
+            const long id = 1L;
             AddPropityToContentType("Test", "string");
             var item = Sut.CreateItem(ContentType);
-            item.Id = Id;
+            item.Id = id;
 
-            const string PropityValue = "NotDefaultValue";
-            const string ReturnJon = "{\"Test\":\""+ PropityValue + "\"}";
+            const string propityValue = "NotDefaultValue";
+            const string returnJon = "{\"Test\":\""+ propityValue + "\"}";
 
-            var key = RedisBackedFurnaceItems.CreateItemKey(Id, ContentType);
+            var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
-            Client.GetValue(key).Returns(ReturnJon);
+            Client.GetValue(key).Returns(returnJon);
 
             //Act
-            var result = Sut.GetItem(Id, ContentType);
+            var result = Sut.GetItem(id, ContentType);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(Id));
-            Assert.That(result["Test"], Is.EqualTo(PropityValue));
+            Assert.That(result.Id, Is.EqualTo(id));
+            Assert.That(result["Test"], Is.EqualTo(propityValue));
             Assert.That(result.ContentType.Name == ContentTypeName);
         }
 
@@ -70,16 +69,16 @@
         public void WhenStoreItemIsCalled_ThenClientReceives_CorrectObject()
         {
             //Assign
-            const long Id = 1L;
+            const long id = 1L;
             AddPropityToContentType("Test", "string");
             var item = Sut.CreateItem(ContentType);
-            item.Id = Id;
+            item.Id = id;
 
             //Act
-            Sut.SetItem(Id, item);
+            Sut.SetItem(id, item);
 
             //Assert
-            var key = RedisBackedFurnaceItems.CreateItemKey(Id, ContentType);
+            var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
             Client.Received().Set(key, item.Propities);
         }
     }
