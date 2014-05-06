@@ -1,18 +1,14 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Furnace.ContentTypes.Roslyn.Extensions;
+using Furnace.Models.ContentTypes;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.MSBuild;
 
-namespace Furnace.Roslyn
+namespace Furnace.ContentTypes.Roslyn
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Extensions;
-
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.MSBuild;
-
-    using System;
-    using ContentTypes;
-    using Models.ContentTypes;
-
     public class RoslynContentTypes : IFurnaceContentTypes
     {
         protected const string PrivateModifier = "private";

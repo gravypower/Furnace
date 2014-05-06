@@ -1,7 +1,7 @@
-﻿namespace Furnace.Roslyn.Extensions
-{
-    using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 
+namespace Furnace.ContentTypes.Roslyn.Extensions
+{
     public static class ISymbolExtensions
     {
         public static string ToMinimallyQualified(this ISymbol symbol)

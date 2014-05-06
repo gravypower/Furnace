@@ -56,11 +56,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneDateTime
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneDateTimeMember.AndDefaultValue", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneDateTimeMember.AndDefaultValue\WithOneClass.AndOneDateTimeMember.AndDefaultValue.csproj", "{AF85BE5F-C376-40EB-8EE9-4860CD57E4D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Roslyn.Tests", "Tests\Furnace.Roslyn.Tests\Furnace.Roslyn.Tests.csproj", "{9899F053-3446-410D-B0D2-39F7DD923850}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneIntegerMember.AndDefaultValue", "Tests\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneIntegerMember.AndDefaultValue\WithOneClass.AndOneIntegerMember.AndDefaultValue.csproj", "{63F79AB3-3869-4F7C-B322-7C764E0E65D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Roslyn", "Furnace.Roslyn\Furnace.Roslyn.csproj", "{9C9F4C60-4825-4A33-9853-6EB835AD74AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.ContentTypes.Roslyn", "Furnace.Roslyn\Furnace.ContentTypes.Roslyn.csproj", "{9C9F4C60-4825-4A33-9853-6EB835AD74AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Models", "Furnace.Models\Furnace.Models.csproj", "{B32DAFD5-EB3D-4F65-8486-2099EB7D869B}"
 EndProject
@@ -72,8 +70,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Play", "Furnace.Pla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Items.Redis", "Furnace.Items.Redis\Furnace.Items.Redis.csproj", "{99589D78-9F58-47FC-85E4-5F8477E99E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Items.Redis.Tests", "Furnace.Items.Redis.Tests\Furnace.Items.Redis.Tests.csproj", "{381A7D3B-B968-4683-B22B-DE3F9A04177E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WithInheritance", "WithInheritance", "{9A1EE8DF-7F18-4973-B451-C752725FCC5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithInheritance.AndTwoClasses", "Tests\TestProjects\WithInheritance\WithInheritance.TwoClasses\WithInheritance.AndTwoClasses.csproj", "{A20538D4-E41F-46CB-837C-00B84380CEBF}"
@@ -84,7 +80,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOnePrivateM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneProtectedMember", "Tests\TestProjects\WithOneClass\WithOneClass.AndOneProtectedMember\WithOneClass.AndOneProtectedMember.csproj", "{79CBB9A4-C3E7-4D28-A960-65C7EC53CD50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneInternalMember", "WithOneClass.AndOneInternalMember\WithOneClass.AndOneInternalMember.csproj", "{FE846B23-4A79-4B90-9687-328EA235CD8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithOneClass.AndOneInternalMember", "Tests\TestProjects\WithOneClass\WithOneClass.AndOneInternalMember\WithOneClass.AndOneInternalMember.csproj", "{FE846B23-4A79-4B90-9687-328EA235CD8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.ContentTypes.Roslyn.Tests", "Tests\Furnace.ContentTypes.Roslyn.Tests\Furnace.ContentTypes.Roslyn.Tests.csproj", "{9899F053-3446-410D-B0D2-39F7DD923850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Items.Redis.Tests", "Tests\Furnace.Items.Redis.Tests\Furnace.Items.Redis.Tests.csproj", "{381A7D3B-B968-4683-B22B-DE3F9A04177E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -236,16 +236,6 @@ Global
 		{AF85BE5F-C376-40EB-8EE9-4860CD57E4D7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AF85BE5F-C376-40EB-8EE9-4860CD57E4D7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AF85BE5F-C376-40EB-8EE9-4860CD57E4D7}.Release|x86.ActiveCfg = Release|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|x86.ActiveCfg = Release|Any CPU
 		{63F79AB3-3869-4F7C-B322-7C764E0E65D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63F79AB3-3869-4F7C-B322-7C764E0E65D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F79AB3-3869-4F7C-B322-7C764E0E65D1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -306,16 +296,6 @@ Global
 		{99589D78-9F58-47FC-85E4-5F8477E99E30}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{99589D78-9F58-47FC-85E4-5F8477E99E30}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{99589D78-9F58-47FC-85E4-5F8477E99E30}.Release|x86.ActiveCfg = Release|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A20538D4-E41F-46CB-837C-00B84380CEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A20538D4-E41F-46CB-837C-00B84380CEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A20538D4-E41F-46CB-837C-00B84380CEBF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -366,6 +346,26 @@ Global
 		{FE846B23-4A79-4B90-9687-328EA235CD8A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE846B23-4A79-4B90-9687-328EA235CD8A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE846B23-4A79-4B90-9687-328EA235CD8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9899F053-3446-410D-B0D2-39F7DD923850}.Release|x86.ActiveCfg = Release|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

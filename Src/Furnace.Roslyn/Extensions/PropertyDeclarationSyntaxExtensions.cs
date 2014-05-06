@@ -1,10 +1,9 @@
-﻿using Furnace.Models.ContentTypes;
+﻿using System.Linq;
+using Furnace.Models.ContentTypes;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Furnace.Roslyn.Extensions
+namespace Furnace.ContentTypes.Roslyn.Extensions
 {
-    using System.Linq;
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
-
     internal static class PropertyDeclarationSyntaxExtensions
     {
         public static Property GetFurnaceContentTypeProperty(

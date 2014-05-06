@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7F6BB4CE-B5E8-4E98-ACE6-FBDA2268ED26}</ProjectGuid>
+    <ProjectGuid>{9899F053-3446-410D-B0D2-39F7DD923850}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Furnace.Tests</RootNamespace>
-    <AssemblyName>Furnace.Tests</AssemblyName>
+    <RootNamespace>Furnace.ContentTypes.Roslyn.Tests</RootNamespace>
+    <AssemblyName>Furnace.ContentTypes.Roslyn.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,12 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeAnalysis, Version=0.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.CodeAnalysis">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.Common.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=0.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
@@ -49,26 +47,18 @@
     <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=0.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.Workspaces.Common.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.7.2.0\lib\NET45\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\..\packages\ServiceStack.Interfaces.4.0.18\lib\net40\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable">
       <HintPath>..\..\packages\Microsoft.Bcl.Immutable.1.1.20-beta\lib\portable-net45+win8\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Reflection.Metadata, Version=1.0.9.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Reflection.Metadata">
       <HintPath>..\..\packages\Microsoft.Bcl.Metadata.1.0.9-alpha\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -78,29 +68,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\FurnaceExceptionTests.cs" />
-    <Compile Include="Exceptions\Items\FurnaceItems.cs" />
-    <Compile Include="Items\FurnaceItemsTests.cs" />
-    <Compile Include="Items\GivenContentType\GivenContentTypeTests.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\AndOnePropertyTest.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfBoolean.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfDateTime.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfInteger.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\OfString.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndTwoProperties.cs" />
-    <Compile Include="Items\GivenContentType\WithNameAndNamespace\WithNameAndNamespaceTests.cs" />
-    <Compile Include="Items\GivenContentType\WithNo.cs" />
-    <Compile Include="Items\GivenContentType\Null.cs" />
+    <Compile Include="ContentTypesTests.cs" />
+    <Compile Include="ContentTypeTestExtensions.cs" />
+    <Compile Include="GivenNoProject.cs" />
+    <Compile Include="GivenProject\GivenProjectTests.cs" />
+    <Compile Include="GivenProject\WithInheritance\AndTwoClasses.cs" />
+    <Compile Include="GivenProject\WithNoClasses\NoClasses.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndNoMembers.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneComplexMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneInternalMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneMember\AndOneMemberTests.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneMember\BooleanMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneMember\DateTimeMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneMember\IntegerMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneMember\StringMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOnePrivateMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\AndOneProtectedMember.cs" />
+    <Compile Include="GivenProject\WithOneClass\WithOneClassTests.cs" />
+    <Compile Include="GivenProject\WithTwoClasses\AndInOneFile.cs" />
+    <Compile Include="GivenProject\WithTwoClasses\AndOneMember\AndDefaultValue.cs" />
+    <Compile Include="GivenProject\WithTwoClasses\AndOneMember\AndOneMember.cs" />
+    <Compile Include="GivenProject\WithTwoClasses\GivenNoMembers.cs" />
+    <Compile Include="GivenProject\WithTwoClasses\WithTwoClassesTests.cs" />
+    <Compile Include="InitializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Furnace.Items.Redis\Furnace.Items.Redis.csproj">
-      <Project>{99589D78-9F58-47FC-85E4-5F8477E99E30}</Project>
-      <Name>Furnace.Items.Redis</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Furnace.Models\Furnace.Models.csproj">
       <Project>{b32dafd5-eb3d-4f65-8486-2099eb7d869b}</Project>
       <Name>Furnace.Models</Name>
@@ -110,7 +106,7 @@
       <Name>Furnace.ContentTypes.Roslyn</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Furnace\Furnace.csproj">
-      <Project>{9E48A6F6-C469-492D-A911-89E4319B9FD6}</Project>
+      <Project>{9e48a6f6-c469-492d-a911-89e4319b9fd6}</Project>
       <Name>Furnace</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,11 +1,10 @@
-﻿namespace Furnace.Roslyn.Extensions
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace Furnace.ContentTypes.Roslyn.Extensions
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.CSharp.Syntax;
-
     public static class SyntaxNodeExtensions
     {
         public static IEnumerable<PropertyDeclarationSyntax> GetPropertyDeclarationSyntax(this SyntaxNode syntaxNode)
