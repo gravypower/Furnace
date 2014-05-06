@@ -18,10 +18,6 @@
         {
         }
 
-
-  //      <package id = "NSubstitute" version="1.7.2.0" targetFramework="net45" />
-  //<package id = "NUnit" version="2.6.3" targetFramework="net45" />
-  //<package id = "ServiceStack.Text" version="4.0.18" targetFramework="net45" />
         [SetUp]
         public void RedisBackedFurnaceItemsTestsSetUp()
         {
