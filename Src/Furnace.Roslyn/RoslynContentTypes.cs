@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Furnace.ContentTypes.Roslyn.Extensions;
+using Furnace.ContentTypes.Roslyn.Models;
 using Furnace.Models.ContentTypes;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

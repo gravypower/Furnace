@@ -47,7 +47,6 @@ namespace Furnace.Play
 
             item.AddPropity("StringProp", "StringPropTest");
 
-
             var json = JsonSerializer.SerializeToString(item);
 
             Console.WriteLine(json);
@@ -59,6 +58,25 @@ namespace Furnace.Play
 
             var tt = JsonSerializer.DeserializeFromString<ExpandoObject>(json);
             var ttt = new Item(tt);
+        }
+
+        [Test]
+        public void WhenTypedGetItemIsCalled_ThenTheReturnedItem_IsCorrect()
+        {
+            //Assign
+            const string propityValue = "NotDefaultValue";
+            const string returnJon = "{\"Test\":\"" + propityValue + "\"}";
+
+            //Act
+            var result = JsonSerializer.DeserializeFromString<Stub>(returnJon);
+
+            //Assert
+            Assert.That(result.Test, Is.EqualTo(propityValue));
+        }
+
+        public class Stub
+        {
+            public string Test { get; set; }
         }
     }
 }

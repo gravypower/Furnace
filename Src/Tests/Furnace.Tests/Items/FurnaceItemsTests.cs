@@ -1,4 +1,7 @@
-﻿using Furnace.Items;
+﻿using System.Globalization;
+using Furnace.Items;
+using Furnace.Models.ContentTypes;
+using Furnace.Models.Items;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -27,12 +30,12 @@ namespace Furnace.Tests.Items
             switch (_furnaceItemsType)
             {
                 case "AbstractFurnaceItems":
-                    Sut = Substitute.For<FurnaceItems<long>>();
+                    Sut = new FurnaceItemsSpy();
                     break;
                 case "RedisBackedFurnaceItems":
                     {
                         var client = Substitute.For<IRedisClient>();
-                        Sut = new RedisBackedFurnaceItems(client);
+                        Sut = new RedisBackedFurnaceItemsSpy(client);
                     }
                     break;
             }

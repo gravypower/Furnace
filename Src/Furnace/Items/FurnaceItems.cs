@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Exceptions;
@@ -8,7 +9,7 @@ using Property = Furnace.Models.ContentTypes.Property;
 
 namespace Furnace.Items
 {
-    public abstract class FurnaceItems<TKeyType> : FurnaceItems, IFurnaceItems<TKeyType>
+    public abstract class FurnaceItems<TIdType> : FurnaceItems, IFurnaceItems<TIdType>
     {
         public Item CreateItem(ContentType contentType)
         {
@@ -18,22 +19,28 @@ namespace Furnace.Items
             return new Item(contentType);
         }
 
-        public Item GetItem(TKeyType key, ContentType contentType)
+        public Item GetItem(TIdType id, ContentType contentType)
+        {
+            return GetItem(id, contentType, CultureInfo.DefaultThreadCurrentCulture);
+        }
+
+        public Item GetItem(TIdType id, ContentType contentType, CultureInfo ci)
         {
             var guard = new Guard();
             guard.GuardContenType(contentType);
-            return AbstractGetItem(key, contentType);
+            return AbstractGetItem(id, contentType, ci);
         }
-
-        public void SetItem(TKeyType id, Item item)
+        public void SetItem(TIdType id, Item item)
         {
             var guard = new Guard();
             guard.GuardContenType(item.ContentType);
             AbstractSetItem(id, item);
         }
 
-        public abstract Item AbstractGetItem(TKeyType key, ContentType contentType);
-        public abstract void AbstractSetItem(TKeyType id, Item item);
+        public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
+        public abstract TRealType GetItem<TRealType>(TIdType id);
+        
+        public abstract void AbstractSetItem(TIdType id, Item item);
     }
 
     public class FurnaceItems

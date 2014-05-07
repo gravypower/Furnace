@@ -20,7 +20,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithInheritance
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasOneProperty()
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasTwoProperty()
         {
             //Act
             var result = Sut.GetContentTypes().ToList();
@@ -34,7 +34,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithInheritance
         public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyNames()
         {
             //Act
-            var result = this.Sut.GetContentTypes().ToList();
+            var result = Sut.GetContentTypes().ToList();
 
             //Assert
             Assert.That(result.GetPropertyNames("Test1"), Contains.Item("StringProperty1"));
@@ -44,10 +44,10 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithInheritance
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyType()
+        public void WhenGetContentTypesIsCalled_ThenTheFurnaceContentTypeReturned_HasCorrectPropertyTypes()
         {
             //Act
-            var result = this.Sut.GetContentTypes().ToList();
+            var result = Sut.GetContentTypes().ToList();
 
             //Assert
             Assert.That(result.GetPropertyType("Test1", "StringProperty1"), Is.EqualTo("string"));

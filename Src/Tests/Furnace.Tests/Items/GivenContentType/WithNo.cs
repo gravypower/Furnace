@@ -6,9 +6,9 @@ namespace Furnace.Tests.Items.GivenContentType
 {
     using System.Linq;
 
-    using Furnace.Models.Items;
+    using Models.Items;
 
-    using Property = Furnace.Models.ContentTypes.Property;
+    using Property = Property;
 
     [TestFixture]
     public abstract class WithNo : GivenContentTypeTests
@@ -16,7 +16,7 @@ namespace Furnace.Tests.Items.GivenContentType
         protected const string ContentTypeName = "SomeName";
         protected const string ContentTypeNamespace = "SomeNamespace";
 
-        protected Property[] ContentTypeProperties = {new Property {Name = "SomeName", Type = "SomeType"} };
+        protected Property[] ContentTypeProperties = { new Property { Name = "SomeName", Type = "SomeType"} };
 
         protected WithNo(string furnaceItemsType)
             : base(furnaceItemsType)
@@ -33,17 +33,17 @@ namespace Furnace.Tests.Items.GivenContentType
         [Test]
         public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
-            const long Id = 1L;
-            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(Id, ContentType));
+            const long id = 1L;
+            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.GetItem(id, ContentType));
             AssertInvalidReasons(ex);
         }
 
         [Test]
         public void WhenSetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
-            const long Id = 1L;
+            const long id = 1L;
             var item = new Item(ContentType);
-            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.SetItem(Id, item));
+            var ex = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.SetItem(id, item));
             AssertInvalidReasons(ex);
         }
 
@@ -81,7 +81,7 @@ namespace Furnace.Tests.Items.GivenContentType
             [SetUp]
             public void PropertiesSetUp()
             {
-                ContentType = new ContentType { Name = ContentTypeName , Namespace = ContentTypeNamespace};
+                ContentType = new ContentType { Name = ContentTypeName, Namespace = ContentTypeNamespace };
             }
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)
@@ -102,7 +102,7 @@ namespace Furnace.Tests.Items.GivenContentType
             [SetUp]
             public void WithNoNameSetUp()
             {
-                ContentType = new ContentType {Name = ContentTypeName, Properties = ContentTypeProperties };
+                ContentType = new ContentType { Name = ContentTypeName, Properties = ContentTypeProperties };
             }
 
             protected override void AssertInvalidReasons(FurnaceItems.InvalidContentTypeException ex)

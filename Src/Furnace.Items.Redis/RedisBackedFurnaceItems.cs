@@ -1,4 +1,7 @@
-﻿namespace Furnace.Items.Redis
+﻿using System;
+using System.Globalization;
+
+namespace Furnace.Items.Redis
 {
     using System.Collections.Generic;
 
@@ -15,34 +18,48 @@
 
         public const string ItemKey = "Item:{0}.{1}:{2}";
 
-        private readonly IRedisClient client;
+        private readonly IRedisClient _client;
 
         public RedisBackedFurnaceItems(IRedisClient client)
         {
-            this.client = client;
+            _client = client;
         }
 
-        public override Item AbstractGetItem(long id, ContentType contentType)
+        public override Item AbstractGetItem(long id, ContentType contentType, CultureInfo ci)
         {
             var key = CreateItemKey(id, contentType);
-            var value = client.GetValue(key);
+            var value = _client.GetValue(key);
 
-            if (value.IsNullOrEmpty()) return null;
+            if (value.IsNullOrEmpty())
+                return null;
 
             var propities = TypeSerializer.DeserializeFromString<IDictionary<string, object>>(value);
 
             return new Item(contentType, propities) { Id = id };
         }
 
+        public override TRealType GetItem<TRealType>(long id)
+        {
+            var key = CreateItemKey(id, typeof(TRealType));
+            var value = _client.GetValue(key);
+
+            return TypeSerializer.DeserializeFromString<TRealType>(value);
+        }
+
         public override void AbstractSetItem(long id, Item item)
         {
             var key = CreateItemKey(id, item.ContentType);
-            client.Set(key, item.Propities);
+            _client.Set(key, item.Propities);
         }
 
         public static string CreateItemKey(long id, ContentType contentType)
         {
             return ItemKey.FormatWith(contentType.Namespace, contentType.Name, id);
+        }
+
+        public static string CreateItemKey(long id, Type type)
+        {
+            return ItemKey.FormatWith(type.Namespace, type.Name, id);
         }
     }
 }

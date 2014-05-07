@@ -20,14 +20,14 @@
         [Test]
         public void WhenCreateItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
-            var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.CreateItem(ContentType));
+            Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.CreateItem(ContentType));
         }
 
         [Test]
         public void WhenGetItemIsCalled_ThenInvalidContentTypeException_IsThrown()
         {
             const long Id = 1L;
-            var ex = Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(Id, ContentType));
+            Assert.Throws<FurnaceItems.NullContentTypeException>(() => Sut.GetItem(Id, ContentType));
         }
     }
 }

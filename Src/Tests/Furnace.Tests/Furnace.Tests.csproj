@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\FurnaceExceptionTests.cs" />
     <Compile Include="Exceptions\Items\FurnaceItems.cs" />
+    <Compile Include="Items\FurnaceItemsSpy.cs" />
     <Compile Include="Items\FurnaceItemsTests.cs" />
     <Compile Include="Items\GivenContentType\GivenContentTypeTests.cs" />
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\AndOneProperty\AndOnePropertyTest.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\WithNameAndNamespaceTests.cs" />
     <Compile Include="Items\GivenContentType\WithNo.cs" />
     <Compile Include="Items\GivenContentType\Null.cs" />
+    <Compile Include="Items\GivenContentType\WithNameAndNamespace\Localisation\LocalisationTests.cs" />
+    <Compile Include="Items\RedisBackedFurnaceItemsSpy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

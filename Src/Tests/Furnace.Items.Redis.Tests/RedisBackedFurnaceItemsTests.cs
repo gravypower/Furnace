@@ -50,7 +50,7 @@
             item.Id = id;
 
             const string propityValue = "NotDefaultValue";
-            const string returnJon = "{\"Test\":\""+ propityValue + "\"}";
+            var returnJon = new Stub { Test = propityValue }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
@@ -63,6 +63,39 @@
             Assert.That(result.Id, Is.EqualTo(id));
             Assert.That(result["Test"], Is.EqualTo(propityValue));
             Assert.That(result.ContentType.Name == ContentTypeName);
+        }
+
+        [Test]
+        public void WhenTypedGetItemIsCalled_ThenTheReturnedItem_IsCorrect()
+        {
+            //Assign
+            const long id = 1L;
+
+            const string propityValue = "NotDefault Value";
+            var returnJon = new Stub {Test = propityValue}.BuildSerialisedString();
+
+            var key = RedisBackedFurnaceItems.CreateItemKey(id, typeof(Stub));
+
+            Client.GetValue(key).Returns(returnJon);
+
+            //Act
+            var result = Sut.GetItem<Stub>(id);
+
+            //Assert
+            Assert.That(result.Test, Is.EqualTo(propityValue));
+        }
+
+        [Test]
+        public void GivenNoItemWithID_WhenTypedGetItemIsCalled_ThenNullReturned()
+        {
+            //Assign
+            const long id = 1L;
+
+            //Act
+            var result = Sut.GetItem<Stub>(id);
+
+            //Assert
+            Assert.That(result, Is.Null);
         }
 
         [Test]
@@ -80,6 +113,16 @@
             //Assert
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
             Client.Received().Set(key, item.Propities);
+        }
+
+        public class Stub
+        {
+            public string Test { get; set; }
+
+            public string BuildSerialisedString()
+            {
+                return "{Test:" + Test + "}";
+            }
         }
     }
 }
