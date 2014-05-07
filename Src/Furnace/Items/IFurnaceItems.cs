@@ -9,7 +9,7 @@ namespace Furnace.Items
         Item CreateItem(ContentType contentType);
 
         Item GetItem(TKeyType id, ContentType contentType);
-        Item GetItem(TKeyType id, ContentType contentType, CultureInfo ci);
+        Item GetItem(TKeyType id, ContentType contentType, CultureInfo cultureInfo);
 
         TRealType GetItem<TRealType>(TKeyType id);
 

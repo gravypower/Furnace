@@ -2,7 +2,6 @@
 using Furnace.Items.Redis;
 using NSubstitute;
 using NUnit.Framework;
-using ServiceStack.Redis;
 
 namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
 {
@@ -14,21 +13,21 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
         }
 
         [Test]
-        public void SomeTest()
+        public void WhenGetItemIsCalled_ThenCorrectKey_IsUsed()
         {
             //Assign
             const long id = 1L;
-            var ci = CultureInfo.GetCultureInfo("ja-JP");
+            var cultureInfo = CultureInfo.GetCultureInfo("ja-JP");
             AddPropityToContentType("SomeName", "string");
 
             //Act
-            Sut.GetItem(id, ContentType, ci);
+            Sut.GetItem(id, ContentType, cultureInfo);
 
             //Assert
             if (Sut is FurnaceItemsSpy)
             {
                 var spy = Sut as FurnaceItemsSpy;
-                Assert.That(spy.AbstractGetItemLastCall.Ci, Is.EqualTo(ci));
+                Assert.That(spy.AbstractGetItemLastCall.Ci, Is.EqualTo(cultureInfo));
             }
 
             if (Sut is RedisBackedFurnaceItems)
@@ -38,7 +37,6 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
                 if (spy != null)
                     spy.Client.Received().GetValue(key);
             }
-
         }
     }
 }

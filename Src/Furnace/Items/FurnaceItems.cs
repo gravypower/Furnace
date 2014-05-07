@@ -24,11 +24,11 @@ namespace Furnace.Items
             return GetItem(id, contentType, CultureInfo.DefaultThreadCurrentCulture);
         }
 
-        public Item GetItem(TIdType id, ContentType contentType, CultureInfo ci)
+        public Item GetItem(TIdType id, ContentType contentType, CultureInfo cultureInfo)
         {
             var guard = new Guard();
             guard.GuardContenType(contentType);
-            return AbstractGetItem(id, contentType, ci);
+            return AbstractGetItem(id, contentType, cultureInfo);
         }
         public void SetItem(TIdType id, Item item)
         {
