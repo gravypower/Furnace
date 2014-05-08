@@ -1,12 +1,7 @@
-﻿using Furnace.ContentTypes.Roslyn;
+﻿using NUnit.Framework;
 
-namespace Furnace.Roslyn.Tests.ContentTypes
+namespace Furnace.ContentTypes.Roslyn.Tests
 {
-    using Furnace.ContentTypes;
-    using Roslyn;
-
-    using NUnit.Framework;
-
     [TestFixture]
     public abstract class ContentTypesTests
     {

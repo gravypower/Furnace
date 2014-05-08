@@ -4,7 +4,7 @@ namespace Furnace.Tests.Items.GivenContentType
 {
     public abstract class GivenContentTypeTests : FurnaceItemsTests
     {
-        protected ContentType ContentType;
+        public ContentType ContentType;
 
         protected GivenContentTypeTests(string furnaceItemsType)
             : base(furnaceItemsType)

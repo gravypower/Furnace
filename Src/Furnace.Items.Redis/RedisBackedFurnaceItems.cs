@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Furnace.Configuration;
 
 namespace Furnace.Items.Redis
 {
@@ -16,11 +17,12 @@ namespace Furnace.Items.Redis
     {
         public const string ContentTypeSetId = "ContentType:{0}";
 
-        public const string ItemKey = "Item:{0}.{1}:{2}";
+        public const string ItemHashKey = "Item:{0}.{1}:{2}";
 
         private readonly IRedisClient _client;
 
-        public RedisBackedFurnaceItems(IRedisClient client)
+        public RedisBackedFurnaceItems(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration)
+            :base(siteConfiguration)
         {
             _client = client;
         }
@@ -41,25 +43,43 @@ namespace Furnace.Items.Redis
         public override TRealType GetItem<TRealType>(long id)
         {
             var key = CreateItemKey(id, typeof(TRealType));
-            var value = _client.GetValue(key);
+            var itemHash = GetItemHash(key);
+            var value = itemHash[SiteConfiguration.DefaultSiteCulture.Name];
 
             return TypeSerializer.DeserializeFromString<TRealType>(value);
+        }
+
+        public override TRealType GetItem<TRealType>(long id, CultureInfo cultureInfo)
+        {
+            var key = CreateItemKey(id, typeof(TRealType));
+
+            var itemHash = GetItemHash(key);
+            var value = itemHash[cultureInfo.Name];
+
+            return TypeSerializer.DeserializeFromString<TRealType>(value);
+        }
+
+        private IRedisHash GetItemHash(string key)
+        {
+            return _client.Hashes[key];
         }
 
         public override void AbstractSetItem(long id, Item item)
         {
             var key = CreateItemKey(id, item.ContentType);
-            _client.Set(key, item.Propities);
+            var itemHash = GetItemHash(key);
+            var value = TypeSerializer.SerializeToString(item.Propities);
+            itemHash.Add(SiteConfiguration.DefaultSiteCulture.Name, value);
         }
 
         public static string CreateItemKey(long id, ContentType contentType)
         {
-            return ItemKey.FormatWith(contentType.Namespace, contentType.Name, id);
+            return ItemHashKey.FormatWith(contentType.Namespace, contentType.Name, id);
         }
 
         public static string CreateItemKey(long id, Type type)
         {
-            return ItemKey.FormatWith(type.Namespace, type.Name, id);
+            return ItemHashKey.FormatWith(type.Namespace, type.Name, id);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Furnace.Roslyn.Tests.ContentTypes;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject
 {

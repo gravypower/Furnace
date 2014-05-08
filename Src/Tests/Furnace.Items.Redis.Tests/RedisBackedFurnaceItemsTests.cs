@@ -1,4 +1,7 @@
-﻿namespace Furnace.Items.Redis.Tests
+﻿using System.Globalization;
+using ServiceStack.Text;
+
+namespace Furnace.Items.Redis.Tests
 {
     using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace;
 
@@ -12,7 +15,6 @@
     public class RedisBackedFurnaceItemsTests : WithNameAndNamespaceTests
     {
         protected IRedisClient Client;
-
         public RedisBackedFurnaceItemsTests(string furnaceItemsType)
             : base(furnaceItemsType)
         {
@@ -22,7 +24,8 @@
         public void RedisBackedFurnaceItemsTestsSetUp()
         {
             Client = Substitute.For<IRedisClient>();
-            Sut = new RedisBackedFurnaceItems(Client);
+            SiteConfiguration.DefaultSiteCulture.Returns(new CultureInfo("en-AU"));
+            Sut = new RedisBackedFurnaceItems(Client, SiteConfiguration);
         }
 
         [Test]
@@ -76,7 +79,7 @@
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, typeof(Stub));
 
-            Client.GetValue(key).Returns(returnJon);
+            Client.Hashes[key][Arg.Any<string>()].Returns(returnJon);
 
             //Act
             var result = Sut.GetItem<Stub>(id);
@@ -112,7 +115,8 @@
 
             //Assert
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
-            Client.Received().Set(key, item.Propities);
+            var value = TypeSerializer.SerializeToString(item.Propities);
+            Client.Hashes[key].Received().Add(Arg.Any<string>(), value);
         }
 
         public class Stub

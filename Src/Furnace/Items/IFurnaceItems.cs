@@ -12,6 +12,7 @@ namespace Furnace.Items
         Item GetItem(TKeyType id, ContentType contentType, CultureInfo cultureInfo);
 
         TRealType GetItem<TRealType>(TKeyType id);
+        TRealType GetItem<TRealType>(TKeyType id, CultureInfo cultureInfo);
 
         void SetItem(TKeyType id, Item item);
     }

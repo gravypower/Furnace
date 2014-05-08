@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Furnace.Configuration;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Exceptions;
 using Furnace.Models.Items;
@@ -11,6 +12,10 @@ namespace Furnace.Items
 {
     public abstract class FurnaceItems<TIdType> : FurnaceItems, IFurnaceItems<TIdType>
     {
+        protected FurnaceItems(IFurnaceSiteConfiguration siteConfiguration) : base(siteConfiguration)
+        {
+        }
+
         public Item CreateItem(ContentType contentType)
         {
             var guard = new Guard();
@@ -30,6 +35,7 @@ namespace Furnace.Items
             guard.GuardContenType(contentType);
             return AbstractGetItem(id, contentType, cultureInfo);
         }
+
         public void SetItem(TIdType id, Item item)
         {
             var guard = new Guard();
@@ -38,13 +44,24 @@ namespace Furnace.Items
         }
 
         public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
+
         public abstract TRealType GetItem<TRealType>(TIdType id);
-        
+        public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
+
         public abstract void AbstractSetItem(TIdType id, Item item);
+        
+
     }
 
     public class FurnaceItems
     {
+        protected IFurnaceSiteConfiguration SiteConfiguration;
+
+        protected FurnaceItems(IFurnaceSiteConfiguration siteConfiguration)
+        {
+            SiteConfiguration = siteConfiguration;
+        }
+
         protected class Guard
         {
             private readonly List<string> reasons;

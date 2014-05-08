@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
-using Furnace.Items.Redis;
-using NSubstitute;
+using Furnace.Tests.Items.FurnaceItemsSpies;
 using NUnit.Framework;
 
 namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
@@ -8,35 +7,36 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
     [TestFixture]
     public class LocalisationTests : WithNameAndNamespaceTests
     {
+        public long Id = 1L;
+        public CultureInfo CultureInfo;
+        protected IFurnaceItemsSpy Spy;
+
         public LocalisationTests(string furnaceItemsType) : base(furnaceItemsType)
         {
+        }
+
+        [SetUp]
+        public void LocalisationTestsSetUp()
+        {
+            Spy = Sut as IFurnaceItemsSpy;
+            if (Spy == null)
+            {
+                Assert.Fail("Can't spy on Sut");
+            }
         }
 
         [Test]
         public void WhenGetItemIsCalled_ThenCorrectKey_IsUsed()
         {
             //Assign
-            const long id = 1L;
-            var cultureInfo = CultureInfo.GetCultureInfo("ja-JP");
+            CultureInfo = CultureInfo.GetCultureInfo("ja-JP");
             AddPropityToContentType("SomeName", "string");
 
             //Act
-            Sut.GetItem(id, ContentType, cultureInfo);
+            Sut.GetItem(Id, ContentType, CultureInfo);
 
             //Assert
-            if (Sut is FurnaceItemsSpy)
-            {
-                var spy = Sut as FurnaceItemsSpy;
-                Assert.That(spy.AbstractGetItemLastCall.Ci, Is.EqualTo(cultureInfo));
-            }
-
-            if (Sut is RedisBackedFurnaceItems)
-            {
-                var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
-                var spy = Sut as RedisBackedFurnaceItemsSpy;
-                if (spy != null)
-                    spy.Client.Received().GetValue(key);
-            }
+            Spy.AssertWhenGetItemIsCalled_ThenCorrectKey_IsUsed(this);
         }
     }
 }

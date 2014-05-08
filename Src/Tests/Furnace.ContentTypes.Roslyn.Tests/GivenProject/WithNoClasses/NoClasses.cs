@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Furnace.Roslyn.Tests.ContentTypes;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithNoClasses
