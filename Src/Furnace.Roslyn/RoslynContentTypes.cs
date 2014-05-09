@@ -91,7 +91,7 @@ namespace Furnace.ContentTypes.Roslyn
 
             foreach (var property in classType.DocumentRoot.GetPropertyDeclarationSyntax())
             {
-                if (CheckModifiers(property))
+                if (IsNotPublicModifier(property))
                     continue;
 
                 contentType.Properties.Add(property.GetFurnaceContentTypeProperty());
@@ -100,14 +100,14 @@ namespace Furnace.ContentTypes.Roslyn
             return contentType;
         }
 
-        private static bool CheckModifiers(BasePropertyDeclarationSyntax property)
+        private static bool IsNotPublicModifier(BasePropertyDeclarationSyntax property)
         {
-            return  CheckModifiers(property, PrivateModifier) || 
-                    CheckModifiers(property, ProtectedModifier) ||
-                    CheckModifiers(property, InternalModifier);
+            return  IsNotPublicModifier(property, PrivateModifier) || 
+                    IsNotPublicModifier(property, ProtectedModifier) ||
+                    IsNotPublicModifier(property, InternalModifier);
         }
 
-        private static bool CheckModifiers(BasePropertyDeclarationSyntax property, string modifier)
+        private static bool IsNotPublicModifier(BasePropertyDeclarationSyntax property, string modifier)
         {
             return property.Modifiers.Any(x => string.Compare(x.Text, modifier, StringComparison.InvariantCultureIgnoreCase) == 0);
         }

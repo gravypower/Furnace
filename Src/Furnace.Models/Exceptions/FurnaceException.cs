@@ -4,14 +4,13 @@ namespace Furnace.Models.Exceptions
 {
     public abstract class FurnaceException : Exception
     {   
-        public abstract string ExceptionName { get; }
-
         public override string Message
         {
             get
             {
+                var type = GetType();
                 var logMessage = BuildLogMessage();
-                return ExceptionName + " thrown." + (logMessage != null ? " " + logMessage : string.Empty);
+                return type.DeclaringType.Name +"." + type.Name + " thrown." + (logMessage != null ? " " + logMessage : string.Empty);
             }
         }
 

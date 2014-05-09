@@ -109,7 +109,7 @@ namespace Furnace.Play.Roslyn
 
             public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
             {
-                var tt = SyntaxFactory.ParseTypeName("TestClass");
+                var tt = SyntaxFactory.ParseTypeName(_baseClass);
 
                 var typesList = new List<TypeSyntax> { tt };
                 typesList.AddRange(node.BaseList.Types);

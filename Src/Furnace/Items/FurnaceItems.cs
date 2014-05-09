@@ -99,21 +99,10 @@ namespace Furnace.Items
 
         public class NullContentTypeException : FurnaceException
         {
-            public const string NullContentTypeExceptionName = "FurnaceItems.NullContentTypeException";
-
-            public override string ExceptionName
-            {
-                get
-                {
-                    return NullContentTypeExceptionName;
-                }
-            }
         }
 
-        public class InvalidContentTypeException : FurnaceException
+        public class InvalidContentTypeException : ReasonsFurnaceException
         {
-            public const string InvalidContentTypeExceptionName = "FurnaceItems.InvalidContentTypeException";
-
             public const string NoName = "ContentType had no name";
 
             public const string NoNamespace = "ContentType had no namespace";
@@ -124,24 +113,9 @@ namespace Furnace.Items
 
             public const string PropertyHasNoName = "Propity of type {0} has no name";
 
-            public IEnumerable<string> InvalidReasons;
 
-            public InvalidContentTypeException(IEnumerable<string> reasons)
+            public InvalidContentTypeException(IEnumerable<string> reasons) : base(reasons)
             {
-                InvalidReasons = reasons;
-            }
-
-            public override string ExceptionName
-            {
-                get
-                {
-                    return InvalidContentTypeExceptionName;
-                }
-            }
-
-            protected override string BuildLogMessage()
-            {
-                return "InvalidReasons: " + InvalidReasons.Join(", ");
             }
         }
     }

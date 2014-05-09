@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\FurnaceExceptionTests.cs" />
+    <Compile Include="Exceptions\FurnaceObjectTypes\FurnaceObjectType.cs" />
     <Compile Include="Exceptions\Items\FurnaceItems.cs" />
     <Compile Include="Items\FurnaceItemsSpies\FurnaceItemsSpy.cs" />
     <Compile Include="Items\FurnaceItemsSpies\IFurnaceItemsSpy.cs" />
