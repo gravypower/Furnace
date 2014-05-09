@@ -9,26 +9,51 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
     {
         public FurnaceObjectTypeFactory Sut;
         public FurnaceObjectTypeFactorySpy Spy;
+        private string _templteFilePath;
         private string _templtePath;
 
         [SetUp]
         public void SetUp()
         {
-            Sut = new FurnaceObjectTypeFactorySpy();
-            _templtePath = Path.GetDirectoryName(GetType().Assembly.Location) + @"\FurnaceObjectTypes\FurnaceObjectType.cs";
+            _templtePath = Path.GetDirectoryName(GetType().Assembly.Location);
+            _templteFilePath = _templtePath + @"\FurnaceObjectTypes\FurnaceObjectType.cs";
+            Sut = new FurnaceObjectTypeFactorySpy(_templteFilePath);
         }
 
         [Test]
         public void FurnaceObjectTypeTemplateExists()
-        {
-            
-            Assert.That(File.Exists(_templtePath), Is.True);
+        {            
+            Assert.That(File.Exists(_templteFilePath), Is.True);
         }
 
         [Test]
-        public void GiveNullTemplatePath_WhenParseFurnaceObjectTypeTemplateIsCalled_NullTemplateExcpetionThrown()
+        public void GivenNullTemplatePath_WhenParseFurnaceObjectTypeTemplateIsCalled_NullTemplateExcpetionThrown()
         {
-            Assert.That(() => Sut.ParseFurnaceObjectTypeTemplate(null), Throws.TypeOf<FurnaceObjectTypeFactory.TempltePathException>() ); 
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(null));
+
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.NullTempltePath));
+        }
+
+        [Test]
+        public void GivenEmptyTemplatePath_WhenParseFurnaceObjectTypeTemplateIsCalled_NullTemplateExcpetionThrown()
+        {
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(string.Empty));
+
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.EmptyTempltePath));
+        }
+
+        [Test]
+        public void GivenInvalidTemplatePath_WhenParseFurnaceObjectTypeTemplateIsCalled_NullTemplateExcpetionThrown()
+        {
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory("InvalidPath"));
+
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.InvalidTempltePath));
+        }
+
+        [Test]
+        public void GivenGoodTemplatePath_WhenParseFurnaceObjectTypeTemplateIsCalled_NullTemplateExcpetionNotThrown()
+        {
+            var result = new FurnaceObjectTypeFactory(_templteFilePath);
         }
     }
 }
