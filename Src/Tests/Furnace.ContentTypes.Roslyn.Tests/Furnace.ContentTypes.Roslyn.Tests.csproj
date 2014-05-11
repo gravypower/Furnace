@@ -77,8 +77,10 @@
     </None>
     <Compile Include="ContentTypesTests.cs" />
     <Compile Include="ContentTypeTestExtensions.cs" />
+    <Compile Include="FurnaceObjectTypes\CreatingFurnaceObjectTypeFactoryTests.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactorySpy.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactoryTests.cs" />
+    <Compile Include="FurnaceObjectTypes\GivenValidTemplatePathTests.cs" />
     <Compile Include="GivenNoProject.cs" />
     <Compile Include="GivenProject\GivenProjectTests.cs" />
     <Compile Include="GivenProject\WithInheritance\AndTwoClasses.cs" />
