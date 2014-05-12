@@ -30,9 +30,6 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             if (node.SyntaxTree.Length == 0)
                 throw new BaseClassException(new[] {BaseClassException.EmptyBaseClass});
 
-            var classes = node.DescendantNodes().OfType<ClassDeclarationSyntax>();
-            if (classes.Count() > 1)
-                throw new BaseClassException(new[] {BaseClassException.MoreThanOneClass});
         }
 
         public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -78,8 +75,6 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             public const string EmptyBaseClassFullName = "Base class full name was Empty";
 
             public const string EmptyBaseClass = "Base class was Empty";
-
-            public const string MoreThanOneClass = "There was more that one class in file";
 
             public BaseClassException(IEnumerable<string> reasons) : base(reasons)
             {

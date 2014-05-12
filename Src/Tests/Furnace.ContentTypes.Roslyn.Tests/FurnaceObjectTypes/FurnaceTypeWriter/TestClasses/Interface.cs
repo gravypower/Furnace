@@ -1,4 +1,4 @@
-﻿namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter.TestClasses
+﻿namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses
 {
     public interface Interface
     {

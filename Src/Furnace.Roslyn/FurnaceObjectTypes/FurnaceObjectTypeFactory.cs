@@ -32,7 +32,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
         }
 
         public void CreateFurnaceType(string fullName)
-        {
+        {   
         }
 
         public class TempltePathException : ReasonsFurnaceException

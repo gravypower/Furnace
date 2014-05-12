@@ -86,9 +86,6 @@
     </Compile>
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\Interface.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\TestType.cs" />
-    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\TwoClasses.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

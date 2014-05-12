@@ -9,7 +9,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
     public class BaseClassInserterTests
     {
         public Roslyn.FurnaceObjectTypes.FurnaceTypeWriter Sut;
-        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses.TestType";
+        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses";
 
         private const string TestClassPath = @"FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\";
 
@@ -46,19 +46,6 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
 
             //Assert
             Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.EmptyBaseClass));
-        }
-
-        [Test]
-        public void GivenTwoClasses_WhenVisitingClassDeclarationSyntax_TempltePathExceptionThrown()
-        {
-            //Assign
-            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "TwoClasses.cs");
-            var root = tree.GetRoot();
-            //Act
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => Sut.Visit(root));
-
-            //Assert
-            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.MoreThanOneClass));
         }
 
         [Test]
