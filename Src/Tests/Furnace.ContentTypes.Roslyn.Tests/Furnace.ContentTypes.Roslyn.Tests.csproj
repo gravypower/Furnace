@@ -77,7 +77,24 @@
     </None>
     <Compile Include="ContentTypesTests.cs" />
     <Compile Include="ContentTypeTestExtensions.cs" />
-    <Compile Include="FurnaceObjectTypes\BaseClassInserterTests.cs" />
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\BaseClassInserterTests.cs" />
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\ClassWithInterface.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\EmptyClass.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\Interface.cs" />
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\TestType.cs" />
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\TwoClasses.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\OneClass.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\OneClassWithBaseClass.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="FurnaceObjectTypes\CreatingFurnaceObjectTypeFactoryTests.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactorySpy.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactoryTests.cs" />

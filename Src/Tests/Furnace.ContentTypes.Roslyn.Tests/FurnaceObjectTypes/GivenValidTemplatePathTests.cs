@@ -1,5 +1,4 @@
-﻿using NSubstitute.Exceptions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {
@@ -17,6 +16,12 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         {
             //Assert
             Assert.That(Spy.TemplateClassRoot, Is.Not.Null);
+        }
+
+        [Test]
+        public void SomeTest()
+        {
+            Sut.CreateFurnaceType("Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.TestType");
         }
     }
 }

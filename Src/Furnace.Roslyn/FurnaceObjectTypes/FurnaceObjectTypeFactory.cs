@@ -16,12 +16,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             GuardTemplatePath(templteFilePath);
             TemplteFilePath = templteFilePath;
 
-            FindTemplateClassRoot(CSharpSyntaxTree.ParseFile(TemplteFilePath));
-        }
-
-        protected void FindTemplateClassRoot(SyntaxTree templateClass)
-        {
-            TemplateClassRoot = templateClass.GetRoot();
+            TemplateClassRoot = CSharpSyntaxTree.ParseFile(TemplteFilePath).GetRoot();
         }
 
         private static void GuardTemplatePath(string templtePath)
@@ -36,6 +31,11 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
                 throw new TempltePathException(new[] { TempltePathException.InvalidTempltePath });
         }
 
+        public void CreateFurnaceType(string fullName)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public class TempltePathException : ReasonsFurnaceException
         {
             public const string NullTempltePath = "Templte path was null";
@@ -47,11 +47,6 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             public TempltePathException(IEnumerable<string> reasons) : base(reasons)
             {
             }
-        }
-
-        public SyntaxNode CreateFurnaceType<T>()
-        {
-            return null;
         }
     }
 }
