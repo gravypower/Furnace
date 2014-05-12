@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Furnace.Models.Exceptions;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 {
     public class FurnaceObjectTypeFactory
     {
-        private string _templteFilePath;
+        protected string TemplteFilePath;
+        protected SyntaxNode TemplateClassRoot;
 
         public FurnaceObjectTypeFactory(string templteFilePath)
         {
             GuardTemplatePath(templteFilePath);
-            _templteFilePath = templteFilePath;
+            TemplteFilePath = templteFilePath;
+
+            FindTemplateClassRoot(CSharpSyntaxTree.ParseFile(TemplteFilePath));
         }
 
-        public void ParseFurnaceObjectTypeTemplate()
+        protected void FindTemplateClassRoot(SyntaxTree templateClass)
         {
-            
+            TemplateClassRoot = templateClass.GetRoot();
         }
 
         private static void GuardTemplatePath(string templtePath)
@@ -42,6 +47,11 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             public TempltePathException(IEnumerable<string> reasons) : base(reasons)
             {
             }
+        }
+
+        public SyntaxNode CreateFurnaceType<T>()
+        {
+            return null;
         }
     }
 }

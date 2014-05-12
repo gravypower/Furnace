@@ -7,7 +7,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
     public class CreatingFurnaceObjectTypeFactoryTests : FurnaceObjectTypeFactoryTests
     {
         [Test]
-        public void GivenNullTemplatePath_WhenFurnaceObjectTypeFactoryCreated_NullTemplateExcpetionThrown()
+        public void GivenNullTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
         {
             var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(null));
 
@@ -15,7 +15,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         }
 
         [Test]
-        public void GivenEmptyTemplatePath_WhenFurnaceObjectTypeFactoryCreated_NullTemplateExcpetionThrown()
+        public void GivenEmptyTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
         {
             var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(string.Empty));
 
@@ -23,7 +23,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         }
 
         [Test]
-        public void GivenInvalidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_NullTemplateExcpetionThrown()
+        public void GivenInvalidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
         {
             var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory("InvalidPath"));
 
@@ -31,7 +31,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         }
 
         [Test]
-        public void GivenValidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_NullTemplateExcpetionNotThrown()
+        public void GivenValidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionNotThrown()
         {
             var result = new FurnaceObjectTypeFactory(TemplteFilePath);
         }

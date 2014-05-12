@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute.Exceptions;
+using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {
@@ -9,6 +10,13 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         public void GivenValidTemplatePathTestsSetUp()
         {
             Sut = new FurnaceObjectTypeFactorySpy(TemplteFilePath);
+        }
+
+        [Test]
+        public void SyntaxTreeHasRoot()
+        {
+            //Assert
+            Assert.That(Spy.TemplateClassRoot, Is.Not.Null);
         }
     }
 }

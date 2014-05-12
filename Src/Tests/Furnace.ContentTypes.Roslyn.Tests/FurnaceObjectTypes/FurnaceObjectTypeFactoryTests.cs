@@ -8,7 +8,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
     public class FurnaceObjectTypeFactoryTests
     {
         public FurnaceObjectTypeFactory Sut;
-        public FurnaceObjectTypeFactorySpy Spy;
+        public FurnaceObjectTypeFactorySpy Spy { get { return Sut as FurnaceObjectTypeFactorySpy; } }
         protected string TemplteFilePath;
         protected string TempltePath;
 
@@ -24,7 +24,5 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         {            
             Assert.That(File.Exists(TemplteFilePath), Is.True);
         }
-
-       
     }
 }

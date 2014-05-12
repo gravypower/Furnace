@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FurnaceObjectTypes\BaseClassInserter.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectType.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
