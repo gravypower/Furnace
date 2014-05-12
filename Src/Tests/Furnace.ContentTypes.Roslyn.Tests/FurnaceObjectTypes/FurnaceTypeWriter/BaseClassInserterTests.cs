@@ -3,36 +3,36 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnit.Framework;
 
-namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter
+namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
 {
     [TestFixture]
     public class BaseClassInserterTests
     {
-        public Roslyn.FurnaceObjectTypes.BaseClassInserter Sut;
-        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter.TestClasses.TestType";
+        public Roslyn.FurnaceObjectTypes.FurnaceTypeWriter Sut;
+        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses.TestType";
 
-        private const string TestClassPath = @"FurnaceObjectTypes\BaseClassInserter\TestClasses\";
+        private const string TestClassPath = @"FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\";
 
         [SetUp]
         public void SetUp()
         {
-            Sut = new Roslyn.FurnaceObjectTypes.BaseClassInserter(BaseClass);
+            Sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass);
         }
 
         [Test]
         public void GivenNullBaseClass_WhenBaseClassInserterCreated_BaseClassExceptionThrown()
         {
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException>(() => new Roslyn.FurnaceObjectTypes.BaseClassInserter(null));
+            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(null));
 
-            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException.NullBaseClassFullName));
+            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.NullBaseClassFullName));
         }
 
         [Test]
         public void GivenEmptyBaseClass_WhenBaseClassInserterCreated_TempltePathExceptionThrown()
         {
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException>(() => new Roslyn.FurnaceObjectTypes.BaseClassInserter(string.Empty));
+            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(string.Empty));
 
-            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException.EmptyBaseClassFullName));
+            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.EmptyBaseClassFullName));
         }
 
         [Test]
@@ -42,10 +42,10 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter
             var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "EmptyClass.cs");
             var root = tree.GetRoot();
             //Act
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException>(() => Sut.Visit(root));
+            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => Sut.Visit(root));
 
             //Assert
-            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException.EmptyBaseClass));
+            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.EmptyBaseClass));
         }
 
         [Test]
@@ -55,10 +55,10 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter
             var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "TwoClasses.cs");
             var root = tree.GetRoot();
             //Act
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException>(() => Sut.Visit(root));
+            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => Sut.Visit(root));
 
             //Assert
-            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.BaseClassInserter.BaseClassException.MoreThanOneClass));
+            Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.MoreThanOneClass));
         }
 
         [Test]
@@ -84,6 +84,21 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.BaseClassInserter
 
             //Assert
             Assert.That(result.BaseList.Types.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GivenOneClass_WhenVisitingClassDeclarationSyntax_NewTypeNameIsCorrect()
+        {
+            //Assign
+            const string className = "OneClass";
+            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + className + ".cs");
+            var root = tree.GetRoot();
+
+            //Act
+            var result = Sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
+
+            //Assert
+            Assert.That(result.Identifier.Text, Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + className));
         }
 
         [Test]

@@ -77,22 +77,22 @@
     </None>
     <Compile Include="ContentTypesTests.cs" />
     <Compile Include="ContentTypeTestExtensions.cs" />
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\BaseClassInserterTests.cs" />
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\ClassWithInterface.cs">
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\BaseClassInserterTests.cs" />
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\ClassWithInterface.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\EmptyClass.cs">
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\EmptyClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\Interface.cs" />
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\TestType.cs" />
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\TwoClasses.cs">
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\Interface.cs" />
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\TestType.cs" />
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\TwoClasses.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\OneClass.cs">
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FurnaceObjectTypes\BaseClassInserter\TestClasses\OneClassWithBaseClass.cs">
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClassWithBaseClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FurnaceObjectTypes\CreatingFurnaceObjectTypeFactoryTests.cs" />

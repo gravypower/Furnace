@@ -7,11 +7,13 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 {
-    public class BaseClassInserter : CSharpSyntaxRewriter
+    public class FurnaceTypeWriter : CSharpSyntaxRewriter
     {
         private readonly TypeSyntax _baseTypeSyntax;
 
-        public BaseClassInserter(string baseClassFullName)
+        public const string FurnaceTypeIdentifier = "FurnaceTypeIdentifier_";
+
+        public FurnaceTypeWriter(string baseClassFullName)
         {
             GuardBaseClass(baseClassFullName);
             _baseTypeSyntax = SyntaxFactory.ParseTypeName(baseClassFullName);
@@ -43,10 +45,12 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             var types = new SeparatedSyntaxList<TypeSyntax>();
             types = types.AddRange(typesList);
 
+            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + node.Identifier.Text);
+
             var updatedNode = node.Update(node.AttributeLists,
                 node.Modifiers,
                 node.Keyword,
-                node.Identifier,
+                identifier,
                 node.TypeParameterList,
                 SyntaxFactory.BaseList(types),
                 node.ConstraintClauses,

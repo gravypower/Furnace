@@ -33,7 +33,6 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 
         public void CreateFurnaceType(string fullName)
         {
-            throw new System.NotImplementedException();
         }
 
         public class TempltePathException : ReasonsFurnaceException
