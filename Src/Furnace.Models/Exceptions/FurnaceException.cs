@@ -10,7 +10,7 @@ namespace Furnace.Models.Exceptions
             {
                 var type = GetType();
                 var logMessage = BuildLogMessage();
-                return type.DeclaringType.Name +"." + type.Name + " thrown." + (logMessage != null ? " " + logMessage : string.Empty);
+                return type.DeclaringType.Name + "." + type.Name + " thrown." + (logMessage != null ? " " + logMessage : string.Empty);
             }
         }
 
