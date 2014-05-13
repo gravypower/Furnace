@@ -8,8 +8,8 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 {
     public class FurnaceObjectTypeFactory
     {
-        protected string TemplateFilePath;
-        protected SyntaxNode TemplateClassRoot;
+        protected readonly string TemplateFilePath;
+        protected readonly SyntaxNode TemplateClassRoot;
 
         private readonly List<SyntaxNode> _furnaceTypes;
 
