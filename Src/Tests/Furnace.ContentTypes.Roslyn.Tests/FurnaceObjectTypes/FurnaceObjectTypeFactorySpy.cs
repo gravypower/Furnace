@@ -1,5 +1,7 @@
-﻿using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
+﻿using System.Collections.Generic;
+using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {
@@ -10,7 +12,12 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             get { return base.TemplateClassRoot; }
         }
 
-        public FurnaceObjectTypeFactorySpy(string templteFilePath) : base(templteFilePath)
+        public new IEnumerable<SyntaxNode> FurnaceTypes
+        {
+            get { return base.FurnaceTypes; }
+        }
+
+        public FurnaceObjectTypeFactorySpy(string templateFilePath) : base(templateFilePath)
         {
         }
     }

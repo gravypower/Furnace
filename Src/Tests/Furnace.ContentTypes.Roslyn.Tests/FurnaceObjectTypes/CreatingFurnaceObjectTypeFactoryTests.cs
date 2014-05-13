@@ -7,31 +7,31 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
     public class CreatingFurnaceObjectTypeFactoryTests : FurnaceObjectTypeFactoryTests
     {
         [Test]
-        public void GivenNullTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
+        public void GivenNullTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TemplatePathExceptionThrown()
         {
-            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(null));
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TemplatePathException>(() => new FurnaceObjectTypeFactory(null));
 
-            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.NullTempltePath));
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TemplatePathException.NullTemplatePath));
         }
 
         [Test]
-        public void GivenEmptyTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
+        public void GivenEmptyTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TemplatePathExceptionThrown()
         {
-            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory(string.Empty));
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TemplatePathException>(() => new FurnaceObjectTypeFactory(string.Empty));
 
-            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.EmptyTempltePath));
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TemplatePathException.EmptyTemplatePath));
         }
 
         [Test]
-        public void GivenInvalidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionThrown()
+        public void GivenInvalidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TemplatePathExceptionThrown()
         {
-            var ex = Assert.Throws<FurnaceObjectTypeFactory.TempltePathException>(() => new FurnaceObjectTypeFactory("InvalidPath"));
+            var ex = Assert.Throws<FurnaceObjectTypeFactory.TemplatePathException>(() => new FurnaceObjectTypeFactory("InvalidPath"));
 
-            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TempltePathException.InvalidTempltePath));
+            Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.TemplatePathException.InvalidTemplatePath));
         }
 
         [Test]
-        public void GivenValidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TempltePathExceptionNotThrown()
+        public void GivenValidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TemplatePathExceptionNotThrown()
         {
             var result = new FurnaceObjectTypeFactory(TemplteFilePath);
         }

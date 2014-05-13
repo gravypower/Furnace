@@ -77,7 +77,7 @@
     </None>
     <Compile Include="ContentTypesTests.cs" />
     <Compile Include="ContentTypeTestExtensions.cs" />
-    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\BaseClassInserterTests.cs" />
+    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\FurnaceTypeWriterTests.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\ClassWithInterface.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -85,11 +85,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\Interface.cs" />
-    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\TestType.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClass.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClassWithBaseClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FurnaceObjectTypes\CreatingFurnaceObjectTypeFactoryTests.cs" />

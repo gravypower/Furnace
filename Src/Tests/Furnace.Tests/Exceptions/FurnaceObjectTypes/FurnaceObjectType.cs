@@ -6,17 +6,17 @@ namespace Furnace.Tests.Exceptions.FurnaceObjectTypes
     [TestFixture]
     public abstract class FurnaceObjectType : FurnaceExceptionTests
     {
-        public class TempltePathException : FurnaceObjectType
+        public class TemplatePathException : FurnaceObjectType
         {
             public override string BaseMessage
             {
-                get { return "FurnaceObjectTypeFactory.TempltePathException thrown. InvalidReasons: "; }
+                get { return "FurnaceObjectTypeFactory.TemplatePathException thrown. InvalidReasons: "; }
             }
 
             [SetUp]
             public void InvalidContentTypeExceptionSetUp()
             {
-                Sut = new FurnaceObjectTypeFactory.TempltePathException(YieldReasons());
+                Sut = new FurnaceObjectTypeFactory.TemplatePathException(YieldReasons());
             }
         }
     }
