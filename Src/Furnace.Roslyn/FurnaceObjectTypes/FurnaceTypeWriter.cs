@@ -9,11 +9,13 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
     public class FurnaceTypeWriter : CSharpSyntaxRewriter
     {
         private readonly TypeSyntax _baseTypeSyntax;
+        private readonly string _baseClassFullName;
 
         public const string FurnaceTypeIdentifier = "FurnaceTypeIdentifier_";
 
         public FurnaceTypeWriter(string baseClassFullName)
         {
+            _baseClassFullName = baseClassFullName;
             GuardBaseClass(baseClassFullName);
             _baseTypeSyntax = SyntaxFactory.ParseTypeName(baseClassFullName);
         }
@@ -26,9 +28,8 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 
         private static void GuardNode(SyntaxNode node)
         {
-            if (node.SyntaxTree.Length == 0)
+            if (node != null && node.SyntaxTree.Length == 0)
                 throw new BaseClassException(new[] {BaseClassException.EmptyBaseClass});
-
         }
 
         public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -41,7 +42,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             var types = new SeparatedSyntaxList<TypeSyntax>();
             types = types.AddRange(typesList);
 
-            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + node.Identifier.Text);
+            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + _baseClassFullName);
 
             var updatedNode = node.Update(node.AttributeLists,
                 node.Modifiers,

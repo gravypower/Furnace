@@ -85,7 +85,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
             var result = Sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
             //Assert
-            Assert.That(result.Identifier.Text, Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + className));
+            Assert.That(result.Identifier.Text, Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + BaseClass));
         }
 
         [Test]

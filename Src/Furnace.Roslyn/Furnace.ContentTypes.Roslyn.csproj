@@ -83,6 +83,10 @@
       <Project>{b32dafd5-eb3d-4f65-8486-2099eb7d869b}</Project>
       <Name>Furnace.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Furnace.Play\Furnace.Play.csproj">
+      <Project>{4D8DA43B-DC87-4FCD-AFDC-5B90CE8BF041}</Project>
+      <Name>Furnace.Play</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Furnace\Furnace.csproj">
       <Project>{9e48a6f6-c469-492d-a911-89e4319b9fd6}</Project>
       <Name>Furnace</Name>

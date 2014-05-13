@@ -11,7 +11,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
         protected string TemplateFilePath;
         protected SyntaxNode TemplateClassRoot;
 
-        private List<SyntaxNode> _furnaceTypes;
+        private readonly List<SyntaxNode> _furnaceTypes;
 
         protected IEnumerable<SyntaxNode> FurnaceTypes
         {
@@ -23,7 +23,6 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             GuardTemplatePath(templateFilePath);
             TemplateFilePath = templateFilePath;
             
-
             TemplateClassRoot = CSharpSyntaxTree.ParseFile(TemplateFilePath).GetRoot();
             _furnaceTypes = new List<SyntaxNode>();
         }
@@ -43,9 +42,9 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
         public void AddFurnaceType(string fullName)
         {
             GuardFullName(fullName);
+
             var syntaxRewriter = new FurnaceTypeWriter(fullName);
-            var type = syntaxRewriter.Visit(TemplateClassRoot);
-            _furnaceTypes.Add(type);
+            _furnaceTypes.Add(syntaxRewriter.Visit(TemplateClassRoot));
         }
 
         private static void GuardFullName(string fullName)

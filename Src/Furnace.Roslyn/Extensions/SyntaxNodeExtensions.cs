@@ -7,12 +7,12 @@ namespace Furnace.ContentTypes.Roslyn.Extensions
 {
     public static class SyntaxNodeExtensions
     {
-        public static IEnumerable<PropertyDeclarationSyntax> GetPropertyDeclarationSyntax(this SyntaxNode syntaxNode)
+        public static IEnumerable<PropertyDeclarationSyntax> PropertyDeclarationNodes(this SyntaxNode syntaxNode)
         {
             return syntaxNode.DescendantNodes().OfType<PropertyDeclarationSyntax>();
         }
 
-        public static IEnumerable<ClassDeclarationSyntax> GetClassDeclarationSyntax(this SyntaxNode syntaxNode)
+        public static IEnumerable<ClassDeclarationSyntax> ClassDeclarationNodes(this SyntaxNode syntaxNode)
         {
             return syntaxNode.DescendantNodes().OfType<ClassDeclarationSyntax>();
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {

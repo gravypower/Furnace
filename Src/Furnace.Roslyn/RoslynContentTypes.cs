@@ -37,12 +37,12 @@ namespace Furnace.ContentTypes.Roslyn
                     .GetSyntaxRootAsync()
                     .Result;
 
-                if (!documentRoot.GetClassDeclarationSyntax().Any())
+                if (!documentRoot.ClassDeclarationNodes().Any())
                     continue;
 
                 var model = document.GetSemanticModelAsync().Result;
 
-                foreach (var classDeclarationSyntax in documentRoot.GetClassDeclarationSyntax())
+                foreach (var classDeclarationSyntax in documentRoot.ClassDeclarationNodes())
                 {
                     classes.Add(new ClassType
                     {
@@ -89,7 +89,7 @@ namespace Furnace.ContentTypes.Roslyn
                 Namespace = symbol.GetNamespace()
             };
 
-            foreach (var property in classType.DocumentRoot.GetPropertyDeclarationSyntax())
+            foreach (var property in classType.DocumentRoot.PropertyDeclarationNodes())
             {
                 if (IsNotPublicModifier(property))
                     continue;

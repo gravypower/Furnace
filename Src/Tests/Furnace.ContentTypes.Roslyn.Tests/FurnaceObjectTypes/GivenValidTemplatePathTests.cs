@@ -1,10 +1,10 @@
 ﻿using System.Linq;
+using Furnace.ContentTypes.Roslyn.Extensions;
 using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {
@@ -29,56 +29,74 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         [Test]
         public void GivenNullFullName_WhenCreateFurnaceTypeCalled_NullFullNameExceptionThrown()
         {
+            //Act
             var ex = Assert.Throws<FurnaceObjectTypeFactory.FullNameException>(() => Sut.AddFurnaceType(null));
 
+            //Assert
             Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.FullNameException.NullFullName));
         }
 
         [Test]
         public void GivenEmptyFullName_WhenCreateFurnaceTypeCalled_NullFullNameExceptionThrown()
         {
+            //Act
             var ex = Assert.Throws<FurnaceObjectTypeFactory.FullNameException>(() => Sut.AddFurnaceType(string.Empty));
 
+            //Assert
             Assert.That(ex.InvalidReasons, Contains.Item(FurnaceObjectTypeFactory.FullNameException.EmptyFullName));
         }
 
         [Test]
         public void GivenFullName_WhenAddingOneFurnaceType_ThenThereIsOneFurnaceTypeThatHasCorrectBaseTypes()
         {
+            //Assign
             const string fullName = "SomeFullName";
+
+            //Act
             Sut.AddFurnaceType(fullName);
 
+            //Assert
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(1));
-
-            var assertItem = Spy.FurnaceTypes.First().DescendantNodes().OfType<ClassDeclarationSyntax>().First();
-
-            AssertFurnaceType(assertItem, fullName);
+            AssertFurnaceType(Spy.FurnaceTypes.First(), fullName);
         }
 
         [Test]
         public void GivenFullName_WhenAddingTwoFurnaceType_ThenThereIsOneFurnaceTypeThatHasCorrectBaseTypes()
         {
+            //Assign
             const string fullNameOne = "SomeFullName";
             const string fullNameTwo = "SomeFullNameTwo";
-            Sut.AddFurnaceType(fullNameOne);
 
+            //Act
+            Sut.AddFurnaceType(fullNameOne);
             Sut.AddFurnaceType(fullNameTwo);
 
+            //Assert
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(2));
             var types = Spy.FurnaceTypes.ToList();
 
-            var firstItem = types[0].DescendantNodes().OfType<ClassDeclarationSyntax>().First();
-            AssertFurnaceType(firstItem, fullNameOne);
-
-            var secondItem = types[1].DescendantNodes().OfType<ClassDeclarationSyntax>().First();
-            AssertFurnaceType(secondItem, fullNameTwo);
-
+            AssertFurnaceType(types[0], fullNameOne);
+            AssertFurnaceType(types[1], fullNameTwo);
         }
 
-        private static void AssertFurnaceType(BaseTypeDeclarationSyntax firstItem, string fullNameOne)
+        private static void AssertFurnaceType(SyntaxNode item, string fullNameOne)
         {
-            Assert.That(firstItem.BaseList.Types[0].ToString(), Is.EqualTo(fullNameOne));
-            Assert.That(firstItem.BaseList.Types[1].ToString(), Is.EqualTo(FurnaceObjectTypeInterface));
+            var classDeclarationSyntax = item.DescendantNodes().OfType<ClassDeclarationSyntax>().First();
+
+            Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(fullNameOne));
+            Assert.That(classDeclarationSyntax.BaseList.Types[1].ToString(), Is.EqualTo(FurnaceObjectTypeInterface));
+            Assert.That(classDeclarationSyntax.Identifier.Text, TypeNameIsCorrect(fullNameOne));
+            Assert.That(item.PropertyDeclarationNodes(), HasCorrectIdentifier());
+        }
+
+        private static EqualConstraint TypeNameIsCorrect(string fullNameOne)
+        {
+            return Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + fullNameOne);
+        }
+
+        private static Constraint HasCorrectIdentifier()
+        {
+            return Has.Some.Matches<PropertyDeclarationSyntax>(x=>x.Identifier.Text == "FurnaceItemInformation");
         }
     }
 }
