@@ -11,7 +11,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             get { return base.TemplateClassRoot; }
         }
 
-        public new IEnumerable<SyntaxNode> FurnaceTypes
+        public new IEnumerable<SyntaxTree> FurnaceTypes
         {
             get { return base.FurnaceTypes; }
         }

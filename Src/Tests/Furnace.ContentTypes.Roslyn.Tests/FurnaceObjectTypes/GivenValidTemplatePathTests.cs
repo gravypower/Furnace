@@ -16,7 +16,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         [SetUp]
         public void GivenValidTemplatePathTestsSetUp()
         {
-            Sut = new FurnaceObjectTypeFactorySpy(TemplteFilePath);
+            Sut = new FurnaceObjectTypeFactorySpy(TemplateFilePath);
         }
 
         [Test]
@@ -79,8 +79,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             AssertFurnaceType(types[1], fullNameTwo);
         }
 
-        private static void AssertFurnaceType(SyntaxNode item, string fullNameOne)
+        private static void AssertFurnaceType(SyntaxTree tree, string fullNameOne)
         {
+            var item = tree.GetRoot();
             var classDeclarationSyntax = item.DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
             Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(fullNameOne));

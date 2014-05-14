@@ -58,7 +58,7 @@ namespace Furnace.Play.Roslyn
 
             System.Console.WriteLine(newRoot.ToFullString());
 
-            var newTree = SyntaxFactory.SyntaxTree(newRoot, "MyCodeFile.cs");
+            var newTree = SyntaxFactory.SyntaxTree(newRoot);
             var compilation = CSharpCompilation.Create("MyCompilation")
                 .AddSyntaxTrees(newTree)
                 .AddReferences(new MetadataFileReference(typeof(object).Assembly.Location))
@@ -68,7 +68,7 @@ namespace Furnace.Play.Roslyn
             using (var file = new FileStream(@"c:\temp\MyCompilation.dll", FileMode.Create))
             {
                 var result = compilation.Emit(file);
-
+                
                 Assert.That(result.Diagnostics, Is.Empty);
             }
         }

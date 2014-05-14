@@ -1,6 +1,4 @@
-﻿using Furnace.Play.Roslyn;
-
-namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
+﻿namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 {
     public interface IFurnaceObjectType
     {

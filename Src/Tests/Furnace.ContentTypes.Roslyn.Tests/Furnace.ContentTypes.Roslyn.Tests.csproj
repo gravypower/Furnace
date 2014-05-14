@@ -88,9 +88,16 @@
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\OneClass.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="FurnaceObjectTypes\GivenRealClasses\TestClasses\ClassTwo.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FurnaceObjectTypes\GivenRealClasses\TestClasses\ClassOne.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="FurnaceObjectTypes\CreatingFurnaceObjectTypeFactoryTests.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactorySpy.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactoryTests.cs" />
+    <Compile Include="FurnaceObjectTypes\GivenRealClasses\GivenRealClassesTests.cs" />
     <Compile Include="FurnaceObjectTypes\GivenValidTemplatePathTests.cs" />
     <Compile Include="FurnaceObjectTypes\TestType.cs" />
     <Compile Include="GivenNoProject.cs" />

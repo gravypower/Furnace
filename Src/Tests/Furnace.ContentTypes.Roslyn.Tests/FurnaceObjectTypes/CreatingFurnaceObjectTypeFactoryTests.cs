@@ -33,7 +33,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         [Test]
         public void GivenValidTemplatePath_WhenFurnaceObjectTypeFactoryCreated_TemplatePathExceptionNotThrown()
         {
-            var result = new FurnaceObjectTypeFactory(TemplteFilePath);
+            var result = new FurnaceObjectTypeFactory(TemplateFilePath);
         }
     }
 }

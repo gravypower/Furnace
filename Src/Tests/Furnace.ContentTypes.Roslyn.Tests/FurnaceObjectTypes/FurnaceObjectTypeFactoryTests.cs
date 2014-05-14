@@ -5,24 +5,24 @@ using NUnit.Framework;
 namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 {
     [TestFixture]
-    public class FurnaceObjectTypeFactoryTests
+    public abstract class FurnaceObjectTypeFactoryTests
     {
         public FurnaceObjectTypeFactory Sut;
         public FurnaceObjectTypeFactorySpy Spy { get { return Sut as FurnaceObjectTypeFactorySpy; } }
-        protected string TemplteFilePath;
-        protected string TempltePath;
+        protected string TemplateFilePath;
+        protected string TemplatePath;
 
         [SetUp]
         public void SetUp()
         {
-            TempltePath = Path.GetDirectoryName(GetType().Assembly.Location);
-            TemplteFilePath = TempltePath + @"\FurnaceObjectTypes\FurnaceObjectType.cs";
+            TemplatePath = Path.GetDirectoryName(GetType().Assembly.Location);
+            TemplateFilePath = TemplatePath + @"\FurnaceObjectTypes\FurnaceObjectType.cs";
         }
 
         [Test]
         public void FurnaceObjectTypeTemplateExists()
         {            
-            Assert.That(File.Exists(TemplteFilePath), Is.True);
+            Assert.That(File.Exists(TemplateFilePath), Is.True);
         }
     }
 }

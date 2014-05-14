@@ -43,14 +43,10 @@ namespace Furnace.Items
             AbstractSetItem(id, item);
         }
 
-        public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
-
         public abstract TRealType GetItem<TRealType>(TIdType id);
         public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
-
+        public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
         public abstract void AbstractSetItem(TIdType id, Item item);
-        
-
     }
 
     public class FurnaceItems
@@ -64,11 +60,11 @@ namespace Furnace.Items
 
         protected class Guard
         {
-            private readonly List<string> reasons;
+            private readonly List<string> _reasons;
 
             public Guard()
             {
-                reasons = new List<string>();
+                _reasons = new List<string>();
             }
 
             public void GuardContenType(ContentType contentType)
@@ -76,23 +72,23 @@ namespace Furnace.Items
                 if(contentType == null)
                     throw new NullContentTypeException();
 
-                if (contentType.Namespace.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.NoNamespace);
+                if (contentType.Namespace.IsNullOrEmpty()) _reasons.Add(InvalidContentTypeException.NoNamespace);
 
-                if (contentType.Name.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.NoName);
+                if (contentType.Name.IsNullOrEmpty()) _reasons.Add(InvalidContentTypeException.NoName);
 
-                if (!contentType.Properties.Any()) reasons.Add(InvalidContentTypeException.NoProperties);
+                if (!contentType.Properties.Any()) _reasons.Add(InvalidContentTypeException.NoProperties);
                 else GuardProperties(contentType.Properties);
 
-                if (reasons.Any()) throw new InvalidContentTypeException(reasons);
+                if (_reasons.Any()) throw new InvalidContentTypeException(_reasons);
             }
 
             private void GuardProperties(IEnumerable<Property> properties)
             {
                 foreach (var property in properties)
                 {
-                    if (property.Type == null) reasons.Add(InvalidContentTypeException.PropertyHasNoType.FormatWith(property.Name));
+                    if (property.Type == null) _reasons.Add(InvalidContentTypeException.PropertyHasNoType.FormatWith(property.Name));
 
-                    if (property.Name.IsNullOrEmpty()) reasons.Add(InvalidContentTypeException.PropertyHasNoName.FormatWith(property.Type));
+                    if (property.Name.IsNullOrEmpty()) _reasons.Add(InvalidContentTypeException.PropertyHasNoName.FormatWith(property.Type));
                 }
             }
         }
