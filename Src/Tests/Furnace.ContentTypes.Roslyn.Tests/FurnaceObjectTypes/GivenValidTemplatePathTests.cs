@@ -57,7 +57,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
 
             //Assert
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(1));
-            AssertFurnaceType(Spy.FurnaceTypes.First(), fullName);
+            AssertFurnaceType(Spy.FurnaceTypes.First().SyntaxTree, fullName);
         }
 
         [Test]
@@ -75,8 +75,8 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(2));
             var types = Spy.FurnaceTypes.ToList();
 
-            AssertFurnaceType(types[0], fullNameOne);
-            AssertFurnaceType(types[1], fullNameTwo);
+            AssertFurnaceType(types[0].SyntaxTree, fullNameOne);
+            AssertFurnaceType(types[1].SyntaxTree, fullNameTwo);
         }
 
         private static void AssertFurnaceType(SyntaxTree tree, string fullNameOne)

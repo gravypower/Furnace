@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMember
@@ -38,9 +39,32 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
             }
         }
 
+        protected override Type Type
+        {
+            get { return typeof (global::WithOneClass.AndOneStringMember.Test); }
+        }
+
+        [SetUp]
+        public void AndOneStringMemberSetUp()
+        {
+            var loadType = new global::WithOneClass.AndOneStringMember.Test();
+        }
+
         [TestFixture]
         public class AndDefaultValue : StringMember
         {
+
+            [SetUp]
+            public void AndDefaultValueSetUp()
+            {
+                var loadType = new global::WithOneClass.AndOneStringMember.AndDefaultValue.Test();
+            }
+
+            protected override Type Type
+            {
+                get { return typeof(global::WithOneClass.AndOneStringMember.AndDefaultValue.Test); }
+            }
+
             protected override string OneClassProjectPath
             {
                 get

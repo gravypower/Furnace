@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMember
@@ -6,6 +7,17 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
     [TestFixture]
     public class DateTimeMember : AndOneMemberTests
     {
+        protected override Type Type
+        {
+            get { return typeof(global::WithOneClass.AndOneDateTimeMember.Test); }
+        }
+
+        [SetUp]
+        public void DateTimeMemberSetUp()
+        {
+            var loadType = new global::WithOneClass.AndOneDateTimeMember.Test();
+        }
+
         protected override string ExpectedNamespace
         {
             get
@@ -41,6 +53,18 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
         [TestFixture]
         public class AndDefaultValue : DateTimeMember
         {
+
+            protected override Type Type
+            {
+                get { return typeof(global::WithOneClass.AndOneDateTimeMember.AndDefaultValue.Test); }
+            }
+
+            [SetUp]
+            public void AndDefaultValueSetUp()
+            {
+                var loadType = new global::WithOneClass.AndOneDateTimeMember.AndDefaultValue.Test();
+            }
+
             protected override string OneClassProjectPath
             {
                 get

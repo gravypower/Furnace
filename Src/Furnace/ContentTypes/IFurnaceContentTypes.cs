@@ -6,5 +6,6 @@ namespace Furnace.ContentTypes
     public interface IFurnaceContentTypes
     {
         IEnumerable<ContentType> GetContentTypes();
+        void CompileFurnaceContentTypes();
     }
 }

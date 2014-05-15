@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Furnace.Models.Exceptions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -42,7 +43,9 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             var types = new SeparatedSyntaxList<TypeSyntax>();
             types = types.AddRange(typesList);
 
-            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + _baseClassFullName);
+            var className = _baseClassFullName.Split('.').Last();
+
+            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + className);
 
             var updatedNode = node.Update(node.AttributeLists,
                 node.Modifiers,

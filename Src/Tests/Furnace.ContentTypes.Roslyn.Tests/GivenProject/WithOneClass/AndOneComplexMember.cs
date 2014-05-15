@@ -1,7 +1,15 @@
-﻿namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
+﻿using NUnit.Framework;
+
+namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
 {
     public class AndOneComplexMember : WithOneClassTests
     {
+        [SetUp]
+        public void AndOneComplexMemberSetUp()
+        {
+            var loadType = new global::WithOneClass.AndOneComplexMember.Test();
+        }
+
         protected override string OneClassProjectPath
         {
             get

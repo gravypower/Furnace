@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Furnace.ContentTypes.Roslyn.Extensions;
+using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Furnace.ContentTypes.Roslyn.Models;
 using Furnace.Models.ContentTypes;
 using Microsoft.CodeAnalysis;
@@ -18,6 +21,10 @@ namespace Furnace.ContentTypes.Roslyn
 
         private readonly Project _project;
 
+        protected readonly IFurnaceObjectTypeFactory ObjectTypeFactory;
+        public const string TemplateFile = @"\FurnaceObjectTypes\FurnaceObjectType.cs";
+        public const string AssemblyName = "FurnaceObjectTypes";
+
         public RoslynContentTypes(string projectPath)
         {
             if (string.IsNullOrEmpty(projectPath))
@@ -25,6 +32,11 @@ namespace Furnace.ContentTypes.Roslyn
 
             var workspace = MSBuildWorkspace.Create();
             _project = workspace.OpenProjectAsync(projectPath).Result;
+
+            var templatePath = Path.GetDirectoryName(GetType().Assembly.Location);
+            var templateFilePath = templatePath + TemplateFile;
+
+            ObjectTypeFactory = new FurnaceObjectTypeFactory(templateFilePath);
         }
 
         public IEnumerable<ContentType> GetContentTypes()
@@ -79,7 +91,18 @@ namespace Furnace.ContentTypes.Roslyn
             return contentTypes;
         }
 
-        private static ContentType BuildContentType(ClassType classType)
+        public void CompileFurnaceContentTypes()
+        {
+            var compilation = ObjectTypeFactory.Compile(AssemblyName);
+            using (var memoryStream = new MemoryStream())
+            {
+                compilation.Emit(memoryStream);
+                memoryStream.Flush();
+                Assembly.Load(memoryStream.GetBuffer());
+            }
+        }
+
+        private ContentType BuildContentType(ClassType classType)
         {
             var symbol = classType.SemanticModel.GetDeclaredSymbol(classType.ClassDeclarationSyntax);
 
@@ -96,6 +119,8 @@ namespace Furnace.ContentTypes.Roslyn
 
                 contentType.Properties.Add(property.GetFurnaceContentTypeProperty());
             }
+
+            ObjectTypeFactory.AddFurnaceType(contentType.FullName);
 
             return contentType;
         }

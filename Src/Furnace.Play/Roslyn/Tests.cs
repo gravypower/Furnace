@@ -74,6 +74,34 @@ namespace Furnace.Play.Roslyn
         }
 
         [Test]
+        public void LoadAssemblyFromMemory()
+        {
+
+            var tree = CSharpSyntaxTree.ParseFile("Roslyn/FurnaceItem.cs");
+            var oldRoot = tree.GetRoot();
+            var rewriter = new BaseClassInserter("TestClass");
+            var newRoot = rewriter.Visit(oldRoot);
+            newRoot = newRoot.NormalizeWhitespace(); // fix up the whitespace so it is legible.
+
+            System.Console.WriteLine(newRoot.ToFullString());
+
+            var newTree = SyntaxFactory.SyntaxTree(newRoot);
+            var compilation = CSharpCompilation.Create("MyCompilation")
+                .AddSyntaxTrees(newTree)
+                .AddReferences(new MetadataFileReference(typeof(object).Assembly.Location))
+                .AddReferences(new MetadataFileReference(typeof(FurnaceItem).Assembly.Location))
+                .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+            Assembly assembly = null;
+            using (var memStream = new MemoryStream())
+            {
+                compilation.Emit(memStream);
+                memStream.Flush();
+                assembly = Assembly.Load(memStream.GetBuffer());
+            }
+        }
+
+        [Test]
         public void MOreTests()
         {
             var myComp = Assembly.LoadFile(@"c:\temp\MyCompilation.dll");

@@ -1,32 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using Furnace.ContentTypes.Roslyn.Models;
 using Furnace.Models.Exceptions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 {
-    public class FurnaceObjectTypeFactory
+    public interface IFurnaceObjectTypeFactory
+    {
+        IEnumerable<FurnaceType> FurnaceTypes { get; }
+        void AddFurnaceType(string fullName);
+        CSharpCompilation Compile(string assemblyName);
+    }
+
+    public class FurnaceObjectTypeFactory : IFurnaceObjectTypeFactory
     {
         protected readonly string TemplateFilePath;
         protected readonly SyntaxNode TemplateClassRoot;
 
-        private readonly List<SyntaxTree> _furnaceTypes;
+        private readonly List<FurnaceType> _furnaceTypes;
 
-        protected IEnumerable<SyntaxTree> FurnaceTypes
+        public IEnumerable<FurnaceType> FurnaceTypes
         {
             get { return _furnaceTypes; }
         }
 
-        public FurnaceObjectTypeFactory(string templateFilePath)
+        private readonly ITypeFinder _typeFinder;
+
+        public FurnaceObjectTypeFactory(string templateFilePath, ITypeFinder typeFinder)
         {
             GuardTemplatePath(templateFilePath);
             TemplateFilePath = templateFilePath;
-            
+
             TemplateClassRoot = CSharpSyntaxTree.ParseFile(TemplateFilePath).GetRoot();
-            _furnaceTypes = new List<SyntaxTree>();
+            _furnaceTypes = new List<FurnaceType>();
+
+            _typeFinder = typeFinder;
+        }
+
+        public FurnaceObjectTypeFactory(string templateFilePath)
+            :this(templateFilePath, new TypeFinder())
+        {            
         }
 
         private static void GuardTemplatePath(string templatePath)
@@ -47,7 +62,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 
             var syntaxRewriter = new FurnaceTypeWriter(fullName);
             var syntaxTree = SyntaxFactory.SyntaxTree(syntaxRewriter.Visit(TemplateClassRoot));
-            _furnaceTypes.Add(syntaxTree);
+            _furnaceTypes.Add(new FurnaceType {FullName = fullName, SyntaxTree = syntaxTree});
         }
 
         private static void GuardFullName(string fullName)
@@ -63,26 +78,19 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
         {
             var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
-                .AddReferences(new MetadataFileReference(typeof(IFurnaceObjectType).Assembly.Location));
+                .AddReferences(new MetadataFileReference(typeof (IFurnaceObjectType).Assembly.Location))
+                .AddReferences(new MetadataFileReference(typeof (object).Assembly.Location));
 
             foreach (var furnaceType in FurnaceTypes)
             {
-                //var typeLocation = FindType()
-                compilation = compilation.AddSyntaxTrees(furnaceType)
-                    .AddReferences();
+                var typeLocation = _typeFinder.FindType(furnaceType.FullName).Assembly.Location;
+                compilation = compilation.AddSyntaxTrees(furnaceType.SyntaxTree)
+                    .AddReferences(new MetadataFileReference(typeLocation));
             }
 
             return compilation;
         }
 
-        private static Type FindType(string fullName)
-        {
-            return
-                AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(a => !a.IsDynamic)
-                    .SelectMany(a => a.GetTypes())
-                    .FirstOrDefault(t => t.FullName.Equals(fullName));
-        }
         public class TemplatePathException : ReasonsFurnaceException
         {
             public const string NullTemplatePath = "Templte path was null";

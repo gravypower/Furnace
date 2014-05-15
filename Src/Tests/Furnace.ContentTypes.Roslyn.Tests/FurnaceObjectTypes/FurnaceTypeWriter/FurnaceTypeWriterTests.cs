@@ -8,16 +8,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
     [TestFixture]
     public class FurnaceTypeWriterTests
     {
-        public Roslyn.FurnaceObjectTypes.FurnaceTypeWriter Sut;
-        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses";
+        public string BaseClass = "Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter.TestClasses.";
 
         private const string TestClassPath = @"FurnaceObjectTypes\FurnaceTypeWriter\TestClasses\";
-
-        [SetUp]
-        public void SetUp()
-        {
-            Sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass);
-        }
 
         [Test]
         public void GivenNullBaseClass_WhenBaseClassInserterCreated_BaseClassExceptionThrown()
@@ -39,10 +32,11 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
         public void GivenEmptyClass_WhenVisitingClassDeclarationSyntax_TempltePathExceptionThrown()
         {
             //Assign
+            var sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass);
             var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "EmptyClass.cs");
             var root = tree.GetRoot();
             //Act
-            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => Sut.Visit(root));
+            var ex = Assert.Throws<Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException>(() => sut.Visit(root));
 
             //Assert
             Assert.That(ex.InvalidReasons, Contains.Item(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.BaseClassException.EmptyBaseClass));
@@ -52,22 +46,26 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
         public void GivenOneClass_WhenVisitingClassDeclarationSyntax_TempltePathExceptionNotThrown()
         {
             //Assign
-            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "OneClass.cs");
+            const string className = "OneClass";
+            var sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass + className);
+            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + className + ".cs");
             var root = tree.GetRoot();
 
             //Act
-            Sut.Visit(root);
+            sut.Visit(root);
         }
 
         [Test]
         public void GivenOneClass_WhenVisitingClassDeclarationSyntax_BaseTypeAdded()
         {
             //Assign
-            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "OneClass.cs");
+            const string className = "OneClass";
+            var sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass + className);
+            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + className + ".cs");
             var root = tree.GetRoot();
 
             //Act
-            var result = Sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
+            var result = sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
             //Assert
             Assert.That(result.BaseList.Types.Count(), Is.EqualTo(1));
@@ -78,25 +76,28 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.FurnaceTypeWriter
         {
             //Assign
             const string className = "OneClass";
+            var sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass + className);
             var tree = CSharpSyntaxTree.ParseFile(TestClassPath + className + ".cs");
             var root = tree.GetRoot();
 
             //Act
-            var result = Sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
-
+            var result = sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
+            
             //Assert
-            Assert.That(result.Identifier.Text, Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + BaseClass));
+            Assert.That(result.Identifier.Text, Is.EqualTo(Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + className));
         }
 
         [Test]
         public void GivenClassWithInterface_WhenVisitingClassDeclarationSyntax_BaseTypeAdded()
         {
             //Assign
-            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + "ClassWithInterface.cs");
+            const string className = "ClassWithInterface";
+            var sut = new Roslyn.FurnaceObjectTypes.FurnaceTypeWriter(BaseClass + className);
+            var tree = CSharpSyntaxTree.ParseFile(TestClassPath + className + ".cs");
             var root = tree.GetRoot();
 
             //Act
-            var result = Sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
+            var result = sut.Visit(root).DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
             //Assert
             Assert.That(result.BaseList.Types.Count(), Is.EqualTo(2));

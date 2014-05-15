@@ -6,6 +6,12 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
     [TestFixture]
     public class AndOneProtectedMember : WithOneClassTests
     {
+        [SetUp]
+        public void AndOneProtectedMemberSetUp()
+        {
+            var loadType = new global::WithOneClass.AndOneProtectedMember.Test();
+        }
+
         protected override string OneClassProjectPath
         {
             get

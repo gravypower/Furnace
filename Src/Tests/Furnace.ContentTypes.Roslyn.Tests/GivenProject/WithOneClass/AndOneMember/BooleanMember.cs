@@ -1,10 +1,22 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMember
 {
     [TestFixture]
     public class BooleanMember : AndOneMemberTests
     {
+        protected override Type Type
+        {
+            get { return typeof(global::WithOneClass.AndOneBooleanMember.Test); }
+        }
+
+        [SetUp]
+        public void StringMemberSetUp()
+        {
+            var loadType = new global::WithOneClass.AndOneBooleanMember.Test();
+        }
+
         protected override string ExpectedNamespace
         {
             get

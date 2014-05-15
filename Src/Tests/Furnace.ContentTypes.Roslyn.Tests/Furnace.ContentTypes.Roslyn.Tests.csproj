@@ -41,12 +41,6 @@
     <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces">
-      <HintPath>..\..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeAnalysis.Workspaces">
       <HintPath>..\..\packages\Microsoft.CodeAnalysis.Workspaces.Common.0.6.4033103-beta\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
     </Reference>
@@ -138,6 +132,54 @@
     <ProjectReference Include="..\..\Furnace\Furnace.csproj">
       <Project>{9e48a6f6-c469-492d-a911-89e4319b9fd6}</Project>
       <Name>Furnace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneBooleanMember\WithOneClass.AndOneBooleanMember.csproj">
+      <Project>{c3c6396e-646d-4f2c-be59-f7f53385351c}</Project>
+      <Name>WithOneClass.AndOneBooleanMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneDateTimeMember.AndDefaultValue\WithOneClass.AndOneDateTimeMember.AndDefaultValue.csproj">
+      <Project>{af85be5f-c376-40eb-8ee9-4860cd57e4d7}</Project>
+      <Name>WithOneClass.AndOneDateTimeMember.AndDefaultValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneDateTimeMember\WithOneClass.AndOneDateTimeMember.csproj">
+      <Project>{35a03da7-fb36-4d30-98da-c77906a419f6}</Project>
+      <Name>WithOneClass.AndOneDateTimeMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneIntegerMember.AndDefaultValue\WithOneClass.AndOneIntegerMember.AndDefaultValue.csproj">
+      <Project>{63f79ab3-3869-4f7c-b322-7c764e0e65d1}</Project>
+      <Name>WithOneClass.AndOneIntegerMember.AndDefaultValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneIntegerMember\WithOneClass.AndOneIntegerMember.csproj">
+      <Project>{d3ac48d3-5382-49f5-91d3-3fa35fa8fb19}</Project>
+      <Name>WithOneClass.AndOneIntegerMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneStringMember.AndDefaultValue\WithOneClass.AndOneStringMember.AndDefaultValue.csproj">
+      <Project>{07314e73-2c72-4b37-a31c-38fa9071b327}</Project>
+      <Name>WithOneClass.AndOneStringMember.AndDefaultValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneStringMember\WithOneClass.AndOneStringMember.csproj">
+      <Project>{ddc48198-79a9-4266-8845-03663a1e3e76}</Project>
+      <Name>WithOneClass.AndOneStringMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndNoMembers\WithOneClass.AndNoMembers.csproj">
+      <Project>{7b44b1a0-c3b9-4b6d-95a9-782564b30b40}</Project>
+      <Name>WithOneClass.AndNoMembers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndOneComplexMember\WithOneClass.AndOneComplexMember.csproj">
+      <Project>{046abce0-13ef-45f2-a997-9a9757da2178}</Project>
+      <Name>WithOneClass.AndOneComplexMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndOneInternalMember\WithOneClass.AndOneInternalMember.csproj">
+      <Project>{fe846b23-4a79-4b90-9687-328ea235cd8a}</Project>
+      <Name>WithOneClass.AndOneInternalMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndOnePrivateMember\WithOneClass.AndOnePrivateMember.csproj">
+      <Project>{52ed87f0-0ce2-4964-abf9-418d29c3bb84}</Project>
+      <Name>WithOneClass.AndOnePrivateMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndOneProtectedMember\WithOneClass.AndOneProtectedMember.csproj">
+      <Project>{79cbb9a4-c3e7-4d28-a960-65c7ec53cd50}</Project>
+      <Name>WithOneClass.AndOneProtectedMember</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
