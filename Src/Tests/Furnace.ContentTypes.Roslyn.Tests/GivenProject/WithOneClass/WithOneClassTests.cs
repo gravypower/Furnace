@@ -88,7 +88,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
                 var type =
                 TypeFinder.FindType("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." +
                                     Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + contentType.Name);
-                Assert.That(type.BaseType, Is.EqualTo(Ty));
+                Assert.That(type.BaseType.FullName, Is.EqualTo(Type.FullName));
             }
         }
 

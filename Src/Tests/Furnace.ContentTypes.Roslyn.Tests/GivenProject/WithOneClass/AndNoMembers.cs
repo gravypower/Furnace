@@ -22,7 +22,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
 
         protected override Type Type
         {
-            get { return ty}
+            get { return typeof (global::WithOneClass.AndNoMembers.Test); }
         }
 
         protected override string ExpectedNamespace

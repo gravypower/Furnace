@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
@@ -18,6 +19,11 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
             {
                 return @"WithOneClass.AndOneInternalMember\WithOneClass.AndOneInternalMember.csproj";
             }
+        }
+
+        protected override Type Type
+        {
+            get { return typeof(global::WithOneClass.AndOneInternalMember.Test); }
         }
 
         protected override string ExpectedNamespace
