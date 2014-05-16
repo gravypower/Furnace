@@ -133,6 +133,14 @@
       <Project>{9e48a6f6-c469-492d-a911-89e4319b9fd6}</Project>
       <Name>Furnace</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithInheritance\WithInheritance.TwoClasses\WithInheritance.AndTwoClasses.csproj">
+      <Project>{a20538d4-e41f-46cb-837c-00b84380cebf}</Project>
+      <Name>WithInheritance.AndTwoClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithNoClasses\WithNoClasses.csproj">
+      <Project>{ca09a680-d4e0-4a97-94c4-49b51357094f}</Project>
+      <Name>WithNoClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestProjects\WithOneClass\AndOneMember\WithOneClass.AndOneBooleanMember\WithOneClass.AndOneBooleanMember.csproj">
       <Project>{c3c6396e-646d-4f2c-be59-f7f53385351c}</Project>
       <Name>WithOneClass.AndOneBooleanMember</Name>
@@ -180,6 +188,22 @@
     <ProjectReference Include="..\TestProjects\WithOneClass\WithOneClass.AndOneProtectedMember\WithOneClass.AndOneProtectedMember.csproj">
       <Project>{79cbb9a4-c3e7-4d28-a960-65c7ec53cd50}</Project>
       <Name>WithOneClass.AndOneProtectedMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithTwoClasses\AndOneMember\WithTwoClasses.AndOneMember.AndDefaultValue\WithTwoClasses.AndOneMember.AndDefaultValue.csproj">
+      <Project>{7d0c7ad7-7167-46ef-aef2-98c5cad34f41}</Project>
+      <Name>WithTwoClasses.AndOneMember.AndDefaultValue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithTwoClasses\AndOneMember\WithTwoClasses.AndOneMember\WithTwoClasses.AndOneMember.csproj">
+      <Project>{c11dd429-1aa2-4f18-8d1e-479988ff807f}</Project>
+      <Name>WithTwoClasses.AndOneMember</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithTwoClasses\WithTwoClasses.AndInOneFile\WithTwoClasses.AndInOneFile.csproj">
+      <Project>{b1d2eb34-e956-4050-ae1e-9c35e7d37137}</Project>
+      <Name>WithTwoClasses.AndInOneFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestProjects\WithTwoClasses\WithTwoClasses.AndNoMembers\WithTwoClasses.AndNoMembers.csproj">
+      <Project>{4602133e-8118-4b84-b1a3-d666aa1d3067}</Project>
+      <Name>WithTwoClasses.AndNoMembers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

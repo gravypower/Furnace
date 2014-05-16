@@ -167,7 +167,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses
             }
 
             //Assert
-            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
+            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals(BaseNamespace + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
             Assert.That(type, Is.Not.Null);
         }
 
@@ -191,7 +191,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses
             }
 
             //Assert
-            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
+            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals(BaseNamespace + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
             Assert.That(type, Is.Not.Null);
             var instance = Activator.CreateInstance(type);
 
@@ -218,7 +218,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses
             }
 
             //Assert
-            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
+            var type = assembly.GetTypes().FirstOrDefault(t => t.FullName.Equals(BaseNamespace + Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + "ClassOne"));
             Assert.That(type, Is.Not.Null);
             var instance = Activator.CreateInstance(type);
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithTwoClasses.AndOneMember
@@ -17,6 +18,25 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithTwoClasses.AndOneMe
         protected override string ExpectedNamespace
         {
             get { return "AndOneMember.AndDefaultValue"; }
+        }
+
+        protected override Type []Types
+        {
+            get
+            {
+                return new[]
+                {
+                    typeof (global::WithTwoClasses.AndOneMember.AndDefaultValue.Test1),
+                    typeof (global::WithTwoClasses.AndOneMember.AndDefaultValue.Test2)
+                };
+            }
+        }
+
+        [SetUp]
+        public void AndDefaultValueSetUp()
+        {
+            var loadType1 = new global::WithTwoClasses.AndOneMember.AndDefaultValue.Test1();
+            var loadType2 = new global::WithTwoClasses.AndOneMember.AndDefaultValue.Test2();
         }
 
         [Test]

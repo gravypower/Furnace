@@ -48,8 +48,8 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithTwoClasses
 
             //Assert
             var typeNamespace = result.Select(x => x.Namespace);
-            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + this.ExpectedNamespace));
-            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + this.ExpectedNamespace));
+            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + ExpectedNamespace));
+            Assert.That(typeNamespace, Contains.Item("WithTwoClasses." + ExpectedNamespace));
         }
     }
 }

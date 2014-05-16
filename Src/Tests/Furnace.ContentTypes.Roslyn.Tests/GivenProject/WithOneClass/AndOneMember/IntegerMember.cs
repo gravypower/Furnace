@@ -39,9 +39,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
             }
         }
 
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof (global::WithOneClass.AndOneIntegerMember.Test); }
+            get { return new [] { typeof (global::WithOneClass.AndOneIntegerMember.Test)}; }
         }
 
         [SetUp]
@@ -53,9 +53,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
         [TestFixture]
         public class AndDefaultValue : IntegerMember
         {
-            protected override Type Type
+            protected override Type[] Types
             {
-                get { return typeof(global::WithOneClass.AndOneIntegerMember.AndDefaultValue.Test); }
+                get { return new [] {typeof(global::WithOneClass.AndOneIntegerMember.AndDefaultValue.Test)}; }
             }
 
             [SetUp]

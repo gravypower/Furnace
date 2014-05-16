@@ -50,22 +50,27 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         public void GivenFullName_WhenAddingOneFurnaceType_ThenThereIsOneFurnaceTypeThatHasCorrectBaseTypes()
         {
             //Assign
-            const string fullName = "SomeFullName";
+            const string typeNamespace = "Some";
+            const string typeName = "Name";
+            const string fullName = typeNamespace + "." + typeName;
 
             //Act
             Sut.AddFurnaceType(fullName);
 
             //Assert
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(1));
-            AssertFurnaceType(Spy.FurnaceTypes.First().SyntaxTree, fullName);
+            AssertFurnaceType(Spy.FurnaceTypes.First().SyntaxTree, typeName, typeNamespace);
         }
 
         [Test]
         public void GivenFullName_WhenAddingTwoFurnaceType_ThenThereIsOneFurnaceTypeThatHasCorrectBaseTypes()
         {
             //Assign
-            const string fullNameOne = "SomeFullName";
-            const string fullNameTwo = "SomeFullNameTwo";
+            const string typeNamespace = "Some";
+            const string typeNameOne = "Name";
+            const string typeNameTwo = "Name";
+            const string fullNameOne = typeNamespace + "." + typeNameOne;
+            const string fullNameTwo = typeNamespace + "." + typeNameTwo;
 
             //Act
             Sut.AddFurnaceType(fullNameOne);
@@ -75,18 +80,18 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             Assert.That(Spy.FurnaceTypes.Count(), Is.EqualTo(2));
             var types = Spy.FurnaceTypes.ToList();
 
-            AssertFurnaceType(types[0].SyntaxTree, fullNameOne);
-            AssertFurnaceType(types[1].SyntaxTree, fullNameTwo);
+            AssertFurnaceType(types[0].SyntaxTree, typeNameOne, typeNamespace);
+            AssertFurnaceType(types[1].SyntaxTree, typeNameTwo, typeNamespace);
         }
 
-        private static void AssertFurnaceType(SyntaxTree tree, string fullNameOne)
+        private static void AssertFurnaceType(SyntaxTree tree, string typeName, string typeNamespace)
         {
             var item = tree.GetRoot();
             var classDeclarationSyntax = item.DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
-            Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(fullNameOne));
+            Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(typeNamespace + "." +typeName));
             Assert.That(classDeclarationSyntax.BaseList.Types[1].ToString(), Is.EqualTo(FurnaceObjectTypeInterface));
-            Assert.That(classDeclarationSyntax.Identifier.Text, TypeNameIsCorrect(fullNameOne));
+            Assert.That(classDeclarationSyntax.Identifier.Text, TypeNameIsCorrect(typeName));
             Assert.That(item.PropertyDeclarationNodes(), HasCorrectIdentifier());
         }
 
@@ -101,3 +106,4 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
         }
     }
 }
+

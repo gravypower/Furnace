@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
@@ -8,11 +7,11 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
     public abstract class WithOneClassTests : GivenProjectTests
     {
         protected abstract string OneClassProjectPath { get; }
-        protected abstract Type Type { get; }
+        
 
         protected override string ProjectPath
         {
-            get { return @"WithOneClass\" + this.OneClassProjectPath; }
+            get { return @"WithOneClass\" + OneClassProjectPath; }
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheOneItemReturned_HasCorrectName()
+        public void WhenGetContentTypesIsCalled_ThenOneItemReturnedHasCorrectName()
         {
             //Act
             var result = Sut.GetContentTypes();
@@ -36,7 +35,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheTwoItemsReturned_HasCorrectNumberOfNamespace()
+        public void WhenGetContentTypesIsCalled_ThenTwoItemsReturnedHaveCorrectNumberOfNamespace()
         {
             //Act
             var result = Sut.GetContentTypes().ToList();
@@ -47,7 +46,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
         }
 
         [Test]
-        public void WhenGetContentTypesIsCalled_ThenTheOneItemReturned_HasCorrectNamespace()
+        public void WhenGetContentTypesIsCalled_ThenOneItemReturnedHasCorrectNamespace()
         {
             //Act
             var result = Sut.GetContentTypes().ToList();
@@ -56,42 +55,5 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
             var typeNamespace = result.Select(x => x.Namespace);
             Assert.That(typeNamespace, Contains.Item("WithOneClass." + ExpectedNamespace));
         }
-
-
-        [Test]
-        public void WhenAssemblyEmitted_HasCorrectTypes()
-        {
-            //Act
-            var result = Sut.GetContentTypes().ToList();
-            Sut.CompileFurnaceContentTypes();
-
-            //Assert
-            foreach (var contentType in result)
-            {
-                var type =
-                TypeFinder.FindType("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." +
-                                    Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + contentType.Name);
-                Assert.That(type, Is.Not.Null); 
-            }
-        }
-
-        [Test]
-        public void WhenAssemblyEmitted_TypeCanBeCastedToOriginalType()
-        {
-            //Act
-            var result = Sut.GetContentTypes().ToList();
-            Sut.CompileFurnaceContentTypes();
-
-            //Assert
-            foreach (var contentType in result)
-            {
-                var type =
-                TypeFinder.FindType("Furnace.ContentTypes.Roslyn.FurnaceObjectTypes." +
-                                    Roslyn.FurnaceObjectTypes.FurnaceTypeWriter.FurnaceTypeIdentifier + contentType.Name);
-                Assert.That(type.BaseType.FullName, Is.EqualTo(Type.FullName));
-            }
-        }
-
-        
     }
 }

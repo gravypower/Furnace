@@ -6,9 +6,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
     [TestFixture]
     public class BooleanMember : AndOneMemberTests
     {
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof(global::WithOneClass.AndOneBooleanMember.Test); }
+            get { return new [] {typeof(global::WithOneClass.AndOneBooleanMember.Test)}; }
         }
 
         [SetUp]

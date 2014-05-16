@@ -1,14 +1,14 @@
-﻿using System.Globalization;
-using ServiceStack.Text;
-
-namespace Furnace.Items.Redis.Tests
+﻿namespace Furnace.Items.Redis.Tests
 {
+    using System.Globalization;
+
     using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace;
 
     using NSubstitute;
 
     using NUnit.Framework;
 
+    using ServiceStack.Text;
     using ServiceStack.Redis;
 
     [TestFixture]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
@@ -21,9 +22,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
             }
         }
 
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof(global::WithOneClass.AndOneInternalMember.Test); }
+            get { return new [] {typeof(global::WithOneClass.AndOneInternalMember.Test)}; }
         }
 
         protected override string ExpectedNamespace

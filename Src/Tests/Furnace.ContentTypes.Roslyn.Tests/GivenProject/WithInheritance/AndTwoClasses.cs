@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithInheritance
@@ -17,6 +18,25 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithInheritance
         protected override string ExpectedNamespace
         {
             get { return "WithInheritance.AndTwoClasses"; }
+        }
+
+        protected override Type[] Types
+        {
+            get
+            {
+                return new[]
+                {
+                    typeof (global::WithInheritance.AndTwoClasses.Test1),
+                    typeof (global::WithInheritance.AndTwoClasses.Test2)
+                };
+            }
+        }
+
+        [SetUp]
+        public void AndDefaultValueSetUp()
+        {
+            var loadType1 = new global::WithInheritance.AndTwoClasses.Test1();
+            var loadType2 = new global::WithInheritance.AndTwoClasses.Test2();
         }
 
         [Test]

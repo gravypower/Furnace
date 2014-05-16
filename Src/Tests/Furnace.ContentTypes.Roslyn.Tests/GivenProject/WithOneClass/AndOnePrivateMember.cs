@@ -21,9 +21,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass
             }
         }
 
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof(global::WithOneClass.AndOnePrivateMember.Test); }
+            get { return new []{typeof(global::WithOneClass.AndOnePrivateMember.Test)}; }
         }
 
         protected override string ExpectedNamespace

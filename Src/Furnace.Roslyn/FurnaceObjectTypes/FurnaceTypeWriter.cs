@@ -10,14 +10,18 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
     public class FurnaceTypeWriter : CSharpSyntaxRewriter
     {
         private readonly TypeSyntax _baseTypeSyntax;
-        private readonly string _baseClassFullName;
+        private readonly string _typeName;
+        private readonly string _typeNamespace;
 
         public const string FurnaceTypeIdentifier = "FurnaceTypeIdentifier_";
 
         public FurnaceTypeWriter(string baseClassFullName)
         {
-            _baseClassFullName = baseClassFullName;
             GuardBaseClass(baseClassFullName);
+            var typeIndex = baseClassFullName.LastIndexOf('.') + 1;
+            _typeName = baseClassFullName.Substring(typeIndex);
+            _typeNamespace = baseClassFullName.Substring(0, typeIndex - 1);
+
             _baseTypeSyntax = SyntaxFactory.ParseTypeName(baseClassFullName);
         }
 
@@ -33,6 +37,24 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
                 throw new BaseClassException(new[] {BaseClassException.EmptyBaseClass});
         }
 
+        public override SyntaxNode VisitNamespaceDeclaration(NamespaceDeclarationSyntax node)
+        {
+            var identifierName = SyntaxFactory.IdentifierName(_typeNamespace);
+            var newNamespace = SyntaxFactory.NamespaceDeclaration(identifierName);
+            
+            var newNode =  node.Update(
+                node.NamespaceKeyword,
+                newNamespace.Name,
+                node.OpenBraceToken,
+                node.Externs,
+                node.Usings,
+                node.Members,
+                node.CloseBraceToken,
+                node.SemicolonToken);
+
+            return base.VisitNamespaceDeclaration(newNode);
+        }
+
         public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
         {
             var typesList = new List<TypeSyntax> { _baseTypeSyntax };
@@ -43,11 +65,10 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
             var types = new SeparatedSyntaxList<TypeSyntax>();
             types = types.AddRange(typesList);
 
-            var className = _baseClassFullName.Split('.').Last();
+            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + _typeName);
 
-            var identifier = SyntaxFactory.Identifier(FurnaceTypeIdentifier + className);
-
-            var updatedNode = node.Update(node.AttributeLists,
+            var newNode = node.Update(
+                node.AttributeLists,
                 node.Modifiers,
                 node.Keyword,
                 identifier,
@@ -59,7 +80,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
                 node.CloseBraceToken,
                 node.SemicolonToken).NormalizeWhitespace();
 
-            return updatedNode;
+            return base.VisitClassDeclaration(newNode);
         }
 
         private static void GuardBaseClass(string baseClassPath)

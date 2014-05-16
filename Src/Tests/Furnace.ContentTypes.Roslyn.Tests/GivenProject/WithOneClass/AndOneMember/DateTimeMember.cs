@@ -7,9 +7,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
     [TestFixture]
     public class DateTimeMember : AndOneMemberTests
     {
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof(global::WithOneClass.AndOneDateTimeMember.Test); }
+            get { return new []{typeof(global::WithOneClass.AndOneDateTimeMember.Test)}; }
         }
 
         [SetUp]
@@ -54,9 +54,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
         public class AndDefaultValue : DateTimeMember
         {
 
-            protected override Type Type
+            protected override Type[] Types
             {
-                get { return typeof(global::WithOneClass.AndOneDateTimeMember.AndDefaultValue.Test); }
+                get { return new [] {typeof(global::WithOneClass.AndOneDateTimeMember.AndDefaultValue.Test)}; }
             }
 
             [SetUp]

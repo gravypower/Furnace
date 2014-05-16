@@ -39,9 +39,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
             }
         }
 
-        protected override Type Type
+        protected override Type[] Types
         {
-            get { return typeof (global::WithOneClass.AndOneStringMember.Test); }
+            get { return new [] { typeof (global::WithOneClass.AndOneStringMember.Test)}; }
         }
 
         [SetUp]
@@ -60,9 +60,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject.WithOneClass.AndOneMemb
                 var loadType = new global::WithOneClass.AndOneStringMember.AndDefaultValue.Test();
             }
 
-            protected override Type Type
+            protected override Type[] Types
             {
-                get { return typeof(global::WithOneClass.AndOneStringMember.AndDefaultValue.Test); }
+                get { return new [] {typeof(global::WithOneClass.AndOneStringMember.AndDefaultValue.Test)}; }
             }
 
             protected override string OneClassProjectPath

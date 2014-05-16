@@ -1,4 +1,6 @@
-﻿namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
+﻿using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
+
+namespace SomeNamespaceToBeReplaces
 {
     public class FurnaceObjectType : IFurnaceObjectType
     {
