@@ -18,7 +18,7 @@ namespace Furnace.Items.Redis.Tests.Localisation
         }
 
         [SetUp]
-        public void LocalisationTestssetUp()
+        public void LocalisationTestsSetUp()
         {
             Id = 99L;
             Key = RedisBackedFurnaceItems.CreateItemKey(Id, typeof(Stub));

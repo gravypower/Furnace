@@ -19,6 +19,8 @@ namespace Furnace.Items.Redis
 
         public const string ItemHashKey = "Item:{0}.{1}:{2}";
 
+        public const string ItemChridrenSortedSetKey = "ItemChridren:{0}.{1}:{2}";
+
         private readonly IRedisClient _client;
 
         public RedisBackedFurnaceItems(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration)
@@ -80,6 +82,11 @@ namespace Furnace.Items.Redis
         public static string CreateItemKey(long id, Type type)
         {
             return ItemHashKey.FormatWith(type.Namespace, type.Name, id);
+        }
+
+        public static string CreateItemChridrenKey(long id, Type type)
+        {
+            return ItemChridrenSortedSetKey.FormatWith(type.Namespace, type.Name, id);
         }
     }
 }

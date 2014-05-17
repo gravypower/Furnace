@@ -15,6 +15,7 @@
     public class RedisBackedFurnaceItemsTests : WithNameAndNamespaceTests
     {
         protected IRedisClient Client;
+
         public RedisBackedFurnaceItemsTests(string furnaceItemsType)
             : base(furnaceItemsType)
         {
