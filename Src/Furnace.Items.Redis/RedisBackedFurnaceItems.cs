@@ -45,7 +45,7 @@ namespace Furnace.Items.Redis
         public override TRealType GetItem<TRealType>(long id)
         {
             var key = CreateItemKey(id, typeof(TRealType));
-            var itemHash = GetItemHash(key);
+            var itemHash = _client.Hashes[key];
             var value = itemHash[SiteConfiguration.DefaultSiteCulture.Name];
 
             return TypeSerializer.DeserializeFromString<TRealType>(value);
@@ -55,21 +55,25 @@ namespace Furnace.Items.Redis
         {
             var key = CreateItemKey(id, typeof(TRealType));
 
-            var itemHash = GetItemHash(key);
+            var itemHash = _client.Hashes[key];
             var value = itemHash[cultureInfo.Name];
 
             return TypeSerializer.DeserializeFromString<TRealType>(value);
         }
 
-        private IRedisHash GetItemHash(string key)
+        public override IEnumerable<object> GetItemChildren<TRealType>(long id)
         {
-            return _client.Hashes[key];
+            var key = CreateItemChridrenKey(id, typeof(TRealType));
+            foreach (var itemKey in _client.SortedSets[key])
+            {
+                yield return new object();
+            }
         }
 
         public override void AbstractSetItem(long id, Item item)
         {
             var key = CreateItemKey(id, item.ContentType);
-            var itemHash = GetItemHash(key);
+            var itemHash = _client.Hashes[key];
             var value = TypeSerializer.SerializeToString(item.Propities);
             itemHash.Add(SiteConfiguration.DefaultSiteCulture.Name, value);
         }

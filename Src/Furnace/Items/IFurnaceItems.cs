@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Items;
 
@@ -15,5 +16,6 @@ namespace Furnace.Items
         TRealType GetItem<TRealType>(TKeyType id, CultureInfo cultureInfo);
 
         void SetItem(TKeyType id, Item item);
+        IEnumerable<object> GetItemChildren<TRealType>(TKeyType id);
     }
 }

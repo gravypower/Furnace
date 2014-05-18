@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using Furnace.Configuration;
 using Furnace.Items;
 using Furnace.Models.ContentTypes;
@@ -47,6 +48,11 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
 
         public override void AbstractSetItem(long id, Item item)
         {
+        }
+
+        public override IEnumerable<object> GetItemChildren<TRealType>(long id)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void AssertWhenGetItemIsCalled_ThenCorrectKey_IsUsed(LocalisationTests fixture)
