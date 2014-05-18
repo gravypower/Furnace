@@ -119,15 +119,5 @@
             var value = TypeSerializer.SerializeToString(item.Propities);
             Client.Hashes[key].Received().Add(Arg.Any<string>(), value);
         }
-
-        public class Stub
-        {
-            public string Test { get; set; }
-
-            public string BuildSerialisedString()
-            {
-                return "{Test:" + Test + "}";
-            }
-        }
     }
 }

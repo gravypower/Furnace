@@ -55,10 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemHierarchy\FakeRedisSortedSet.cs" />
     <Compile Include="ItemHierarchy\ItemHierarchyTests.cs" />
     <Compile Include="Localisation\LocalisationTests.cs" />
     <Compile Include="RedisBackedFurnaceItemsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
