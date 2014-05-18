@@ -12,7 +12,7 @@ namespace Furnace.Tests.Items
     [TestFixture("RedisBackedFurnaceItems")]
     public abstract class FurnaceItemsTests
     {
-        protected IFurnaceItems<long> Sut;
+        protected IFurnaceItems<long, string> Sut;
 
         private readonly string _furnaceItemsType;
         protected IFurnaceSiteConfiguration SiteConfiguration;

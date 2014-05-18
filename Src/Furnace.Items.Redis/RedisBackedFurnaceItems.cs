@@ -13,7 +13,7 @@ namespace Furnace.Items.Redis
     using ServiceStack.Redis;
     using ServiceStack.Text;
 
-    public class RedisBackedFurnaceItems : FurnaceItems<long>
+    public class RedisBackedFurnaceItems : FurnaceItems<long, string>
     {
         public const string ContentTypeSetId = "ContentType:{0}";
 
@@ -32,14 +32,28 @@ namespace Furnace.Items.Redis
         public override Item AbstractGetItem(long id, ContentType contentType, CultureInfo ci)
         {
             var key = CreateItemKey(id, contentType);
+
+            var propities = GetPropities(key);
+
+            if (propities == null)
+                return null;
+
+            return new Item(contentType, propities) { Id = id };
+        }
+
+        private IDictionary<string, object> GetPropities(string key)
+        {
             var value = _client.GetValue(key);
 
             if (value.IsNullOrEmpty())
                 return null;
 
-            var propities = TypeSerializer.DeserializeFromString<IDictionary<string, object>>(value);
+            return TypeSerializer.DeserializeFromString<IDictionary<string, object>>(value);
+        }
 
-            return new Item(contentType, propities) { Id = id };
+        public override Item GetItem(string key)
+        {
+            throw new NotImplementedException();
         }
 
         public override TRealType GetItem<TRealType>(long id)

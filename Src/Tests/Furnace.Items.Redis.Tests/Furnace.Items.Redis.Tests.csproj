@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetItemTests.cs" />
     <Compile Include="ItemHierarchy\FakeRedisSortedSet.cs" />
     <Compile Include="ItemHierarchy\ItemHierarchyTests.cs" />
     <Compile Include="Localisation\LocalisationTests.cs" />

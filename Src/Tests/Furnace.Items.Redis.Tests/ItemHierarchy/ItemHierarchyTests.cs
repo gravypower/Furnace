@@ -32,20 +32,20 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
             Assert.That(key, Is.EqualTo(RedisBackedFurnaceItems.ItemChridrenSortedSetKey.FormatWith(type.Namespace, type.Name, Id)));
         }
 
-        [Test]
-        public void GiveItemHasOneChild_WhenGetItemChildresIsCalled_OneItemReturned()
-        {
-            //Assign
-            var stub = AddStub(1);
-            Client.SortedSets[_key].Returns(_fakeRedisSortedSet);
+        //[Test]
+        //public void GiveItemHasOneChild_WhenGetItemChildresIsCalled_OneItemReturned()
+        //{
+        //    //Assign
+        //    var stub = AddStub(1);
+        //    Client.SortedSets[_key].Returns(_fakeRedisSortedSet);
 
-            //Act
-            var result = Sut.GetItemChildren<Stub>(Id).ToList();
+        //    //Act
+        //    var result = Sut.GetItemChildren<Stub>(Id).ToList();
             
-            //Assert
-            Assert.That(result.Count(), Is.EqualTo(1));
-            Assert.That(result.First(), Is.EqualTo(stub));
-        }
+        //    //Assert
+        //    Assert.That(result.Count(), Is.EqualTo(1));
+        //    Assert.That(result.First(), Is.EqualTo(stub));
+        //}
 
         private Stub AddStub(long id)
         {

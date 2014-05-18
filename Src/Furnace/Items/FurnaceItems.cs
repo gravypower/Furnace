@@ -11,7 +11,7 @@ using Property = Furnace.Models.ContentTypes.Property;
 
 namespace Furnace.Items
 {
-    public abstract class FurnaceItems<TIdType> : FurnaceItems, IFurnaceItems<TIdType>
+    public abstract class FurnaceItems<TIdType, TInternalKeyType> : FurnaceItems, IFurnaceItems<TIdType, TInternalKeyType>
     {
         protected FurnaceItems(IFurnaceSiteConfiguration siteConfiguration) : base(siteConfiguration)
         {
@@ -24,6 +24,8 @@ namespace Furnace.Items
 
             return new Item(contentType);
         }
+
+        public abstract Item GetItem(TInternalKeyType key);
 
         public Item GetItem(TIdType id, ContentType contentType)
         {
