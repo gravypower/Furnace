@@ -1,9 +1,12 @@
-﻿namespace Furnace.Items.Redis.Tests
+﻿using Furnace.ContentTypes;
+
+namespace Furnace.Items.Redis.Tests
 {
+    using Configuration;
+    using Models.ContentTypes;
+    using Furnace.Tests;
+
     using System.Globalization;
-
-    using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace;
-
     using NSubstitute;
 
     using NUnit.Framework;
@@ -12,21 +15,30 @@
     using ServiceStack.Redis;
 
     [TestFixture]
-    public class RedisBackedFurnaceItemsTests : WithNameAndNamespaceTests
+    public class RedisBackedFurnaceItemsTests
     {
+        protected const string ContentTypeName = "SomeType";
+        protected const string ContentTypeNamespace = "SomeNamespace";
+
         protected IRedisClient Client;
 
-        public RedisBackedFurnaceItemsTests(string furnaceItemsType)
-            : base(furnaceItemsType)
-        {
-        }
+        public ContentType ContentType;
+        protected RedisBackedFurnaceItems Sut;
+
+        protected IFurnaceSiteConfiguration SiteConfiguration;
+        protected IFurnaceContentTypes ContentTypes;
 
         [SetUp]
         public void RedisBackedFurnaceItemsTestsSetUp()
         {
             Client = Substitute.For<IRedisClient>();
+            ContentTypes = Substitute.For<IFurnaceContentTypes>();
+            ContentType = new ContentType { Name = ContentTypeName, Namespace = ContentTypeNamespace };
+
+            SiteConfiguration = Substitute.For<IFurnaceSiteConfiguration>();
             SiteConfiguration.DefaultSiteCulture.Returns(new CultureInfo("en-AU"));
-            Sut = new RedisBackedFurnaceItems(Client, SiteConfiguration);
+
+            Sut = new RedisBackedFurnaceItems(Client, SiteConfiguration, ContentTypes);
         }
 
         [Test]
@@ -34,7 +46,7 @@
         {
             //Assign
             const long id = 1L;
-            AddPropityToContentType("Test", "string");
+            ContentType.AddPropity("Test", "string");
             var item = Sut.CreateItem(ContentType);
             item.Id = id;
 

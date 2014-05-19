@@ -77,6 +77,10 @@
       <Project>{B32DAFD5-EB3D-4F65-8486-2099EB7D869B}</Project>
       <Name>Furnace.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Furnace.Roslyn\Furnace.ContentTypes.Roslyn.csproj">
+      <Project>{9C9F4C60-4825-4A33-9853-6EB835AD74AC}</Project>
+      <Name>Furnace.ContentTypes.Roslyn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Furnace\Furnace.csproj">
       <Project>{9E48A6F6-C469-492D-A911-89E4319B9FD6}</Project>
       <Name>Furnace</Name>

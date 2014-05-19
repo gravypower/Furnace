@@ -7,9 +7,11 @@ namespace Furnace.Models.Items
 
     public class Item : Item<long>
     {
-        public Item(ContentType contentType, IDictionary<string, object> propities)
-           : base(contentType, propities)
+        public Item(ContentType contentType, IDictionary<string, object> propities, FurnaceItemInformation<long> furnaceItemInformation)
+           : base(contentType)
         {
+            FurnaceItemInformation = furnaceItemInformation;
+            Propities = propities;
         }
 
         public Item(ContentType contentType)
@@ -22,20 +24,26 @@ namespace Furnace.Models.Items
     {
         public ContentType ContentType { get; set; }
 
-        public TKeyType Id { get; set; }
+        public TKeyType Id
+        {
+            get { return FurnaceItemInformation.Id; }
+            set { FurnaceItemInformation.Id = value; }
+        }
 
         public IDictionary<string, object> Propities { get; set; }
 
-        protected Item(ContentType contentType, IDictionary<string, object> propities)
+        protected FurnaceItemInformation<TKeyType> FurnaceItemInformation { get; set; }
+
+        protected Item(IDictionary<string, object> propities)
         {
             Propities = propities;
-            ContentType = contentType;
         }
 
         protected Item(ContentType contentType)
         {
-            ContentType = contentType;
             Propities = new Dictionary<string, object>();
+            ContentType = contentType;
+            FurnaceItemInformation = new FurnaceItemInformation<TKeyType>();
         }
 
         public object this[string propityName]

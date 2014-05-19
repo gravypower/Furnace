@@ -30,7 +30,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation
         {
             //Assign
             CultureInfo = CultureInfo.GetCultureInfo("ja-JP");
-            AddPropityToContentType("SomeName", "string");
+            ContentType.AddPropity("SomeName", "string");
 
             //Act
             Sut.GetItem(Id, ContentType, CultureInfo);

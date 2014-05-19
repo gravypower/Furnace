@@ -22,7 +22,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         public void AndNoType_WhenCreateItemIsCalled_ThenInvalidPropertyException_IsThrown()
         {
             //Assign
-            AddPropityToContentType(PropertyName);
+            ContentType.AddPropity(PropertyName);
 
             //Act
             var exception = Assert.Throws<FurnaceItems.InvalidContentTypeException>(()=> Sut.CreateItem(ContentType));
@@ -36,7 +36,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         public void AndNoName_WhenCreateItemIsCalled_ThenInvalidPropertyException_IsThrown()
         {
             //Assign
-            AddPropityToContentType(type: PropertyType);
+            ContentType.AddPropity(type: PropertyType);
 
             //Act
             var exception = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.CreateItem(ContentType));
@@ -50,7 +50,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         public void AndNoDefaultValue_WhenCreateItemIsCalled_ThenValue_IsNull()
         {
             //Assign
-            AddPropityToContentType(PropertyName, PropertyType);
+            ContentType.AddPropity(PropertyName, PropertyType);
 
             //Act
             var item = Sut.CreateItem(ContentType);
@@ -63,7 +63,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         public void AndHasDefaultValue_WhenCreateItemIsCalled_ThenValue_IsDefault()
         {
             //Assign
-            AddPropityToContentType(PropertyName, PropertyType, DefaultValue);
+            ContentType.AddPropity(PropertyName, PropertyType, DefaultValue);
 
             //Act
             var item = Sut.CreateItem(ContentType);
@@ -80,7 +80,7 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.AndOneProper
         {
             //Assign
             const long Id = 1L;
-            AddPropityToContentType(PropertyName, PropertyType);
+            ContentType.AddPropity(PropertyName, PropertyType);
 
             //Act
             var result = Sut.GetItem(Id, ContentType);

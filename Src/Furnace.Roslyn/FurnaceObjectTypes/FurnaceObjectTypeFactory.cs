@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Furnace.ContentTypes.Roslyn.Models;
+using Furnace.Items;
 using Furnace.Models.Exceptions;
+using Furnace.Models.Items;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
@@ -78,7 +80,8 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
         {
             var compilation = CSharpCompilation.Create(assemblyName)
                 .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
-                .AddReferences(new MetadataFileReference(typeof (IFurnaceObjectType).Assembly.Location))
+                .AddReferences(new MetadataFileReference(typeof (IFurnaceObjectType<long>).Assembly.Location))
+                .AddReferences(new MetadataFileReference(typeof(FurnaceItemInformation<long>).Assembly.Location))
                 .AddReferences(new MetadataFileReference(typeof (object).Assembly.Location));
 
             foreach (var furnaceType in FurnaceTypes)

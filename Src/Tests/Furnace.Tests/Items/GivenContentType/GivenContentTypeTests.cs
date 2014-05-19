@@ -10,17 +10,5 @@ namespace Furnace.Tests.Items.GivenContentType
             : base(furnaceItemsType)
         {
         }
-
-        protected void AddPropityToContentType(string propertyName = null, string type = null, object defaltValue = null)
-        {
-            var property = new Property
-            {
-                Name = propertyName,
-                Type = type,
-                DefaultValue = defaltValue
-            };
-
-            ContentType.Properties.Add(property);
-        }
     }
 }

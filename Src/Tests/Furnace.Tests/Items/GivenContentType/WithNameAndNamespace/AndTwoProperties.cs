@@ -17,10 +17,10 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         {
             //Assign
             const string propertyNameOne = "SomeNameOne";
-            AddPropityToContentType(propertyNameOne);
+            ContentType.AddPropity(propertyNameOne);
 
             const string propertyNameTwo = "SomeNameTwo";
-            AddPropityToContentType(propertyNameTwo);
+            ContentType.AddPropity(propertyNameTwo);
 
             //Act
             var exception = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.CreateItem(ContentType));
@@ -40,10 +40,10 @@ namespace Furnace.Tests.Items.GivenContentType.WithNameAndNamespace
         {
             //Assign
             const string propertyTypeOne = "string";
-            AddPropityToContentType(type: propertyTypeOne);
+            ContentType.AddPropity(type: propertyTypeOne);
 
             const string propertyTypeTwo = "string";
-            AddPropityToContentType(type: propertyTypeTwo);
+            ContentType.AddPropity(type: propertyTypeTwo);
 
             //Act
             var exception = Assert.Throws<FurnaceItems.InvalidContentTypeException>(() => Sut.CreateItem(ContentType));

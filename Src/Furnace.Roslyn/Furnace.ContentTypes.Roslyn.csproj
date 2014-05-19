@@ -65,13 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FurnaceObjectTypes\FurnaceItemInformation.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceTypeWriter.cs" />
     <Compile Include="FurnaceObjectTypes\FurnaceObjectType.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="FurnaceObjectTypes\FurnaceObjectTypeFactory.cs" />
-    <Compile Include="FurnaceObjectTypes\IFurnaceObjectType.cs" />
     <Compile Include="Models\ClassType.cs" />
     <Compile Include="Extensions\ISymbolExtensions.cs" />
     <Compile Include="Extensions\SyntaxNodeExtensions.cs" />

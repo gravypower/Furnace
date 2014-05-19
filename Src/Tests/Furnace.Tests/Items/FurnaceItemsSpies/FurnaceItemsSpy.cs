@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Furnace.Tests.Items.FurnaceItemsSpies
 {
-    public class FurnaceItemsSpy : FurnaceItems<long, string>, IFurnaceItemsSpy
+    public class FurnaceItemsSpy : FurnaceItems<long>, IFurnaceItemsSpy
     {
         public class AbstractGetItemInfo
         {
@@ -36,11 +36,6 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             return null;
         }
 
-        public override Item GetItem(string key)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override TRealType GetItem<TRealType>(long id)
         {
             return default(TRealType);
@@ -55,7 +50,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
         {
         }
 
-        public override IEnumerable<object> GetItemChildren<TRealType>(long id)
+        public override IEnumerable<Item> GetItemChildren<TRealType>(long id)
         {
             throw new System.NotImplementedException();
         }

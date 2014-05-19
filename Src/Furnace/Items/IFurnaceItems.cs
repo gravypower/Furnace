@@ -5,11 +5,10 @@ using Furnace.Models.Items;
 
 namespace Furnace.Items
 {
-    public interface IFurnaceItems<in TKeyType, in TInternalKeyType>
+    public interface IFurnaceItems<in TKeyType>
     {
         Item CreateItem(ContentType contentType);
 
-        Item GetItem(TInternalKeyType key);
         Item GetItem(TKeyType key, ContentType contentType);
         Item GetItem(TKeyType key, ContentType contentType, CultureInfo cultureInfo);
 
@@ -17,6 +16,6 @@ namespace Furnace.Items
         TRealType GetItem<TRealType>(TKeyType key, CultureInfo cultureInfo);
 
         void SetItem(TKeyType key, Item item);
-        IEnumerable<object> GetItemChildren<TRealType>(TKeyType key);
+        IEnumerable<Item> GetItemChildren<TRealType>(TKeyType key);
     }
 }

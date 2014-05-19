@@ -1,9 +1,10 @@
-﻿using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
+﻿using Furnace.Items;
+using Furnace.Models.Items;
 
 namespace SomeNamespaceToBeReplaces
 {
-    public class FurnaceObjectType : IFurnaceObjectType
+    public class FurnaceObjectType : IFurnaceObjectType<long>
     {
-        public FurnaceItemInformation FurnaceItemInformation { get; set; }
+        public FurnaceItemInformation<long> FurnaceItemInformation { get; set; }
     }
 }

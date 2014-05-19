@@ -99,6 +99,7 @@
     <Compile Include="Items\GivenContentType\WithNameAndNamespace\Localisation\LocalisationTests.cs" />
     <Compile Include="Items\FurnaceItemsSpies\RedisBackedFurnaceItemsSpy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

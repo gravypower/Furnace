@@ -1,4 +1,5 @@
 ﻿using Furnace.Configuration;
+using Furnace.ContentTypes;
 using Furnace.Items.Redis;
 using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation;
 using NSubstitute;
@@ -9,7 +10,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
     public class RedisBackedFurnaceItemsSpy : RedisBackedFurnaceItems, IFurnaceItemsSpy
     {
         public IRedisClient Client { get; private set; }
-        public RedisBackedFurnaceItemsSpy(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration) : base(client, siteConfiguration)
+        public RedisBackedFurnaceItemsSpy(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration, IFurnaceContentTypes contentTypes) : base(client, siteConfiguration, contentTypes)
         {
             Client = client;
         }

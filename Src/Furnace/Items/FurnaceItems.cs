@@ -11,7 +11,7 @@ using Property = Furnace.Models.ContentTypes.Property;
 
 namespace Furnace.Items
 {
-    public abstract class FurnaceItems<TIdType, TInternalKeyType> : FurnaceItems, IFurnaceItems<TIdType, TInternalKeyType>
+    public abstract class FurnaceItems<TIdType> : FurnaceItems, IFurnaceItems<TIdType>
     {
         protected FurnaceItems(IFurnaceSiteConfiguration siteConfiguration) : base(siteConfiguration)
         {
@@ -24,8 +24,6 @@ namespace Furnace.Items
 
             return new Item(contentType);
         }
-
-        public abstract Item GetItem(TInternalKeyType key);
 
         public Item GetItem(TIdType id, ContentType contentType)
         {
@@ -50,7 +48,7 @@ namespace Furnace.Items
         public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
         public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
         public abstract void AbstractSetItem(TIdType id, Item item);
-        public abstract  IEnumerable<object> GetItemChildren<TRealType>(TIdType id);
+        public abstract  IEnumerable<Item> GetItemChildren<TRealType>(TIdType id);
     }
 
     public class FurnaceItems

@@ -51,6 +51,7 @@
     <Compile Include="ContentTypes\Property.cs" />
     <Compile Include="Exceptions\FurnaceException.cs" />
     <Compile Include="Exceptions\ReasonsFurnaceException.cs" />
+    <Compile Include="Items\FurnaceItemInformation.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

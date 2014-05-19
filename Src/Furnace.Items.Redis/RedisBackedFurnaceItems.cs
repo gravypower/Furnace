@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Furnace.Configuration;
+using Furnace.ContentTypes;
 
 namespace Furnace.Items.Redis
 {
@@ -13,19 +15,21 @@ namespace Furnace.Items.Redis
     using ServiceStack.Redis;
     using ServiceStack.Text;
 
-    public class RedisBackedFurnaceItems : FurnaceItems<long, string>
+    public class RedisBackedFurnaceItems : FurnaceItems<long>
     {
-        public const string ContentTypeSetId = "ContentType:{0}";
-
         public const string ItemHashKey = "Item:{0}.{1}:{2}";
 
-        public const string ItemChridrenSortedSetKey = "ItemChridren:{0}.{1}:{2}";
+        public const string ItemChildrenSortedSetKey = "ItemChildren:{0}.{1}:{2}";
+
+        public const string FurnaceIteminformationName = "FurnaceItemInformation";
 
         private readonly IRedisClient _client;
+        private IFurnaceContentTypes _contentTypes;
 
-        public RedisBackedFurnaceItems(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration)
-            :base(siteConfiguration)
+        public RedisBackedFurnaceItems(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration, IFurnaceContentTypes contentTypes)
+            : base(siteConfiguration)
         {
+            _contentTypes = contentTypes;
             _client = client;
         }
 
@@ -38,7 +42,9 @@ namespace Furnace.Items.Redis
             if (propities == null)
                 return null;
 
-            return new Item(contentType, propities) { Id = id };
+            var furnaceItemInformation = GetFurnaceItemInformation(propities);
+
+            return new Item(contentType, propities, furnaceItemInformation);
         }
 
         private IDictionary<string, object> GetPropities(string key)
@@ -51,9 +57,18 @@ namespace Furnace.Items.Redis
             return TypeSerializer.DeserializeFromString<IDictionary<string, object>>(value);
         }
 
-        public override Item GetItem(string key)
+        public Item GetItem(string key)
         {
-            throw new NotImplementedException();
+            var propities = GetPropities(key);
+
+            if (propities == null)
+                return null;
+
+            var furnaceItemInformation = GetFurnaceItemInformation(propities);
+
+            var contentType = _contentTypes.GetContentTypes().Single(x => x.FullName == furnaceItemInformation.ContentTypeFullName);
+
+            return new Item(contentType, propities, furnaceItemInformation);
         }
 
         public override TRealType GetItem<TRealType>(long id)
@@ -75,12 +90,12 @@ namespace Furnace.Items.Redis
             return TypeSerializer.DeserializeFromString<TRealType>(value);
         }
 
-        public override IEnumerable<object> GetItemChildren<TRealType>(long id)
+        public override IEnumerable<Item> GetItemChildren<TRealType>(long id)
         {
-            var key = CreateItemChridrenKey(id, typeof(TRealType));
+            var key = CreateItemChildrenKey(id, typeof(TRealType));
             foreach (var itemKey in _client.SortedSets[key])
             {
-                yield return new object();
+                yield return GetItem(itemKey);
             }
         }
 
@@ -102,9 +117,14 @@ namespace Furnace.Items.Redis
             return ItemHashKey.FormatWith(type.Namespace, type.Name, id);
         }
 
-        public static string CreateItemChridrenKey(long id, Type type)
+        public static string CreateItemChildrenKey(long id, Type type)
         {
-            return ItemChridrenSortedSetKey.FormatWith(type.Namespace, type.Name, id);
+            return ItemChildrenSortedSetKey.FormatWith(type.Namespace, type.Name, id);
+        }
+
+        private static FurnaceItemInformation<long> GetFurnaceItemInformation(IDictionary<string, object> propities)
+        {
+            return TypeSerializer.DeserializeFromString<FurnaceItemInformation<long>>(propities[FurnaceIteminformationName] as string);
         }
     }
 }

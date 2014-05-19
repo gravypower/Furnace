@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
+using Furnace.Items;
 using Furnace.Models.ContentTypes;
 using NUnit.Framework;
 
@@ -61,7 +62,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject
                 var type = TypeFinder.FindType(BuildTypeFullName(contentType));
                 var instance = Activator.CreateInstance(type);
 
-                Assert.That(instance, Is.AssignableTo<IFurnaceObjectType>());
+                Assert.That(instance, Is.AssignableTo<IFurnaceObjectType<long>>());
             }
         }
 

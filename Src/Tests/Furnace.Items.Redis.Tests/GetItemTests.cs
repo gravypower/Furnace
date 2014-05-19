@@ -1,4 +1,6 @@
-﻿using NSubstitute;
+﻿using Furnace.Models.Items;
+using Furnace.Tests;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Furnace.Items.Redis.Tests
@@ -6,17 +8,13 @@ namespace Furnace.Items.Redis.Tests
     [TestFixture]
     public class GetItemTests : RedisBackedFurnaceItemsTests
     {
-        public GetItemTests(string furnaceItemsType) : base(furnaceItemsType)
-        {
-        }
-
         [Test]
         public void GivenNoItemWithID_WhenGetItemIsCalled_ThenNullReturned()
         {
             //Assign
             const long id = 1L;
 
-            AddPropityToContentType("SomeName", "SomeType");
+            ContentType.AddPropity("SomeName", "SomeType");
 
             //Act
             var result = Sut.GetItem(id, ContentType);
@@ -30,12 +28,13 @@ namespace Furnace.Items.Redis.Tests
         {
             //Assign
             const long id = 1L;
-            AddPropityToContentType("Test", "string");
+            ContentType.AddPropity("Test", "string");
             var item = Sut.CreateItem(ContentType);
             item.Id = id;
 
             const string propityValue = "NotDefaultValue";
-            var returnJon = new Stub { Test = propityValue }.BuildSerialisedString();
+            var fi = new FurnaceItemInformation<long>() {Id = id};
+            var returnJon = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
@@ -57,7 +56,8 @@ namespace Furnace.Items.Redis.Tests
             const long id = 1L;
 
             const string propityValue = "NotDefault Value";
-            var returnJon = new Stub { Test = propityValue }.BuildSerialisedString();
+            var fi = new FurnaceItemInformation<long>();
+            var returnJon = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, typeof(Stub));
 
@@ -84,20 +84,20 @@ namespace Furnace.Items.Redis.Tests
         }
 
         [Test]
-        public void SomeTEst()
+        public void SomeTest()
         {
             //Assign
             const long id = 1L;
-            AddPropityToContentType("Test", "string");
-            var item = Sut.CreateItem(ContentType);
-            item.Id = id;
 
             const string propityValue = "NotDefaultValue";
-            var returnJon = new Stub { Test = propityValue }.BuildSerialisedString();
+            var fi = new FurnaceItemInformation<long> {Id = id, ContentTypeFullName = ContentType.FullName};
+            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
-            Client.GetValue(key).Returns(returnJon);
+            Client.GetValue(key).Returns(returnJson);
+
+            ContentTypes.GetContentTypes().Returns(new[] {ContentType});
 
             //Act
             var result = Sut.GetItem(key);

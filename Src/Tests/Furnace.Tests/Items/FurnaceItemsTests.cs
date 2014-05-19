@@ -1,4 +1,5 @@
 ﻿using Furnace.Configuration;
+using Furnace.ContentTypes;
 using Furnace.Tests.Items.FurnaceItemsSpies;
 
 namespace Furnace.Tests.Items
@@ -12,7 +13,7 @@ namespace Furnace.Tests.Items
     [TestFixture("RedisBackedFurnaceItems")]
     public abstract class FurnaceItemsTests
     {
-        protected IFurnaceItems<long, string> Sut;
+        protected IFurnaceItems<long> Sut;
 
         private readonly string _furnaceItemsType;
         protected IFurnaceSiteConfiguration SiteConfiguration;
@@ -34,7 +35,8 @@ namespace Furnace.Tests.Items
                 case "RedisBackedFurnaceItems":
                     {
                         var client = Substitute.For<IRedisClient>();
-                        Sut = new RedisBackedFurnaceItemsSpy(client, SiteConfiguration);
+                        var contentTypes = Substitute.For<IFurnaceContentTypes>();
+                        Sut = new RedisBackedFurnaceItemsSpy(client, SiteConfiguration, contentTypes);
                     }
                 break;
             }

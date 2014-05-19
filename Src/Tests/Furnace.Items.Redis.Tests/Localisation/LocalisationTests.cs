@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Furnace.Models.Items;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,44 +14,35 @@ namespace Furnace.Items.Redis.Tests.Localisation
         protected long Id;
         protected string Key;
 
-        protected LocalisationTests(string furnaceItemsType) : base(furnaceItemsType)
-        {
-        }
-
         [SetUp]
         public void LocalisationTestsSetUp()
         {
             Id = 99L;
             Key = RedisBackedFurnaceItems.CreateItemKey(Id, typeof(Stub));
-            DefultCultureStub = new Stub {Test = "Hello"};
+            var fi = new FurnaceItemInformation<long>();
+            DefultCultureStub = new Stub(fi) {Test = "Hello"};
             Client.Hashes[Key][SiteConfiguration.DefaultSiteCulture.Name].Returns(DefultCultureStub.BuildSerialisedString());
         }
 
         public class GivenJapaneseAsTheCulture : LocalisationTests
         {
-            public GivenJapaneseAsTheCulture(string furnaceItemsType) : base(furnaceItemsType)
-            {
-            }
-
             [SetUp]
             public void GivenJapaneseAsTheCultureSetUp()
             {
                 CultureInfo = CultureInfo.GetCultureInfo("fr-FR");
-                CultureStub = new Stub { Test = "こんにいちわ" };
+                var fi = new FurnaceItemInformation<long>();
+                CultureStub = new Stub(fi) { Test = "こんにいちわ" };
             }
         }
 
         public class GivenFrenchAsTheCulture : LocalisationTests
         {
-            public GivenFrenchAsTheCulture(string furnaceItemsType) : base(furnaceItemsType)
-            {
-            }
-
             [SetUp]
             public void GivenJapaneseAsTheCultureSetUp()
             {
                 CultureInfo = CultureInfo.GetCultureInfo("ja-JP");
-                CultureStub = new Stub { Test = "bonjour" };
+                var fi = new FurnaceItemInformation<long>();
+                CultureStub = new Stub(fi) { Test = "bonjour" };
             }
         }
 

@@ -11,7 +11,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
     [TestFixture]
     public class GivenValidTemplatePathTests : FurnaceObjectTypeFactoryTests
     {
-        protected const string FurnaceObjectTypeInterface = "IFurnaceObjectType";
+        protected const string FurnaceObjectTypeInterface = "IFurnaceObjectType<long>";
 
         [SetUp]
         public void GivenValidTemplatePathTestsSetUp()
@@ -89,7 +89,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes
             var item = tree.GetRoot();
             var classDeclarationSyntax = item.DescendantNodes().OfType<ClassDeclarationSyntax>().First();
 
-            Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(typeNamespace + "." +typeName));
+            Assert.That(classDeclarationSyntax.BaseList.Types[0].ToString(), Is.EqualTo(typeNamespace + "." + typeName));
             Assert.That(classDeclarationSyntax.BaseList.Types[1].ToString(), Is.EqualTo(FurnaceObjectTypeInterface));
             Assert.That(classDeclarationSyntax.Identifier.Text, TypeNameIsCorrect(typeName));
             Assert.That(item.PropertyDeclarationNodes(), HasCorrectIdentifier());

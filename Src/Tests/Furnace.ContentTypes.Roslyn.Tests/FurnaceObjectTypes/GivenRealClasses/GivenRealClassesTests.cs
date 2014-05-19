@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses.TestClasses;
+using Furnace.Items;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Emit;
 using NSubstitute;
@@ -97,7 +97,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses
             var compilation = Sut.Compile(assemblyName);
 
             //Assert
-            Assert.That(compilation.References, Has.Some.Matches<MetadataReference>(x=>x.Display == typeof(IFurnaceObjectType).Assembly.Location));
+            Assert.That(compilation.References, Has.Some.Matches<MetadataReference>(x=>x.Display == typeof(IFurnaceObjectType<long>).Assembly.Location));
             Assert.That(compilation.References, Has.Some.Matches<MetadataReference>(x => x.Display == typeof(ClassOne).Assembly.Location));
             Assert.That(compilation.References, Has.Some.Matches<MetadataReference>(x => x.Display == typeof(object).Assembly.Location));
         }
@@ -222,7 +222,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses
             Assert.That(type, Is.Not.Null);
             var instance = Activator.CreateInstance(type);
 
-            Assert.That(instance, Is.AssignableTo<IFurnaceObjectType>());
+            Assert.That(instance, Is.AssignableTo<IFurnaceObjectType<long>>());
         }
     }
 }
