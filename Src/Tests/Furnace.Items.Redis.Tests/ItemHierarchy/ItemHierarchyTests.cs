@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Items;
 using NSubstitute;
@@ -36,35 +35,54 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         public void GiveItemHasOneChild_WhenGetItemChildresIsCalled_OneItemReturned()
         {
             //Assign
-            var type = typeof (Stub);
-            ContentType = new ContentType { Name = type.Name, Namespace = type.Namespace };
-            var fi = new FurnaceItemInformation<long> {Id = Id, ContentTypeFullName = ContentType.FullName};
-            var stub = AddStub(fi);
-            Client.SortedSets[_key].Returns(_fakeRedisSortedSet);
-
-            var returnJson = new Stub(fi) {Test = "Test"}.BuildSerialisedString();
-
-            var key = RedisBackedFurnaceItems.CreateItemKey(fi.Id, type);
-
-            Client.GetValue(key).Returns(returnJson);
-
-            ContentTypes.GetContentTypes().Returns(new[] { ContentType });
+            var test = "Test";
+            AddStub(Id, test);
 
             //Act
             var result = Sut.GetItemChildren<Stub>(Id).ToList();
 
             //Assert
             Assert.That(result.Count(), Is.EqualTo(1));
-            Assert.That(result.First().ContentType, Is.EqualTo(ContentType));
+            Assert.That(result.First().ContentType.FullName, Is.EqualTo(typeof(Stub).FullName));
+            Assert.That(result.First()["Test"], Is.EqualTo(test));
         }
 
-        private Stub AddStub(FurnaceItemInformation<long> furnaceItemInformation)
+        [Test]
+        public void GiveItemHasOneChild_WhenGetItemChildresIsCalled_OneItemCanBeConvertedToCorrectType()
         {
-            var stub = new Stub(furnaceItemInformation);
+            //Assign
+            var test = "Test";
+            AddStub(Id, test);
+           
+            //Act
+            var result = Sut.GetItemChildren<Stub>(Id).ToList();
+
+            //Assert
+            Assert.That(result.Count(), Is.EqualTo(1));
+            Assert.That(result.First().As<Stub>(), Is.TypeOf<Stub>());
+            Assert.That(result.First().As<Stub>().Test, Is.EqualTo("Test"));
+        }
+
+        private void AddStub(long id, string test)
+        {
+            var type = typeof(Stub);
+            var contentType = new ContentType { Name = type.Name, Namespace = type.Namespace };
+
+            var furnaceItemInformation = new FurnaceItemInformation<long> { Id = id, ContentTypeFullName = contentType.FullName };
+
+            var stub = new Stub(furnaceItemInformation) {Test = test};
+
             var itemKey = RedisBackedFurnaceItems.CreateItemKey(furnaceItemInformation.Id, typeof(Stub));
+            var key = RedisBackedFurnaceItems.CreateItemKey(Id, type);
+
             _fakeRedisSortedSet.Add(itemKey);
+
+            var returnJson = stub.BuildSerialisedString();
+
             Client.Hashes[itemKey][SiteConfiguration.DefaultSiteCulture.Name].Returns(stub.BuildSerialisedString());
-            return stub;
+            Client.SortedSets[_key].Returns(_fakeRedisSortedSet);
+            Client.GetValue(key).Returns(returnJson);
+            ContentTypes.GetContentTypes().Returns(new[] { contentType });
         }
     }
 }

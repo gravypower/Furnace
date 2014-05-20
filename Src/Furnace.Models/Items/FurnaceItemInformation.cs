@@ -1,6 +1,8 @@
-﻿namespace Furnace.Models.Items
+﻿using Furnace.Interfaces.Items;
+
+namespace Furnace.Models.Items
 {
-    public class FurnaceItemInformation<TKeyType>
+    public class FurnaceItemInformation<TKeyType> : IFurnaceItemInformation<TKeyType>
     {
         public TKeyType Id { get; set; }
         public string ContentTypeFullName { get; set; }

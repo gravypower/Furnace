@@ -86,6 +86,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.ContentTypes.Roslyn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Items.Redis.Tests", "Tests\Furnace.Items.Redis.Tests\Furnace.Items.Redis.Tests.csproj", "{381A7D3B-B968-4683-B22B-DE3F9A04177E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Interfaces", "Furnace.Interfaces\Furnace.Interfaces.csproj", "{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -366,6 +368,16 @@ Global
 		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{381A7D3B-B968-4683-B22B-DE3F9A04177E}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

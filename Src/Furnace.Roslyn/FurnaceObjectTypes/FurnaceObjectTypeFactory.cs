@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Furnace.ContentTypes.Roslyn.Models;
+using Furnace.Interfaces.Items;
 using Furnace.Items;
 using Furnace.Models.Exceptions;
 using Furnace.Models.Items;

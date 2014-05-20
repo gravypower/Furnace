@@ -58,18 +58,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\IFurnaceConfiguration.cs" />
-    <Compile Include="Configuration\IFurnaceSiteConfiguration.cs" />
     <Compile Include="Items\FurnaceItems.cs" />
-    <Compile Include="ContentTypes\IFurnaceContentTypes.cs" />
-    <Compile Include="Items\IFurnaceItems.cs" />
-    <Compile Include="Items\IFurnaceObjectType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Furnace.Interfaces\Furnace.Interfaces.csproj">
+      <Project>{ba006ddd-5e4e-4e22-ba5d-59ed8ed2c6d9}</Project>
+      <Name>Furnace.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Furnace.Models\Furnace.Models.csproj">
       <Project>{b32dafd5-eb3d-4f65-8486-2099eb7d869b}</Project>
       <Name>Furnace.Models</Name>

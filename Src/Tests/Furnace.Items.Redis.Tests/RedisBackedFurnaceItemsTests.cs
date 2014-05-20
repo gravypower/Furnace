@@ -1,11 +1,10 @@
-﻿using Furnace.ContentTypes;
+﻿using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Tests;
 
 namespace Furnace.Items.Redis.Tests
 {
-    using Configuration;
     using Models.ContentTypes;
-    using Furnace.Tests;
-
     using System.Globalization;
     using NSubstitute;
 
@@ -22,7 +21,7 @@ namespace Furnace.Items.Redis.Tests
 
         protected IRedisClient Client;
 
-        public ContentType ContentType;
+        public IContentType ContentType;
         protected RedisBackedFurnaceItems Sut;
 
         protected IFurnaceSiteConfiguration SiteConfiguration;

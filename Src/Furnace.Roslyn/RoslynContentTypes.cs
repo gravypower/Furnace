@@ -6,6 +6,7 @@ using System.Reflection;
 using Furnace.ContentTypes.Roslyn.Extensions;
 using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
 using Furnace.ContentTypes.Roslyn.Models;
+using Furnace.Interfaces.ContentTypes;
 using Furnace.Models.ContentTypes;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -39,9 +40,9 @@ namespace Furnace.ContentTypes.Roslyn
             ObjectTypeFactory = new FurnaceObjectTypeFactory(templateFilePath);
         }
 
-        public IEnumerable<ContentType> GetContentTypes()
+        public IEnumerable<IContentType> GetContentTypes()
         {
-            var contentTypes = new List<ContentType>();
+            var contentTypes = new List<IContentType>();
             var classes = new List<ClassType>();
             foreach (var document in _project.Documents)
             {

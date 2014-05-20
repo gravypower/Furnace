@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Furnace.Interfaces.ContentTypes;
+using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests
 {

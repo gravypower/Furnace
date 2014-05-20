@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B32DAFD5-EB3D-4F65-8486-2099EB7D869B}</ProjectGuid>
+    <ProjectGuid>{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Furnace.Models</RootNamespace>
-    <AssemblyName>Furnace.Models</AssemblyName>
+    <RootNamespace>Furnace.Interfaces</RootNamespace>
+    <AssemblyName>Furnace.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack">
-      <HintPath>..\packages\ServiceStack.4.0.20\lib\net40\ServiceStack.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,32 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentTypes\ContentType.cs" />
-    <Compile Include="ContentTypes\Property.cs" />
-    <Compile Include="Exceptions\FurnaceException.cs" />
-    <Compile Include="Exceptions\ReasonsFurnaceException.cs" />
-    <Compile Include="Items\FurnaceItemInformation.cs" />
-    <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\Property.cs" />
+    <Compile Include="Configuration\IFurnaceConfiguration.cs" />
+    <Compile Include="Configuration\IFurnaceSiteConfiguration.cs" />
+    <Compile Include="ContentTypes\IContentType.cs" />
+    <Compile Include="ContentTypes\IFurnaceContentTypes.cs" />
+    <Compile Include="ContentTypes\IProperty.cs" />
+    <Compile Include="Items\IFurnaceItemInformation.cs" />
+    <Compile Include="Items\IFurnaceItems.cs" />
+    <Compile Include="Items\IFurnaceObjectType.cs" />
+    <Compile Include="Items\IItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Furnace.Interfaces\Furnace.Interfaces.csproj">
-      <Project>{ba006ddd-5e4e-4e22-ba5d-59ed8ed2c6d9}</Project>
-      <Name>Furnace.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

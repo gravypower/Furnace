@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
-using Furnace.Configuration;
-using Furnace.ContentTypes;
+using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Interfaces.Items;
 
 namespace Furnace.Items.Redis
 {
     using System.Collections.Generic;
-
-    using Models.ContentTypes;
     using Models.Items;
 
     using ServiceStack;
@@ -21,8 +19,6 @@ namespace Furnace.Items.Redis
 
         public const string ItemChildrenSortedSetKey = "ItemChildren:{0}.{1}:{2}";
 
-        public const string FurnaceIteminformationName = "FurnaceItemInformation";
-
         private readonly IRedisClient _client;
         private IFurnaceContentTypes _contentTypes;
 
@@ -33,42 +29,31 @@ namespace Furnace.Items.Redis
             _client = client;
         }
 
-        public override Item AbstractGetItem(long id, ContentType contentType, CultureInfo ci)
+        public override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
         {
             var key = CreateItemKey(id, contentType);
 
-            var propities = GetPropities(key);
+            var value = _client.GetValue(key);
 
-            if (propities == null)
+            if (value.IsNullOrEmpty())
                 return null;
 
-            var furnaceItemInformation = GetFurnaceItemInformation(propities);
-
-            return new Item(contentType, propities, furnaceItemInformation);
+            return new Item(contentType, value);
         }
 
-        private IDictionary<string, object> GetPropities(string key)
+        public Item GetItem(string key)
         {
             var value = _client.GetValue(key);
 
             if (value.IsNullOrEmpty())
                 return null;
 
-            return TypeSerializer.DeserializeFromString<IDictionary<string, object>>(value);
+            return new Item(value, _contentTypes);
         }
 
-        public Item GetItem(string key)
+        protected override IItem<long> NewItem(IContentType contentType)
         {
-            var propities = GetPropities(key);
-
-            if (propities == null)
-                return null;
-
-            var furnaceItemInformation = GetFurnaceItemInformation(propities);
-
-            var contentType = _contentTypes.GetContentTypes().Single(x => x.FullName == furnaceItemInformation.ContentTypeFullName);
-
-            return new Item(contentType, propities, furnaceItemInformation);
+            return new Item(contentType);
         }
 
         public override TRealType GetItem<TRealType>(long id)
@@ -90,7 +75,7 @@ namespace Furnace.Items.Redis
             return TypeSerializer.DeserializeFromString<TRealType>(value);
         }
 
-        public override IEnumerable<Item> GetItemChildren<TRealType>(long id)
+        public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
         {
             var key = CreateItemChildrenKey(id, typeof(TRealType));
             foreach (var itemKey in _client.SortedSets[key])
@@ -99,7 +84,7 @@ namespace Furnace.Items.Redis
             }
         }
 
-        public override void AbstractSetItem(long id, Item item)
+        public override void AbstractSetItem(long id, IItem<long> item)
         {
             var key = CreateItemKey(id, item.ContentType);
             var itemHash = _client.Hashes[key];
@@ -107,7 +92,7 @@ namespace Furnace.Items.Redis
             itemHash.Add(SiteConfiguration.DefaultSiteCulture.Name, value);
         }
 
-        public static string CreateItemKey(long id, ContentType contentType)
+        public static string CreateItemKey(long id, IContentType contentType)
         {
             return ItemHashKey.FormatWith(contentType.Namespace, contentType.Name, id);
         }
@@ -120,11 +105,6 @@ namespace Furnace.Items.Redis
         public static string CreateItemChildrenKey(long id, Type type)
         {
             return ItemChildrenSortedSetKey.FormatWith(type.Namespace, type.Name, id);
-        }
-
-        private static FurnaceItemInformation<long> GetFurnaceItemInformation(IDictionary<string, object> propities)
-        {
-            return TypeSerializer.DeserializeFromString<FurnaceItemInformation<long>>(propities[FurnaceIteminformationName] as string);
         }
     }
 }

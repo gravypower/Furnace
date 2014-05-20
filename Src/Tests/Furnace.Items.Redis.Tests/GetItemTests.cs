@@ -84,7 +84,7 @@ namespace Furnace.Items.Redis.Tests
         }
 
         [Test]
-        public void SomeTest()
+        public void GivenKeyAsString_WhenTypedGetItemIsCalled_ThenCorrectItemReturned()
         {
             //Assign
             const long id = 1L;
@@ -105,7 +105,31 @@ namespace Furnace.Items.Redis.Tests
             //Assert
             Assert.That(result.Id, Is.EqualTo(id));
             Assert.That(result["Test"], Is.EqualTo(propityValue));
-            Assert.That(result.ContentType.Name == ContentTypeName);
+            Assert.That(result.ContentType.Name, Is.EqualTo(ContentTypeName));
+        }
+
+        [Test]
+        public void GivenKeyAsString_WhenTypedGetItemIsCalled_ThenCorrectItemCanBeConvertedToCorectType()
+        {
+            //Assign
+            const long id = 1L;
+
+            const string propityValue = "NotDefaultValue";
+            var fi = new FurnaceItemInformation<long> { Id = id, ContentTypeFullName = ContentType.FullName };
+            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+
+            var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
+
+            Client.GetValue(key).Returns(returnJson);
+
+            ContentTypes.GetContentTypes().Returns(new[] { ContentType });
+
+            //Act
+            var result = Sut.GetItem(key).As<Stub>();
+
+            //Assert
+            Assert.That(result, Is.TypeOf<Stub>());
+            Assert.That(result.Test, Is.EqualTo(propityValue));
         }
     }
 }

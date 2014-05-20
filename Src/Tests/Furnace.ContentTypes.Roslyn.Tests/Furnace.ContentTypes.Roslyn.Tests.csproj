@@ -121,6 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Furnace.Interfaces\Furnace.Interfaces.csproj">
+      <Project>{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}</Project>
+      <Name>Furnace.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Furnace.Models\Furnace.Models.csproj">
       <Project>{b32dafd5-eb3d-4f65-8486-2099eb7d869b}</Project>
       <Name>Furnace.Models</Name>

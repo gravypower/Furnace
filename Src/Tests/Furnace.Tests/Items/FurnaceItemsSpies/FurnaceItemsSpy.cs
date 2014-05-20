@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using Furnace.Configuration;
+using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Interfaces.Items;
 using Furnace.Items;
-using Furnace.Models.ContentTypes;
 using Furnace.Models.Items;
 using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation;
 using NUnit.Framework;
@@ -14,7 +15,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
         public class AbstractGetItemInfo
         {
             public long Id { get; set; }
-            public ContentType ContentType { get; set; }
+            public IContentType ContentType { get; set; }
             public CultureInfo Ci { get; set; }
         }
 
@@ -24,7 +25,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
 
         public AbstractGetItemInfo AbstractGetItemLastCall { get; private set; }
 
-        public override Item AbstractGetItem(long id, ContentType contentType, CultureInfo ci)
+        public override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
         {
             AbstractGetItemLastCall = new AbstractGetItemInfo
             {
@@ -34,6 +35,11 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             };
 
             return null;
+        }
+
+        protected override IItem<long> NewItem(IContentType contentType)
+        {
+            return new Item(contentType);
         }
 
         public override TRealType GetItem<TRealType>(long id)
@@ -46,11 +52,11 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             return default(TRealType);
         }
 
-        public override void AbstractSetItem(long id, Item item)
+        public override void AbstractSetItem(long id, IItem<long> item)
         {
         }
 
-        public override IEnumerable<Item> GetItemChildren<TRealType>(long id)
+        public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
         {
             throw new System.NotImplementedException();
         }

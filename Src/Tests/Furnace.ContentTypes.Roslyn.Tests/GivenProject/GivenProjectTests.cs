@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Furnace.ContentTypes.Roslyn.FurnaceObjectTypes;
-using Furnace.Items;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Interfaces.Items;
 using Furnace.Models.ContentTypes;
 using NUnit.Framework;
 
@@ -66,7 +67,7 @@ namespace Furnace.ContentTypes.Roslyn.Tests.GivenProject
             }
         }
 
-        private static string BuildTypeFullName(ContentType contentType)
+        private static string BuildTypeFullName(IContentType contentType)
         {
             return contentType.Namespace + "." + FurnaceTypeWriter.FurnaceTypeIdentifier + contentType.Name;
         }

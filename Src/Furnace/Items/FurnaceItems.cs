@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Furnace.Configuration;
-using Furnace.Models.ContentTypes;
+using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Interfaces.Items;
 using Furnace.Models.Exceptions;
-using Furnace.Models.Items;
 using ServiceStack;
-using Property = Furnace.Models.ContentTypes.Property;
 
 namespace Furnace.Items
 {
@@ -17,27 +15,29 @@ namespace Furnace.Items
         {
         }
 
-        public Item CreateItem(ContentType contentType)
+        public IItem<TIdType> CreateItem(IContentType contentType)
         {
             var guard = new Guard();
             guard.GuardContenType(contentType);
 
-            return new Item(contentType);
+            return NewItem(contentType);
         }
 
-        public Item GetItem(TIdType id, ContentType contentType)
+        protected abstract IItem<TIdType> NewItem(IContentType contentType);
+
+        public IItem<TIdType> GetItem(TIdType id, IContentType contentType)
         {
             return GetItem(id, contentType, CultureInfo.DefaultThreadCurrentCulture);
         }
 
-        public Item GetItem(TIdType id, ContentType contentType, CultureInfo cultureInfo)
+        public IItem<TIdType> GetItem(TIdType id, IContentType contentType, CultureInfo cultureInfo)
         {
             var guard = new Guard();
             guard.GuardContenType(contentType);
             return AbstractGetItem(id, contentType, cultureInfo);
         }
 
-        public void SetItem(TIdType id, Item item)
+        public void SetItem(TIdType id, IItem<TIdType> item)
         {
             var guard = new Guard();
             guard.GuardContenType(item.ContentType);
@@ -46,9 +46,9 @@ namespace Furnace.Items
 
         public abstract TRealType GetItem<TRealType>(TIdType id);
         public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
-        public abstract Item AbstractGetItem(TIdType id, ContentType contentType, CultureInfo ci);
-        public abstract void AbstractSetItem(TIdType id, Item item);
-        public abstract  IEnumerable<Item> GetItemChildren<TRealType>(TIdType id);
+        public abstract IItem<TIdType> AbstractGetItem(TIdType id, IContentType contentType, CultureInfo ci);
+        public abstract void AbstractSetItem(TIdType id, IItem<TIdType> item);
+        public abstract IEnumerable<IItem<TIdType>> GetItemChildren<TRealType>(TIdType id);
     }
 
     public class FurnaceItems
@@ -69,7 +69,7 @@ namespace Furnace.Items
                 _reasons = new List<string>();
             }
 
-            public void GuardContenType(ContentType contentType)
+            public void GuardContenType(IContentType contentType)
             {
                 if(contentType == null)
                     throw new NullContentTypeException();
@@ -84,7 +84,7 @@ namespace Furnace.Items
                 if (_reasons.Any()) throw new InvalidContentTypeException(_reasons);
             }
 
-            private void GuardProperties(IEnumerable<Property> properties)
+            private void GuardProperties(IEnumerable<IProperty> properties)
             {
                 foreach (var property in properties)
                 {

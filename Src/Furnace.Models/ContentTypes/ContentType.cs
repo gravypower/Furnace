@@ -1,10 +1,11 @@
-﻿using ServiceStack;
+﻿using Furnace.Interfaces.ContentTypes;
+using ServiceStack;
 
 namespace Furnace.Models.ContentTypes
 {
     using System.Collections.Generic;
 
-    public class ContentType
+    public class ContentType : IContentType
     {
         public string Name { get; set; }
 
@@ -15,11 +16,11 @@ namespace Furnace.Models.ContentTypes
             get { return "{0}.{1}".FormatWith(Namespace, Name); }
         }
 
-        public IList<Property> Properties { get; set; }
+        public IList<IProperty> Properties { get; set; }
 
         public ContentType()
         {
-            Properties = new List<Property>();
+            Properties = new List<IProperty>();
         }
 
     }

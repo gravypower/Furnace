@@ -1,4 +1,4 @@
-﻿using Furnace.Models.Items;
+﻿using Furnace.Interfaces.Items;
 using ServiceStack.Text;
 
 namespace Furnace.Items.Redis.Tests
@@ -12,11 +12,11 @@ namespace Furnace.Items.Redis.Tests
             return TypeSerializer.SerializeToString(this);
         }
 
-        public Stub(FurnaceItemInformation<long> furnaceItemInformation)
+        public Stub(IFurnaceItemInformation<long> furnaceItemInformation)
         {
             FurnaceItemInformation = furnaceItemInformation;
         }
 
-        public FurnaceItemInformation<long> FurnaceItemInformation { get; set; }
+        public IFurnaceItemInformation<long> FurnaceItemInformation { get; set; }
     }
 }

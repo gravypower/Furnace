@@ -1,11 +1,11 @@
-﻿using Furnace.Configuration;
-using Furnace.ContentTypes;
+﻿using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Interfaces.Items;
 using Furnace.Tests.Items.FurnaceItemsSpies;
 
 namespace Furnace.Tests.Items
 {
     using ServiceStack.Redis;
-    using Furnace.Items;
     using NSubstitute;
     using NUnit.Framework;
 

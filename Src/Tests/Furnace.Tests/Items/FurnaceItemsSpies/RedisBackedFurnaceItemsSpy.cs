@@ -1,5 +1,5 @@
-﻿using Furnace.Configuration;
-using Furnace.ContentTypes;
+﻿using Furnace.Interfaces.Configuration;
+using Furnace.Interfaces.ContentTypes;
 using Furnace.Items.Redis;
 using Furnace.Tests.Items.GivenContentType.WithNameAndNamespace.Localisation;
 using NSubstitute;

@@ -69,6 +69,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Furnace.Interfaces\Furnace.Interfaces.csproj">
+      <Project>{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}</Project>
+      <Name>Furnace.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Furnace.Items.Redis\Furnace.Items.Redis.csproj">
       <Project>{99589D78-9F58-47FC-85E4-5F8477E99E30}</Project>
       <Name>Furnace.Items.Redis</Name>

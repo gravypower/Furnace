@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Furnace.ContentTypes.Roslyn.Tests.FurnaceObjectTypes.GivenRealClasses.TestClasses;
+using Furnace.Interfaces.Items;
 using Furnace.Items;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Emit;
