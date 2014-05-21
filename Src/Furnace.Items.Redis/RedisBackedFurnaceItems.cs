@@ -30,7 +30,7 @@
             _client = client;
         }
 
-        public override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
+        protected override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
         {
             var key = CreateItemKey(id, contentType);
 
@@ -118,7 +118,7 @@
             return GetItem(parentKey);
         }
 
-        public override void AbstractSetItem(long id, IItem<long> item)
+        protected override void AbstractSetItem(long id, IItem<long> item)
         {
             var key = CreateItemKey(id, item.ContentType);
             var itemHash = _client.Hashes[key];

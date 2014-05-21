@@ -26,7 +26,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
 
         public AbstractGetItemInfo AbstractGetItemLastCall { get; private set; }
 
-        public override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
+        protected override IItem<long> AbstractGetItem(long id, IContentType contentType, CultureInfo ci)
         {
             AbstractGetItemLastCall = new AbstractGetItemInfo
             {
@@ -53,7 +53,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             return default(TRealType);
         }
 
-        public override void AbstractSetItem(long id, IItem<long> item)
+        protected override void AbstractSetItem(long id, IItem<long> item)
         {
         }
 
