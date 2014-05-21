@@ -1,12 +1,16 @@
-﻿using System;
-using System.Globalization;
-using Furnace.Interfaces.Configuration;
-using Furnace.Interfaces.ContentTypes;
-using Furnace.Interfaces.Items;
+﻿
+
+using System.Linq;
 
 namespace Furnace.Items.Redis
 {
+    using System;
+    using System.Globalization;
     using System.Collections.Generic;
+
+    using Interfaces.Configuration;
+    using Interfaces.ContentTypes;
+    using Interfaces.Items;
     using Models.Items;
 
     using ServiceStack;
@@ -15,9 +19,9 @@ namespace Furnace.Items.Redis
 
     public class RedisBackedFurnaceItems : FurnaceItems<long>
     {
-        public const string ItemHashKey = "Item:{0}.{1}:{2}";
+        public const string ItemHashKey = "Item:{0}:{1}";
 
-        public const string ItemChildrenSortedSetKey = "ItemChildren:{0}.{1}:{2}";
+        public const string ItemChildrenSortedSetKey = "ItemChildren:{0}:{1}";
 
         private readonly IRedisClient _client;
         private IFurnaceContentTypes _contentTypes;
@@ -33,7 +37,8 @@ namespace Furnace.Items.Redis
         {
             var key = CreateItemKey(id, contentType);
 
-            var value = _client.GetValue(key);
+            var itemHash = _client.Hashes[key];
+            var value = itemHash[SiteConfiguration.DefaultSiteCulture.Name];
 
             if (value.IsNullOrEmpty())
                 return null;
@@ -41,9 +46,10 @@ namespace Furnace.Items.Redis
             return new Item(contentType, value);
         }
 
-        public Item GetItem(string key)
+        public IItem<long> GetItem(string key)
         {
-            var value = _client.GetValue(key);
+            var itemHash = _client.Hashes[key];
+            var value = itemHash[SiteConfiguration.DefaultSiteCulture.Name];
 
             if (value.IsNullOrEmpty())
                 return null;
@@ -77,11 +83,38 @@ namespace Furnace.Items.Redis
 
         public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
         {
-            var key = CreateItemChildrenKey(id, typeof(TRealType));
+            return GetItemChildren(id, typeof (TRealType));
+        }
+
+        public override IEnumerable<IItem<long>> GetItemChildren(long id, Type type)
+        {
+            var key = CreateItemChildrenKey(id, type);
+            return GetItemChildren(key);
+        }
+
+        protected IEnumerable<IItem<long>> GetItemChildren(string key)
+        {
             foreach (var itemKey in _client.SortedSets[key])
             {
                 yield return GetItem(itemKey);
             }
+        }
+
+        public override IEnumerable<IItem<long>> GetItemSiblings<T>(long id)
+        {
+            return GetItemSiblings(id, typeof (T));
+        }
+
+        public override IEnumerable<IItem<long>> GetItemSiblings(long id, Type type)
+        {
+            var key = CreateItemKey(id, type);
+            var item = GetItem(key);
+
+            var parentKey =
+                CreateItemChildrenKey(item.FurnaceItemInformation.ParentId,
+                item.FurnaceItemInformation.ContentTypeFullName);
+
+            return GetItemChildren(parentKey).Where(x=>x.Id != id);
         }
 
         public override void AbstractSetItem(long id, IItem<long> item)
@@ -94,17 +127,22 @@ namespace Furnace.Items.Redis
 
         public static string CreateItemKey(long id, IContentType contentType)
         {
-            return ItemHashKey.FormatWith(contentType.Namespace, contentType.Name, id);
+            return ItemHashKey.FormatWith(contentType.FullName, id);
         }
 
         public static string CreateItemKey(long id, Type type)
         {
-            return ItemHashKey.FormatWith(type.Namespace, type.Name, id);
+            return ItemHashKey.FormatWith(type.FullName, id);
         }
 
         public static string CreateItemChildrenKey(long id, Type type)
         {
-            return ItemChildrenSortedSetKey.FormatWith(type.Namespace, type.Name, id);
+            return ItemChildrenSortedSetKey.FormatWith(type.FullName, id);
+        }
+
+        public static string CreateItemChildrenKey(long id, string fullName)
+        {
+            return ItemChildrenSortedSetKey.FormatWith(fullName, id);
         }
     }
 }

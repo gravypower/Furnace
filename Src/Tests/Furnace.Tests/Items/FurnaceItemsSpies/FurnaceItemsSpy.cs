@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Furnace.Interfaces.Configuration;
 using Furnace.Interfaces.ContentTypes;
@@ -59,6 +60,21 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
         public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public override IEnumerable<IItem<long>> GetItemChildren(long id, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<IItem<long>> GetItemSiblings<T>(long id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override IEnumerable<IItem<long>> GetItemSiblings(long id, Type type)
+        {
+            throw new NotImplementedException();
         }
 
         public void AssertWhenGetItemIsCalled_ThenCorrectKey_IsUsed(LocalisationTests fixture)

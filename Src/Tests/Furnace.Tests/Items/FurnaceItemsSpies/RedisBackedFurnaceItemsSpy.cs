@@ -18,7 +18,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
         public void AssertWhenGetItemIsCalled_ThenCorrectKey_IsUsed(LocalisationTests fixture)
         {
             var key = CreateItemKey(fixture.Id, fixture.ContentType);
-            Client.Received().GetValue(key);
+            var hash = Client.Hashes.Received()[key];
         }
     }
 }

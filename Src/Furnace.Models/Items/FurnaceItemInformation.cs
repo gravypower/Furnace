@@ -6,6 +6,8 @@ namespace Furnace.Models.Items
     {
         public TKeyType Id { get; set; }
         public string ContentTypeFullName { get; set; }
-        public string ContentTypeVersion { get; set; }
+
+        public TKeyType ParentId { get; set; }
+        public string ParentContentTypeFullName { get; set; }
     }
 }

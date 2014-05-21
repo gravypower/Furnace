@@ -34,11 +34,11 @@ namespace Furnace.Items.Redis.Tests
 
             const string propityValue = "NotDefaultValue";
             var fi = new FurnaceItemInformation<long>() {Id = id};
-            var returnJon = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
-            Client.GetValue(key).Returns(returnJon);
+            Client.Hashes[key][SiteConfiguration.DefaultSiteCulture.Name].Returns(returnJson);
 
             //Act
             var result = Sut.GetItem(id, ContentType);
@@ -95,7 +95,7 @@ namespace Furnace.Items.Redis.Tests
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
-            Client.GetValue(key).Returns(returnJson);
+            Client.Hashes[key][SiteConfiguration.DefaultSiteCulture.Name].Returns(returnJson);
 
             ContentTypes.GetContentTypes().Returns(new[] {ContentType});
 
@@ -120,7 +120,7 @@ namespace Furnace.Items.Redis.Tests
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
-            Client.GetValue(key).Returns(returnJson);
+            Client.Hashes[key][SiteConfiguration.DefaultSiteCulture.Name].Returns(returnJson);
 
             ContentTypes.GetContentTypes().Returns(new[] { ContentType });
 

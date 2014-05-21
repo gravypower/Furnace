@@ -4,7 +4,8 @@
     {
         TKeyType Id { get; set; }
         string ContentTypeFullName { get; set; }
-        string ContentTypeVersion { get; set; }
-    }
 
+        TKeyType ParentId { get; set; }
+        string ParentContentTypeFullName { get; set; }
+    }
 }

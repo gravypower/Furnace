@@ -1,4 +1,5 @@
-﻿using Furnace.Interfaces.Configuration;
+﻿using System.Globalization;
+using Furnace.Interfaces.Configuration;
 using Furnace.Interfaces.ContentTypes;
 using Furnace.Interfaces.Items;
 using Furnace.Tests.Items.FurnaceItemsSpies;
@@ -27,6 +28,7 @@ namespace Furnace.Tests.Items
         protected void SetUp()
         {
             SiteConfiguration = Substitute.For<IFurnaceSiteConfiguration>();
+            SiteConfiguration.DefaultSiteCulture.Returns(new CultureInfo("en-AU"));
             switch (_furnaceItemsType)
             {
                 case "AbstractFurnaceItems":

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Furnace.Interfaces.Configuration;
@@ -48,7 +49,12 @@ namespace Furnace.Items
         public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
         public abstract IItem<TIdType> AbstractGetItem(TIdType id, IContentType contentType, CultureInfo ci);
         public abstract void AbstractSetItem(TIdType id, IItem<TIdType> item);
+
         public abstract IEnumerable<IItem<TIdType>> GetItemChildren<TRealType>(TIdType id);
+        public abstract IEnumerable<IItem<TIdType>> GetItemChildren(long id, Type type);
+        public abstract IEnumerable<IItem<TIdType>> GetItemSiblings<T>(TIdType id);
+        public abstract IEnumerable<IItem<TIdType>> GetItemSiblings(TIdType id, Type type);
+
     }
 
     public class FurnaceItems
