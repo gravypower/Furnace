@@ -78,11 +78,6 @@
             return TypeSerializer.DeserializeFromString<TRealType>(value);
         }
 
-        public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
-        {
-            return GetItemChildren(id, typeof (TRealType));
-        }
-
         public override IEnumerable<IItem<long>> GetItemChildren(long id, Type type)
         {
             var key = CreateItemChildrenKey(id, type);
@@ -97,11 +92,6 @@
             }
         }
 
-        public override IEnumerable<IItem<long>> GetItemSiblings<T>(long id)
-        {
-            return GetItemSiblings(id, typeof (T));
-        }
-
         public override IEnumerable<IItem<long>> GetItemSiblings(long id, Type type)
         {
             var key = CreateItemKey(id, type);
@@ -113,11 +103,6 @@
                 );
 
             return GetItemChildren(parentKey).Where(x=>x.Id != id);
-        }
-
-        public override IItem<long> GetItemParent<T>(long id)
-        {
-            return GetItemParent(id, typeof(T));
         }
 
         public override IItem<long> GetItemParent(long id, Type type)

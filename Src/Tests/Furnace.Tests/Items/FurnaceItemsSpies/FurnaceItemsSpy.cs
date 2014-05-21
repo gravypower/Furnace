@@ -57,27 +57,12 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
         {
         }
 
-        public override IEnumerable<IItem<long>> GetItemChildren<TRealType>(long id)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override IEnumerable<IItem<long>> GetItemChildren(long id, Type type)
         {
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<IItem<long>> GetItemSiblings<T>(long id)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override IEnumerable<IItem<long>> GetItemSiblings(long id, Type type)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override IItem<long> GetItemParent<T>(long id)
         {
             throw new NotImplementedException();
         }

@@ -45,19 +45,30 @@ namespace Furnace.Items
             AbstractSetItem(id, item);
         }
 
+        public IEnumerable<IItem<TIdType>> GetItemSiblings<T>(TIdType id)
+        {
+            return GetItemSiblings(id, typeof(T));
+        }
+
+        public IEnumerable<IItem<TIdType>> GetItemChildren<TRealType>(TIdType id)
+        {
+            return GetItemChildren(id, typeof(TRealType));
+        }
+
+        public IItem<TIdType> GetItemParent<T>(TIdType id)
+        {
+            return GetItemParent(id, typeof(T));
+        }
+
         public abstract TRealType GetItem<TRealType>(TIdType id);
         public abstract TRealType GetItem<TRealType>(TIdType id, CultureInfo cultureInfo);
         public abstract IItem<TIdType> AbstractGetItem(TIdType id, IContentType contentType, CultureInfo ci);
         public abstract void AbstractSetItem(TIdType id, IItem<TIdType> item);
 
-        public abstract IEnumerable<IItem<TIdType>> GetItemChildren<TRealType>(TIdType id);
-        public abstract IEnumerable<IItem<TIdType>> GetItemChildren(long id, Type type);
-        public abstract IEnumerable<IItem<TIdType>> GetItemSiblings<T>(TIdType id);
+        public abstract IEnumerable<IItem<TIdType>> GetItemChildren(TIdType id, Type type);
         public abstract IEnumerable<IItem<TIdType>> GetItemSiblings(TIdType id, Type type);
 
-        public abstract IItem<TIdType> GetItemParent<T>(TIdType id);
         public abstract IItem<TIdType> GetItemParent(TIdType id, Type type);
-
     }
 
     public class FurnaceItems
