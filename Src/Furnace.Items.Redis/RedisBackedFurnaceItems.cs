@@ -1,10 +1,7 @@
-﻿
-
-using System.Linq;
-
-namespace Furnace.Items.Redis
+﻿namespace Furnace.Items.Redis
 {
     using System;
+    using System.Linq;
     using System.Globalization;
     using System.Collections.Generic;
 
@@ -24,7 +21,7 @@ namespace Furnace.Items.Redis
         public const string ItemChildrenSortedSetKey = "ItemChildren:{0}:{1}";
 
         private readonly IRedisClient _client;
-        private IFurnaceContentTypes _contentTypes;
+        private readonly IFurnaceContentTypes _contentTypes;
 
         public RedisBackedFurnaceItems(IRedisClient client, IFurnaceSiteConfiguration siteConfiguration, IFurnaceContentTypes contentTypes)
             : base(siteConfiguration)
@@ -110,11 +107,30 @@ namespace Furnace.Items.Redis
             var key = CreateItemKey(id, type);
             var item = GetItem(key);
 
-            var parentKey =
-                CreateItemChildrenKey(item.FurnaceItemInformation.ParentId,
-                item.FurnaceItemInformation.ContentTypeFullName);
+            var parentKey = CreateItemChildrenKey(
+                item.FurnaceItemInformation.ParentId,
+                item.FurnaceItemInformation.ContentTypeFullName
+                );
 
             return GetItemChildren(parentKey).Where(x=>x.Id != id);
+        }
+
+        public override IItem<long> GetItemParent<T>(long id)
+        {
+            return GetItemParent(id, typeof(T));
+        }
+
+        public override IItem<long> GetItemParent(long id, Type type)
+        {
+            var key = CreateItemKey(id, type);
+            var item = GetItem(key);
+
+            var parentKey = CreateItemKey(
+                item.FurnaceItemInformation.ParentId,
+                item.FurnaceItemInformation.ContentTypeFullName
+                );
+
+            return GetItem(parentKey);
         }
 
         public override void AbstractSetItem(long id, IItem<long> item)
@@ -123,6 +139,11 @@ namespace Furnace.Items.Redis
             var itemHash = _client.Hashes[key];
             var value = TypeSerializer.SerializeToString(item.Propities);
             itemHash.Add(SiteConfiguration.DefaultSiteCulture.Name, value);
+        }
+
+        public static string CreateItemKey(long id, string fullName)
+        {
+            return ItemHashKey.FormatWith(fullName, id);
         }
 
         public static string CreateItemKey(long id, IContentType contentType)

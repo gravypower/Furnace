@@ -55,6 +55,9 @@ namespace Furnace.Items
         public abstract IEnumerable<IItem<TIdType>> GetItemSiblings<T>(TIdType id);
         public abstract IEnumerable<IItem<TIdType>> GetItemSiblings(TIdType id, Type type);
 
+        public abstract IItem<TIdType> GetItemParent<T>(TIdType id);
+        public abstract IItem<TIdType> GetItemParent(TIdType id, Type type);
+
     }
 
     public class FurnaceItems

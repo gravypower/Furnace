@@ -77,6 +77,16 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             throw new NotImplementedException();
         }
 
+        public override IItem<long> GetItemParent<T>(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IItem<long> GetItemParent(long id, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AssertWhenGetItemIsCalled_ThenCorrectKey_IsUsed(LocalisationTests fixture)
         {
             Assert.That(AbstractGetItemLastCall.Ci, Is.EqualTo(fixture.CultureInfo));

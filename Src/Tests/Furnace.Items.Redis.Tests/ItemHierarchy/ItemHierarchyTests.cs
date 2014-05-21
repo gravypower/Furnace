@@ -104,7 +104,7 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         }
 
         [Test]
-        public void GivenItemsParentHasTwoChrildres_WhenGetItemSiblingsIsCalled_OneItemReturned()
+        public void GivenItemsParentHasTwoChildren_WhenGetItemSiblingsIsCalled_OneItemReturned()
         {
             //Assign
             var test1 = "Test";
@@ -119,6 +119,24 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
             //Assert
             Assert.That(result.Count(), Is.EqualTo(1));
            
+        }
+
+        [Test]
+        public void GivenItemHasParent_WhenGetParentIsCalled_ParentReturned()
+        {
+            //Assign
+            var test1 = "Test";
+            AddChildStub(Id, 900L, test1);
+
+            var test2 = "Test";
+            AddChildStub(900L, 901L, test2);
+
+            //Act
+            var result = Sut.GetItemParent<Stub>(901L);
+
+            //Assert
+            Assert.That(result["Test"], Is.EqualTo(test1));
+
         }
 
         private void AddChildStub(long parentId, long childId, string test)
