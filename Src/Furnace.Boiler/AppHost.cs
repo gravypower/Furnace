@@ -19,16 +19,11 @@ namespace Furnace.Boiler.Play
 {
     public class AppHost : AppHostBase
     {
-        private IFurnaceContentTypes contentTypes;
-        private IFurnaceItems<long> items;
-
         public AppHost()
             : base("Furnace.Boiler.Play", typeof(AppHost).Assembly)
         {
-
-            contentTypes =
-                new RoslynContentTypes(
-                    @"C:\GitHub\Furnace\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj");
+            var contentTypes = new RoslynContentTypes(
+                @"C:\GitHub\Furnace\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj");
 
             contentTypes.GetContentTypes();
             contentTypes.CompileFurnaceContentTypes();
@@ -38,7 +33,7 @@ namespace Furnace.Boiler.Play
 
             redisClient.FlushAll();
 
-            items = new RedisBackedFurnaceItems(redisClient, siteConfig, contentTypes);
+            var items = new RedisBackedFurnaceItems(redisClient, siteConfig, contentTypes);
 
             var pageType = contentTypes.GetContentTypes().Single(x => x.FullName == typeof(Page).FullName);
 
