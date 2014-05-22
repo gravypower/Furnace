@@ -66,6 +66,9 @@
       <HintPath>..\packages\ServiceStack.Razor.4.0.20\lib\net45\ServiceStack.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis.4.0.20\lib\net40\ServiceStack.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text, Version=4.0.20.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
@@ -111,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHost.cs" />
+    <Compile Include="FurnaceSiteConfiguration.cs" />
     <Compile Include="ItemService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -134,9 +138,17 @@
       <Project>{99589d78-9f58-47fc-85e4-5f8477e99e30}</Project>
       <Name>Furnace.Items.Redis</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Furnace.Models\Furnace.Models.csproj">
+      <Project>{B32DAFD5-EB3D-4F65-8486-2099EB7D869B}</Project>
+      <Name>Furnace.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Furnace.Roslyn\Furnace.ContentTypes.Roslyn.csproj">
       <Project>{9c9f4c60-4825-4a33-9853-6eb835ad74ac}</Project>
       <Name>Furnace.ContentTypes.Roslyn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Furnace\Furnace.csproj">
+      <Project>{9E48A6F6-C469-492D-A911-89E4319B9FD6}</Project>
+      <Name>Furnace</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
