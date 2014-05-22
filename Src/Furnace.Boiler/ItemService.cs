@@ -1,5 +1,8 @@
-﻿using Furnace.Boiler.Play.Models.Messages;
-using Furnace.ContentTypes.Model;
+﻿using System.Collections.Generic;
+using Furnace.Boiler.Models.Play;
+using Furnace.Boiler.Play.Models.Messages;
+using Furnace.ContentTypes.Roslyn;
+using Furnace.Interfaces.ContentTypes;
 using ServiceStack;
 
 namespace Furnace.Boiler.Play
@@ -8,37 +11,24 @@ namespace Furnace.Boiler.Play
     [DefaultView("Item")]
     public class ItemService : Service
     {
-        public ItemResponse Get(ItemRequest request)
+        private IFurnaceContentTypes contentTypes;
+
+        public ItemService()
         {
-            return new ItemResponse
+            contentTypes = new RoslynContentTypes(@"E:\Dev\Src\Furnace.Boiler.Models.Play");
+            contentTypes.GetContentTypes();
+            contentTypes.CompileFurnaceContentTypes();
+
+            var pages = new List<Page>
             {
-               ContentType = new FurnaceContentType
-               {
-                   Name = "Test Name",
-                   Namespace = "Test Namespace",
-                   Properties = new []
-                   {
-                       new FurnaceContentTypeProperty
-                       {
-                           Name = "PropertyName",
-                           Type = "PropertyType",
-                           DefaultValue = "PropertyDefaultValue"
-                       },
-                       new FurnaceContentTypeProperty
-                       {
-                           Name = "PropertyName",
-                           Type = "PropertyType",
-                           DefaultValue = "PropertyDefaultValue"
-                       },
-                       new FurnaceContentTypeProperty
-                       {
-                           Name = "PropertyName",
-                           Type = "PropertyType",
-                           DefaultValue = "PropertyDefaultValue"
-                       }
-                   }
-               }
+                new Page {Title = "Page One"},
+                new Page {Title = "Page Two"}
             };
+        }
+
+        public PageResponse Get(PageRequest request)
+        {
+            return new PageResponse();
         }
     }
 }

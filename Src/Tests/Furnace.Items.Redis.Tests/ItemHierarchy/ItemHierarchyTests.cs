@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Furnace.Interfaces.ContentTypes;
+using Furnace.Items.Redis.Tests.Stubs;
 using Furnace.Models.ContentTypes;
 using Furnace.Models.Items;
 using NSubstitute;
@@ -11,13 +15,17 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
     public class ItemHierarchyTests : RedisBackedFurnaceItemsTests
     {
         private FakeRedisSortedSet _childSortedSet;
+
+        private List<IContentType> _contentTypes;
+
         private const long Id = 100L;
 
         [SetUp]
         public void ItemHierarchyTestsSetUp()
         {
             _childSortedSet = new FakeRedisSortedSet();
-            
+            _contentTypes = new List<IContentType>();
+
         }
 
         [Test]
@@ -34,7 +42,7 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         {
             //Assign
             var test = "Test";
-            AddChildStub(Id, 100L, test);
+            AddChild<Stub>(Id, typeof(Stub), 100L, test);
 
             //Act
             var result = Sut.GetItemChildren<Stub>(Id).ToList();
@@ -50,7 +58,7 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         {
             //Assign
             var test = "Test";
-            AddChildStub(Id, 100L, test);
+            AddChild<Stub>(Id, typeof(Stub), 100L, test);
            
             //Act
             var result = Sut.GetItemChildren<Stub>(Id).ToList();
@@ -66,10 +74,10 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         {
             //Assign
             var test1 = "Test";
-            AddChildStub(Id, 100L, test1);
+            AddChild<Stub>(Id, typeof(Stub), 100L, test1);
 
             var test2 = "Test";
-            AddChildStub(Id, 101L, test2);
+            AddChild<Stub>(Id, typeof(Stub), 101L, test2);
 
             //Act
             var result = Sut.GetItemChildren<Stub>(Id).ToList();
@@ -87,10 +95,10 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         {
             //Assign
             var test1 = "Test";
-            AddChildStub(Id, 100L, test1);
+            AddChild<Stub>(Id, typeof(Stub), 100L, test1);
 
             var test2 = "Test";
-            AddChildStub(Id, 101L, test2);
+            AddChild<Stub>(Id, typeof(Stub), 101L, test2);
 
             //Act
             var result = Sut.GetItemChildren<Stub>(Id).ToList();
@@ -104,14 +112,36 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         }
 
         [Test]
+        public void GiveItemHasTwoChildrenOfDifferentTypes_WhenGetSiblingsIsCalled_TwoItemCanBeConvertedToCorrectType()
+        {
+            //Assign
+            var test1 = "Test1";
+            AddChild<Stub>(Id, typeof(Stub), 100L, test1);
+
+            var test2 = "Test2";
+            AddChild<AnotherStub>(Id, typeof(Stub), 101L, test2);
+
+            //Act
+            var result = Sut.GetItemChildren<Stub>(Id).ToList();
+
+            //Assert
+            Assert.That(result.Count(), Is.EqualTo(2));
+            Assert.That(result[0].As<Stub>(), Is.TypeOf<Stub>());
+            Assert.That(result[0].As<Stub>().Test, Is.EqualTo(test1));
+            Assert.That(result[1].As<AnotherStub>(), Is.TypeOf<AnotherStub>());
+            Assert.That(result[1].As<AnotherStub>().Test, Is.EqualTo(test2));
+        }
+
+
+        [Test]
         public void GivenItemsParentHasTwoChildren_WhenGetItemSiblingsIsCalled_OneItemReturned()
         {
             //Assign
             var test1 = "Test";
-            AddChildStub(Id, 900L, test1);
+            AddChild<Stub>(Id, typeof(Stub), 900L, test1);
 
             var test2 = "Test";
-            AddChildStub(Id, 901L, test2);
+            AddChild<Stub>(Id, typeof(Stub), 901L, test2);
 
             //Act
             var result = Sut.GetItemSiblings<Stub>(900L).ToList();
@@ -126,10 +156,10 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
         {
             //Assign
             var test1 = "Test";
-            AddChildStub(Id, 900L, test1);
+            AddChild<Stub>(Id, typeof(Stub), 900L, test1);
 
             var test2 = "Test";
-            AddChildStub(900L, 901L, test2);
+            AddChild<Stub>(900L, typeof(Stub), 901L, test2);
 
             //Act
             var result = Sut.GetItemParent<Stub>(901L);
@@ -139,9 +169,10 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
 
         }
 
-        private void AddChildStub(long parentId, long childId, string test)
+        private void AddChild<T>(long parentId, Type parenType, long childId, string test)
+            where T : BaseStub, new()
         {
-            var type = typeof(Stub);
+            var type = typeof(T);
             var contentType = new ContentType { Name = type.Name, Namespace = type.Namespace };
 
             var furnaceItemInformation = new FurnaceItemInformation<long>
@@ -149,19 +180,27 @@ namespace Furnace.Items.Redis.Tests.ItemHierarchy
                 Id = childId,
                 ContentTypeFullName = contentType.FullName,
                 ParentId =  parentId,
-                ParentContentTypeFullName = contentType.FullName
+                ParentContentTypeFullName = parenType.FullName
             };
 
-            var stub = new Stub(furnaceItemInformation) {Test = test};
+            var stub = new T
+            {
+                FurnaceItemInformation = furnaceItemInformation,
+                Test = test
+            };
 
-            var itemKey = RedisBackedFurnaceItems.CreateItemKey(furnaceItemInformation.Id, typeof(Stub));
-            var setKey = RedisBackedFurnaceItems.CreateItemChildrenKey(parentId, typeof(Stub));
+            var itemKey = RedisBackedFurnaceItems.CreateItemKey(furnaceItemInformation.Id, type);
+            var setKey = RedisBackedFurnaceItems.CreateItemChildrenKey(parentId, parenType);
 
             _childSortedSet.Add(itemKey);
 
             Client.Hashes[itemKey][SiteConfiguration.DefaultSiteCulture.Name].Returns(stub.BuildSerialisedString());
             Client.SortedSets[setKey].Returns(_childSortedSet);
-            ContentTypes.GetContentTypes().Returns(new[] { contentType });
+
+            if(_contentTypes.All(x => x.FullName != contentType.FullName))
+                _contentTypes.Add(contentType);
+
+            ContentTypes.GetContentTypes().Returns(_contentTypes);
         }
     }
 }

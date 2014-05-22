@@ -22,7 +22,7 @@ namespace Furnace.Boiler.Play
 
             CustomErrorHttpHandlers[HttpStatusCode.NotFound] = new RazorHandler("/notfound");
 
-            Routes.Add<ItemRequest>("/item/");
+            Routes.Add<PageRequest>("/item/");
         }
     }
 }

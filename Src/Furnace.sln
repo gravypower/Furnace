@@ -88,6 +88,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Items.Redis.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Interfaces", "Furnace.Interfaces\Furnace.Interfaces.csproj", "{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furnace.Boiler.Models.Play", "Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj", "{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +380,16 @@ Global
 		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BA006DDD-5E4E-4E22-BA5D-59ED8ED2C6D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -385,6 +397,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{ED654B65-D2FB-43C5-8110-4D596DF762E7} = {6174A9CD-B25C-4417-8257-A974BE6C16E4}
 		{4D8DA43B-DC87-4FCD-AFDC-5B90CE8BF041} = {6174A9CD-B25C-4417-8257-A974BE6C16E4}
+		{79ED43D8-37D4-48B9-8039-18FA1B22F7AC} = {6174A9CD-B25C-4417-8257-A974BE6C16E4}
 		{07B82DFF-FB94-4CAF-A089-119F833B4484} = {426DEA60-4AEC-4820-8D8D-657DD64DF9B9}
 		{7F6BB4CE-B5E8-4E98-ACE6-FBDA2268ED26} = {426DEA60-4AEC-4820-8D8D-657DD64DF9B9}
 		{9899F053-3446-410D-B0D2-39F7DD923850} = {426DEA60-4AEC-4820-8D8D-657DD64DF9B9}

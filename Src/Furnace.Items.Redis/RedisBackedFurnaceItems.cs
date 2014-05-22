@@ -84,11 +84,12 @@
             return GetItemChildren(key);
         }
 
-        protected IEnumerable<IItem<long>> GetItemChildren(string key)
+        protected IEnumerable<IItem<long>> GetItemChildren(string key, string skipKey = "")
         {
             foreach (var itemKey in _client.SortedSets[key])
             {
-                yield return GetItem(itemKey);
+                if(itemKey != skipKey)
+                    yield return GetItem(itemKey);
             }
         }
 
@@ -102,7 +103,7 @@
                 item.FurnaceItemInformation.ContentTypeFullName
                 );
 
-            return GetItemChildren(parentKey).Where(x=>x.Id != id);
+            return GetItemChildren(parentKey, key);
         }
 
         public override IItem<long> GetItemParent(long id, Type type)

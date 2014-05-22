@@ -65,7 +65,6 @@ namespace Furnace.Items
 
         public abstract IEnumerable<IItem<TIdType>> GetItemChildren(TIdType id, Type type);
         public abstract IEnumerable<IItem<TIdType>> GetItemSiblings(TIdType id, Type type);
-
         public abstract IItem<TIdType> GetItemParent(TIdType id, Type type);
 
         protected abstract IItem<TIdType> AbstractGetItem(TIdType id, IContentType contentType, CultureInfo ci);

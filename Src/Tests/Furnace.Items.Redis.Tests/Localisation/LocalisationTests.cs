@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Furnace.Items.Redis.Tests.Stubs;
 using Furnace.Models.Items;
 using NSubstitute;
 using NUnit.Framework;
@@ -20,7 +21,11 @@ namespace Furnace.Items.Redis.Tests.Localisation
             Id = 99L;
             Key = RedisBackedFurnaceItems.CreateItemKey(Id, typeof(Stub));
             var fi = new FurnaceItemInformation<long>();
-            DefultCultureStub = new Stub(fi) {Test = "Hello"};
+            DefultCultureStub = new Stub
+            {
+                
+                Test = "Hello"
+            };
             Client.Hashes[Key][SiteConfiguration.DefaultSiteCulture.Name].Returns(DefultCultureStub.BuildSerialisedString());
         }
 
@@ -31,7 +36,11 @@ namespace Furnace.Items.Redis.Tests.Localisation
             {
                 CultureInfo = CultureInfo.GetCultureInfo("fr-FR");
                 var fi = new FurnaceItemInformation<long>();
-                CultureStub = new Stub(fi) { Test = "こんにいちわ" };
+                CultureStub = new Stub
+                {
+                    FurnaceItemInformation = fi,
+                    Test = "こんにいちわ"
+                };
             }
         }
 
@@ -42,7 +51,11 @@ namespace Furnace.Items.Redis.Tests.Localisation
             {
                 CultureInfo = CultureInfo.GetCultureInfo("ja-JP");
                 var fi = new FurnaceItemInformation<long>();
-                CultureStub = new Stub(fi) { Test = "bonjour" };
+                CultureStub = new Stub
+                {
+                    FurnaceItemInformation = fi,
+                    Test = "bonjour"
+                };
             }
         }
 

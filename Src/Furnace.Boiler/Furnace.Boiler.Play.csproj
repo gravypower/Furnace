@@ -115,15 +115,30 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FurnaceContentType.cs" />
-    <Compile Include="Models\FurnaceContentTypeProperty.cs" />
     <Compile Include="Models\Messages\Base\Request.cs" />
     <Compile Include="Models\Messages\Base\Response.cs" />
-    <Compile Include="Models\Messages\ItemRequest.cs" />
-    <Compile Include="Models\Messages\ItemResponse.cs" />
+    <Compile Include="Models\Messages\PageRequest.cs" />
+    <Compile Include="Models\Messages\PageResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj">
+      <Project>{79ed43d8-37d4-48b9-8039-18fa1b22f7ac}</Project>
+      <Name>Furnace.Boiler.Models.Play</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Furnace.Interfaces\Furnace.Interfaces.csproj">
+      <Project>{ba006ddd-5e4e-4e22-ba5d-59ed8ed2c6d9}</Project>
+      <Name>Furnace.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Furnace.Items.Redis\Furnace.Items.Redis.csproj">
+      <Project>{99589d78-9f58-47fc-85e4-5f8477e99e30}</Project>
+      <Name>Furnace.Items.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Furnace.Roslyn\Furnace.ContentTypes.Roslyn.csproj">
+      <Project>{9c9f4c60-4825-4a33-9853-6eb835ad74ac}</Project>
+      <Name>Furnace.ContentTypes.Roslyn</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

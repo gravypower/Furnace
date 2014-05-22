@@ -1,4 +1,5 @@
-﻿using Furnace.Models.Items;
+﻿using Furnace.Items.Redis.Tests.Stubs;
+using Furnace.Models.Items;
 using Furnace.Tests;
 using NSubstitute;
 using NUnit.Framework;
@@ -34,7 +35,11 @@ namespace Furnace.Items.Redis.Tests
 
             const string propityValue = "NotDefaultValue";
             var fi = new FurnaceItemInformation<long>() {Id = id};
-            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+            var returnJson = new Stub
+            {
+                FurnaceItemInformation = fi,
+                Test = propityValue
+            }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
@@ -57,7 +62,11 @@ namespace Furnace.Items.Redis.Tests
 
             const string propityValue = "NotDefault Value";
             var fi = new FurnaceItemInformation<long>();
-            var returnJon = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+            var returnJon = new Stub
+            {
+                FurnaceItemInformation = fi,
+                Test = propityValue
+            }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, typeof(Stub));
 
@@ -91,7 +100,11 @@ namespace Furnace.Items.Redis.Tests
 
             const string propityValue = "NotDefaultValue";
             var fi = new FurnaceItemInformation<long> {Id = id, ContentTypeFullName = ContentType.FullName};
-            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+            var returnJson = new Stub
+            {
+                FurnaceItemInformation = fi,
+                Test = propityValue
+            }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
@@ -116,7 +129,11 @@ namespace Furnace.Items.Redis.Tests
 
             const string propityValue = "NotDefaultValue";
             var fi = new FurnaceItemInformation<long> { Id = id, ContentTypeFullName = ContentType.FullName };
-            var returnJson = new Stub(fi) { Test = propityValue }.BuildSerialisedString();
+            var returnJson = new Stub
+            {
+                FurnaceItemInformation = fi,
+                Test = propityValue
+            }.BuildSerialisedString();
 
             var key = RedisBackedFurnaceItems.CreateItemKey(id, ContentType);
 
