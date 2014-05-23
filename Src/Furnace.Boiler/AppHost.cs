@@ -19,11 +19,17 @@ namespace Furnace.Boiler.Play
 {
     public class AppHost : AppHostBase
     {
+        private IFurnaceContentTypes contentTypes;
+        public IFurnaceItems<long> Items;
+
         public AppHost()
             : base("Furnace.Boiler.Play", typeof(AppHost).Assembly)
         {
-            var contentTypes = new RoslynContentTypes(
-                @"C:\GitHub\Furnace\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj");
+
+            contentTypes =
+                new RoslynContentTypes(
+                    @"E:\Dev\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj",
+                    @"E:\Dev\Src\Furnace.Boiler\bin\FurnaceObjectTypes\FurnaceObjectType.cs");
 
             contentTypes.GetContentTypes();
             contentTypes.CompileFurnaceContentTypes();
@@ -33,34 +39,25 @@ namespace Furnace.Boiler.Play
 
             redisClient.FlushAll();
 
-            var items = new RedisBackedFurnaceItems(redisClient, siteConfig, contentTypes);
+            Items = new RedisBackedFurnaceItems(redisClient, siteConfig, contentTypes);
 
             var pageType = contentTypes.GetContentTypes().Single(x => x.FullName == typeof(Page).FullName);
 
-            var pages = new List<Page>
+            for (var i = 2L; i < 100; i++)
             {
-                new Page {Title = "Page One"},
-                new Page {Title = "Page Two"}
-            };
-
-            var id = 2L;
-            foreach (var page in pages)
-            {
-                var p = items.CreateItem(pageType);
-                p.Propities.Add("Title", page.Title);
-                p.Propities.Add("Body", page.Body);
+                var p = Items.CreateItem(pageType);
+                p.Propities.Add("Title", "Page " + i);
+                p.Propities.Add("Body", "Body " + i);
 
                 p.FurnaceItemInformation = new FurnaceItemInformation<long>
                 {
-                    ParentId = 1l,
+                    ParentId = 1L,
                     ParentContentTypeFullName = typeof (Page).FullName,
                     ContentTypeFullName = typeof (Page).FullName,
-                    Id = id
+                    Id = i
                 };
 
                 p.Save(redisClient);
-
-                id++;
             }
         }
 
@@ -72,7 +69,8 @@ namespace Furnace.Boiler.Play
 
             CustomErrorHttpHandlers[HttpStatusCode.NotFound] = new RazorHandler("/notfound");
 
-            Routes.Add<PageRequest>("/");
+            Routes.Add<PageRequest>("/Items");
+            Routes.Add<PageRequest>("/Items/{PageId}");
         }
     }
 }

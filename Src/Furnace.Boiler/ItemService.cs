@@ -11,11 +11,22 @@ namespace Furnace.Boiler.Play
     {
         public PageResponse Get(PageRequest request)
         {
-            var responce = new PageResponse {Pages = new List<Page>()};
-            //foreach (var itemChild in items.GetItemChildren<Page>(1L))
-            //{
-            //    responce.Pages.Add(itemChild.As<Page>());
-            //}
+            var appHost = (AppHost) ServiceStackHost.Instance;
+            var responce = new PageResponse ();
+            responce.Pages = new List<Page>();
+
+            if (request.PageId == 0L)
+            {
+                foreach (var itemChild in appHost.Items.GetItemChildren<Page>(1L))
+                {
+                    responce.Pages.Add(itemChild.As<Page>());
+                }
+            }
+            else
+            {
+                responce.Pages.Add(appHost.Items.GetItem<Page>(request.PageId));
+            }
+
             return responce;
         }
     }

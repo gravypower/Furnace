@@ -2,7 +2,6 @@
 using System.IO;
 using Furnace.ContentTypes.Roslyn.Models;
 using Furnace.Interfaces.Items;
-using Furnace.Items;
 using Furnace.Models.Exceptions;
 using Furnace.Models.Items;
 using Microsoft.CodeAnalysis;
@@ -101,7 +100,7 @@ namespace Furnace.ContentTypes.Roslyn.FurnaceObjectTypes
 
             public const string EmptyTemplatePath = "Templte path was Empty";
 
-            public const string InvalidTemplatePath = "Templte path was Empty";
+            public const string InvalidTemplatePath = "Templte path was Invalid";
 
             public TemplatePathException(IEnumerable<string> reasons) : base(reasons)
             {

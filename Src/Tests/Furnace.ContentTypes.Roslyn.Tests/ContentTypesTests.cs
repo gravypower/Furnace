@@ -1,4 +1,5 @@
-﻿using Furnace.Interfaces.ContentTypes;
+﻿using System.IO;
+using Furnace.Interfaces.ContentTypes;
 using NUnit.Framework;
 
 namespace Furnace.ContentTypes.Roslyn.Tests
@@ -16,7 +17,9 @@ namespace Furnace.ContentTypes.Roslyn.Tests
         [SetUp]
         public void SetUp()
         {
-            Sut = new RoslynContentTypes(BaseProjectPath + this.ProjectPath);
+            var templatePath = Path.GetDirectoryName(GetType().Assembly.Location);
+            var templateFilePath = templatePath + @"\FurnaceObjectTypes\FurnaceObjectType.cs";
+            Sut = new RoslynContentTypes(BaseProjectPath + this.ProjectPath, templateFilePath);
         }
     }
 }

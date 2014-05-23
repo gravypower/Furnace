@@ -2,6 +2,6 @@
 {
     public class PageRequest
     {
-        public string PageUrl { get; set; }
+        public long PageId { get; set; }
     }
 }

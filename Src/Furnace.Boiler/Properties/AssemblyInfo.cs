@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -42,7 +43,7 @@ using ServiceStack.Text;
 
 public static class extions
 {
-    public static long GetId<T>(this T test)
+    public static long GetFurId<T>(this T test)
         where T : Page
     {
         return ((IFurnaceItemInformation<long>)test).Id;

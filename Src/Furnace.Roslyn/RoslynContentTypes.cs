@@ -23,19 +23,15 @@ namespace Furnace.ContentTypes.Roslyn
         private readonly Project _project;
 
         protected readonly IFurnaceObjectTypeFactory ObjectTypeFactory;
-        public const string TemplateFile = @"\FurnaceObjectTypes\FurnaceObjectType.cs";
         public const string AssemblyName = "FurnaceObjectTypes";
 
-        public RoslynContentTypes(string projectPath)
+        public RoslynContentTypes(string projectPath, string templateFilePath)
         {
             if (string.IsNullOrEmpty(projectPath))
                 throw new InvalidProjectPathException();
 
             var workspace = MSBuildWorkspace.Create();
             _project = workspace.OpenProjectAsync(projectPath).Result;
-
-            var templatePath = Path.GetDirectoryName(GetType().Assembly.Location);
-            var templateFilePath = templatePath + TemplateFile;
 
             ObjectTypeFactory = new FurnaceObjectTypeFactory(templateFilePath);
         }
