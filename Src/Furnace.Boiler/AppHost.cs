@@ -5,7 +5,6 @@ using Funq;
 using Furnace.Boiler.Models.Play;
 using Furnace.Boiler.Play.Models.Messages;
 using Furnace.ContentTypes.Roslyn;
-using Furnace.Interfaces.ContentTypes;
 using Furnace.Interfaces.Items;
 using Furnace.Items.Redis;
 using Furnace.Models.Items;
@@ -23,7 +22,7 @@ namespace Furnace.Boiler.Play
         public AppHost()
             : base("Furnace.Boiler.Play", typeof(AppHost).Assembly)
         {
-            IFurnaceContentTypes contentTypes = new RoslynContentTypes(
+            var contentTypes = new RoslynContentTypes(
                 @"C:\GitHub\Furnace\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj",
                 @"C:\GitHub\Furnace\Src\Furnace.Boiler\bin\FurnaceObjectTypes\FurnaceObjectType.cs");
 

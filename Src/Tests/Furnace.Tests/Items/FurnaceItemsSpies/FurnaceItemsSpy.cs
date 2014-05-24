@@ -38,7 +38,7 @@ namespace Furnace.Tests.Items.FurnaceItemsSpies
             return null;
         }
 
-        protected override IItem<long> NewItem(IContentType contentType)
+        protected override IItem<long> AbstractCreateItem(IContentType contentType)
         {
             return new Item(contentType);
         }

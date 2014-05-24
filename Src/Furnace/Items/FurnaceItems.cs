@@ -21,10 +21,10 @@ namespace Furnace.Items
             var guard = new Guard();
             guard.GuardContenType(contentType);
 
-            return NewItem(contentType);
+            return AbstractCreateItem(contentType);
         }
 
-        protected abstract IItem<TIdType> NewItem(IContentType contentType);
+        protected abstract IItem<TIdType> AbstractCreateItem(IContentType contentType);
 
         public IItem<TIdType> GetItem(TIdType id, IContentType contentType)
         {

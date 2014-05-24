@@ -1,7 +1,6 @@
 ﻿namespace Furnace.Items.Redis
 {
     using System;
-    using System.Linq;
     using System.Globalization;
     using System.Collections.Generic;
 
@@ -54,7 +53,7 @@
             return new Item(value, _contentTypes);
         }
 
-        protected override IItem<long> NewItem(IContentType contentType)
+        protected override IItem<long> AbstractCreateItem(IContentType contentType)
         {
             return new Item(contentType);
         }
@@ -127,24 +126,24 @@
             itemHash.Add(SiteConfiguration.DefaultSiteCulture.Name, value);
         }
 
+        public static string CreateItemKey(long id, IContentType contentType)
+        {
+            return CreateItemKey(id, contentType.FullName);
+        }
+
+        public static string CreateItemKey(long id, Type type)
+        {
+            return CreateItemKey(id, type.FullName);
+        }
+
         public static string CreateItemKey(long id, string fullName)
         {
             return ItemHashKey.FormatWith(fullName, id);
         }
 
-        public static string CreateItemKey(long id, IContentType contentType)
-        {
-            return ItemHashKey.FormatWith(contentType.FullName, id);
-        }
-
-        public static string CreateItemKey(long id, Type type)
-        {
-            return ItemHashKey.FormatWith(type.FullName, id);
-        }
-
         public static string CreateItemChildrenKey(long id, Type type)
         {
-            return ItemChildrenSortedSetKey.FormatWith(type.FullName, id);
+            return CreateItemChildrenKey(id, type.FullName);
         }
 
         public static string CreateItemChildrenKey(long id, string fullName)
