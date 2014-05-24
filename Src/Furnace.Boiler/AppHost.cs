@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using System.Net;
 using Funq;
@@ -19,17 +18,14 @@ namespace Furnace.Boiler.Play
 {
     public class AppHost : AppHostBase
     {
-        private IFurnaceContentTypes contentTypes;
         public IFurnaceItems<long> Items;
 
         public AppHost()
             : base("Furnace.Boiler.Play", typeof(AppHost).Assembly)
         {
-
-            contentTypes =
-                new RoslynContentTypes(
-                    @"E:\Dev\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj",
-                    @"E:\Dev\Src\Furnace.Boiler\bin\FurnaceObjectTypes\FurnaceObjectType.cs");
+            IFurnaceContentTypes contentTypes = new RoslynContentTypes(
+                @"C:\GitHub\Furnace\Src\Furnace.Boiler.Models.Play\Furnace.Boiler.Models.Play.csproj",
+                @"C:\GitHub\Furnace\Src\Furnace.Boiler\bin\FurnaceObjectTypes\FurnaceObjectType.cs");
 
             contentTypes.GetContentTypes();
             contentTypes.CompileFurnaceContentTypes();
@@ -69,8 +65,8 @@ namespace Furnace.Boiler.Play
 
             CustomErrorHttpHandlers[HttpStatusCode.NotFound] = new RazorHandler("/notfound");
 
-            Routes.Add<PageRequest>("/Items");
-            Routes.Add<PageRequest>("/Items/{PageId}");
+            Routes.Add<PageRequest>("/Pages");
+            Routes.Add<PageRequest>("/Pages/{PageId}");
         }
     }
 }

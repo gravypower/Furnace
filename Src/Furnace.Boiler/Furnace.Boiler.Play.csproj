@@ -122,7 +122,7 @@
     <Content Include="js\jquip.events.css.ajax.min.js" />
     <Content Include="packages.config" />
     <Content Include="default.cshtml" />
-    <Content Include="Views\Item.cshtml" />
+    <Content Include="Views\Page.cshtml" />
     <Content Include="NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -12,8 +12,7 @@ namespace Furnace.Boiler.Play
         public PageResponse Get(PageRequest request)
         {
             var appHost = (AppHost) ServiceStackHost.Instance;
-            var responce = new PageResponse ();
-            responce.Pages = new List<Page>();
+            var responce = new PageResponse {Pages = new List<Page>()};
 
             if (request.PageId == 0L)
             {
