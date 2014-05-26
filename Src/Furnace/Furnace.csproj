@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\FurnaceHierarchy.cs" />
     <Compile Include="Items\FurnaceItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
